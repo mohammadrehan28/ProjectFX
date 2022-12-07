@@ -59,9 +59,7 @@ public class HelloController implements Initializable {
                 ResultSet rs = stmt.executeQuery(all);
                 while (rs.next()) {
                     String ID = rs.getString(1);
-                    System.out.println(ID);
                     String Password = rs.getString(2);
-                    System.out.println(Password);
                     if (UserNameText.getText().equals(ID) && !PasswordText.getText().equals(Password)) {
                         IncorrectLabel.setText("Invalid Password");
                         break;
@@ -81,14 +79,23 @@ public class HelloController implements Initializable {
                 String url = "jdbc:oracle:thin:@localhost:1521:xe";
                 Connection con = DriverManager.getConnection(url,"mohammad","123456");
                 con.setAutoCommit(false);
+                String all = "Select Buyer_id from Buyer";
+                Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery(all);
                 String name = UserNameText.getText();
                 String Pass = PasswordText.getText();
                 String SSN = SSNText.getText();
+                while(rs.next()) {
+                    if(rs.getString(1).equals(SSNText.getText())) break;
+                }
+                if(!rs.next()) {
+                    all = "INSERT INTO Buyer values('"+SSN+"','"+name+"')";
+                    stmt.executeUpdate(all);
+                }
                 UserNameText.setText("");
                 PasswordText.setText("");
                 SSNText.setText("");
-                String all = "INSERT INTO Admin_User values('"+name+"','"+Pass+"','Buyer','"+SSN+"')";
-                Statement stmt = con.createStatement();
+                all = "INSERT INTO Admin_User values('"+name+"','"+Pass+"','Buyer','"+SSN+"')";
                 stmt.executeUpdate(all);
                 con.commit();
                 con.close();
