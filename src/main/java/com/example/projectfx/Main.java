@@ -93,7 +93,10 @@ public class Main implements Initializable {
 
     @Override
     public void initialize (URL location,ResourceBundle resources){
+        //data.clear();
+        //datadepartment.clear();
         getFromAllData(data, table1,"Employee");
+        getFromAllData(datadepartment, tabledepartment, "Department");
     }
     @FXML
     private void handleClicks(ActionEvent event){
@@ -101,13 +104,13 @@ public class Main implements Initializable {
             text_state.setText("Employee");
             pane_state.setBackground(new Background(new BackgroundFill(Color.rgb(162, 217, 206), CornerRadii.EMPTY, Insets.EMPTY)));
             grid1.toFront();
-            getFromAllData(data, table1,"Employee");
+            //getFromAllData(data, table1,"Employee");
         }
         else  if(event.getSource()==department_btn){
             text_state.setText("Department");
             pane_state.setBackground(new Background(new BackgroundFill(Color.rgb(162, 217, 206), CornerRadii.EMPTY, Insets.EMPTY)));
             grid2.toFront();
-            getFromAllData(datadepartment, tabledepartment, "Department");
+            //getFromAllData(datadepartment, tabledepartment, "Department");
         }
         else if(event.getSource()==item_btn){
             text_state.setText("Item");

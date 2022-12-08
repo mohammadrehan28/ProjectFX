@@ -18,9 +18,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="509.0" prefWidth="681.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectfx.Main">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="692.0" prefWidth="923.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectfx.Main">
    <children>
-      <VBox prefHeight="509.0" prefWidth="193.0" style="-fx-background-color: #A2D9CE;">
+      <VBox prefHeight="692.0" prefWidth="194.0" style="-fx-background-color: #A2D9CE;">
          <children>
             <ImageView fitHeight="143.0" fitWidth="194.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -124,21 +124,7 @@
       </VBox>
       <StackPane layoutX="194.0" layoutY="169.0">
          <children>
-            <GridPane fx:id="grid4" prefHeight="341.0" prefWidth="488.0" style="-fx-background-color: #ffffff;">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-               <children>
-                  <Label prefHeight="25.0" prefWidth="171.0" text="project" />
-               </children>
-            </GridPane>
-            <GridPane fx:id="grid5" prefHeight="341.0" prefWidth="488.0" style="-fx-background-color: #ffffff;">
+            <GridPane fx:id="grid5" prefHeight="523.0" prefWidth="728.0" style="-fx-background-color: #ffffff;">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -152,7 +138,7 @@
                   <Label prefHeight="35.0" prefWidth="194.0" text="provider" />
                </children>
             </GridPane>
-            <GridPane fx:id="grid6" prefHeight="341.0" prefWidth="488.0" style="-fx-background-color: #ffffff;">
+            <GridPane fx:id="grid6" prefHeight="523.0" prefWidth="728.0" style="-fx-background-color: #ffffff;">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -166,35 +152,13 @@
                   <Label prefHeight="26.0" prefWidth="220.0" text="buyer" />
                </children>
             </GridPane>
-            <GridPane fx:id="grid3" prefHeight="341.0" prefWidth="488.0" style="-fx-background-color: #ffffff;">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-               <children>
-                  <Button mnemonicParsing="false" prefHeight="115.0" prefWidth="165.0" text="Button" />
-                  <Button mnemonicParsing="false" prefHeight="115.0" prefWidth="165.0" text="Button" GridPane.columnIndex="1" />
-                  <Button mnemonicParsing="false" prefHeight="115.0" prefWidth="165.0" text="Button" GridPane.columnIndex="2" />
-                  <Button mnemonicParsing="false" prefHeight="115.0" prefWidth="165.0" text="Button" GridPane.rowIndex="1" />
-                  <Button mnemonicParsing="false" prefHeight="115.0" prefWidth="165.0" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Button mnemonicParsing="false" prefHeight="115.0" prefWidth="165.0" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                  <Button mnemonicParsing="false" prefHeight="115.0" prefWidth="165.0" text="Button" GridPane.rowIndex="2" />
-                  <Button mnemonicParsing="false" prefHeight="115.0" prefWidth="165.0" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-               </children>
-            </GridPane>
-            <GridPane fx:id="grid2" prefHeight="341.0" prefWidth="488.0" style="-fx-background-color: #ffffff;">
+            <GridPane fx:id="grid2" prefHeight="523.0" prefWidth="728.0" style="-fx-background-color: #ffffff;">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints maxHeight="165.60001220703126" minHeight="10.0" prefHeight="38.40001220703125" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="303.1999877929687" minHeight="10.0" prefHeight="303.1999877929687" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="165.60001220703126" minHeight="10.0" prefHeight="128.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="395.0" minHeight="10.0" prefHeight="395.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
                   <HBox prefHeight="37.0" prefWidth="461.0">
@@ -230,13 +194,27 @@
                   <TableView fx:id="tabledepartment" prefHeight="270.0" prefWidth="523.0" stylesheets="@style.css" GridPane.rowIndex="1" />
                </children>
             </GridPane>
-            <GridPane fx:id="grid1" prefHeight="334.0" prefWidth="488.0" style="-fx-background-color: #ffffff;">
+            <GridPane fx:id="grid4" prefHeight="523.0" prefWidth="728.0" style="-fx-background-color: #ffffff;">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label prefHeight="25.0" prefWidth="171.0" text="project" />
+               </children>
+            </GridPane>
+            <GridPane fx:id="grid1" prefHeight="523.0" prefWidth="728.0" style="-fx-background-color: #ffffff;">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints maxHeight="135.60001220703126" minHeight="10.0" prefHeight="43.60001831054687" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="297.5999816894531" minHeight="10.0" prefHeight="297.5999816894531" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="135.60001220703126" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="395.0" minHeight="10.0" prefHeight="391.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
                   <TableView fx:id="table1" prefHeight="270.0" prefWidth="523.0" stylesheets="@style.css" GridPane.rowIndex="1" />
@@ -272,9 +250,187 @@
                   </HBox>
                </children>
             </GridPane>
+            <GridPane fx:id="grid3" prefHeight="523.0" prefWidth="728.0" style="-fx-background-color: #ffffff;">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <ImageView fitHeight="135.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@OutDoor.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="139.0" style="-fx-background-color: #A2D9CE; -fx-background-radius: 10;" text="OutDoor Plants" textFill="WHITE">
+                           <font>
+                              <Font name="Verdana" size="16.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+                     <children>
+                        <ImageView fitHeight="135.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@OutDoor.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="139.0" style="-fx-background-color: #A2D9CE; -fx-background-radius: 10;" text="OutDoor Plants" textFill="WHITE">
+                           <font>
+                              <Font name="Verdana" size="16.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
+                     <children>
+                        <ImageView fitHeight="135.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@OutDoor.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="139.0" style="-fx-background-color: #A2D9CE; -fx-background-radius: 10;" text="OutDoor Plants" textFill="WHITE">
+                           <font>
+                              <Font name="Verdana" size="16.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+                     <children>
+                        <ImageView fitHeight="135.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@OutDoor.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="139.0" style="-fx-background-color: #A2D9CE; -fx-background-radius: 10;" text="OutDoor Plants" textFill="WHITE">
+                           <font>
+                              <Font name="Verdana" size="16.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <ImageView fitHeight="135.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@OutDoor.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="139.0" style="-fx-background-color: #A2D9CE; -fx-background-radius: 10;" text="OutDoor Plants" textFill="WHITE">
+                           <font>
+                              <Font name="Verdana" size="16.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <children>
+                        <ImageView fitHeight="135.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@OutDoor.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="139.0" style="-fx-background-color: #A2D9CE; -fx-background-radius: 10;" text="OutDoor Plants" textFill="WHITE">
+                           <font>
+                              <Font name="Verdana" size="16.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
+                     <children>
+                        <ImageView fitHeight="135.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@OutDoor.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="139.0" style="-fx-background-color: #A2D9CE; -fx-background-radius: 10;" text="OutDoor Plants" textFill="WHITE">
+                           <font>
+                              <Font name="Verdana" size="16.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <children>
+                        <ImageView fitHeight="135.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@OutDoor.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="139.0" style="-fx-background-color: #A2D9CE; -fx-background-radius: 10;" text="OutDoor Plants" textFill="WHITE">
+                           <font>
+                              <Font name="Verdana" size="16.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+               </children>
+            </GridPane>
          </children>
       </StackPane>
-      <Pane fx:id="pane_state" layoutX="192.0" layoutY="70.0" prefHeight="75.0" prefWidth="489.0" style="-fx-background-color: #A2D9CE;">
+      <Pane fx:id="pane_state" layoutX="192.0" layoutY="70.0" prefHeight="75.0" prefWidth="731.0" style="-fx-background-color: #A2D9CE;">
          <children>
             <Label fx:id="text_state" layoutX="26.0" prefHeight="79.0" prefWidth="285.0" text="Employee" textFill="WHITE">
                <font>
@@ -286,6 +442,6 @@
             </Label>
          </children>
       </Pane>
-      <Button fx:id="exit_btn" layoutX="612.0" layoutY="7.0" mnemonicParsing="false" onAction="#handleExit" prefHeight="25.0" prefWidth="64.0" text="⬅ return" />
+      <Button fx:id="exit_btn" layoutX="850.0" layoutY="9.0" mnemonicParsing="false" onAction="#handleExit" prefHeight="25.0" prefWidth="64.0" text="⬅ return" />
    </children>
 </AnchorPane>
