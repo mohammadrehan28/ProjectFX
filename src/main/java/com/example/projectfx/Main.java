@@ -93,7 +93,7 @@ public class Main implements Initializable {
 
     @Override
     public void initialize (URL location,ResourceBundle resources){
-        getDataEmployee();
+        getFromAllData(data, table1,"Employee");
     }
     @FXML
     private void handleClicks(ActionEvent event){
@@ -101,53 +101,13 @@ public class Main implements Initializable {
             text_state.setText("Employee");
             pane_state.setBackground(new Background(new BackgroundFill(Color.rgb(162, 217, 206), CornerRadii.EMPTY, Insets.EMPTY)));
             grid1.toFront();
-            getDataEmployee();
+            getFromAllData(data, table1,"Employee");
         }
         else  if(event.getSource()==department_btn){
             text_state.setText("Department");
             pane_state.setBackground(new Background(new BackgroundFill(Color.rgb(162, 217, 206), CornerRadii.EMPTY, Insets.EMPTY)));
             grid2.toFront();
-            try {
-                datadepartment = FXCollections.observableArrayList();
-                OracleDataSource ods = new OracleDataSource();
-                ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
-                ods.setUser("mohammad");
-                ods.setPassword("123456");
-                Connection con = ods.getConnection();
-                String qry = "Select * from Department";
-                Statement stmt = con.createStatement();
-                ResultSet rs = stmt.executeQuery(qry);
-                for(int i=0 ; i<rs.getMetaData().getColumnCount(); i++){
-                    //We are using non property style for making dynamic table
-                    final int j = i;
-                    TableColumn col = new TableColumn(rs.getMetaData().getColumnName(i+1));
-                    col.setCellValueFactory(new Callback<CellDataFeatures<ObservableList,String>, ObservableValue<String>>(){
-                        public ObservableValue<String> call(CellDataFeatures<ObservableList, String> param) {
-                            if(param.getValue().get(j)==null) return new SimpleStringProperty("");
-                            return new SimpleStringProperty(param.getValue().get(j).toString());
-                        }
-                    });
-
-                    tabledepartment.getColumns().add(col);
-                }
-
-                while(rs.next()){
-                    //Iterate Row
-                    ObservableList<String> row = FXCollections.observableArrayList();
-                    for(int i=1 ; i<=rs.getMetaData().getColumnCount(); i++){
-                        //Iterate Column
-                        row.add(rs.getString(i));
-                    }
-                    datadepartment.add(row);
-
-                }
-
-                //FINALLY ADDED TO TableView
-                tabledepartment.setItems(datadepartment);
-                con.close();
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            getFromAllData(datadepartment, tabledepartment, "Department");
         }
         else if(event.getSource()==item_btn){
             text_state.setText("Item");
@@ -185,15 +145,16 @@ public class Main implements Initializable {
         }
     }
 
-    public void getDataEmployee() {
+
+    public void getFromAllData(ObservableList<ObservableList> datadepartment, TableView tabledepartment, String name) {
         try {
-            data = FXCollections.observableArrayList();
+            datadepartment = FXCollections.observableArrayList();
             OracleDataSource ods = new OracleDataSource();
             ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
             ods.setUser("mohammad");
             ods.setPassword("123456");
             Connection con = ods.getConnection();
-            String qry = "Select * from Employee";
+            String qry = "Select * from " + name;
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(qry);
             for(int i=0 ; i<rs.getMetaData().getColumnCount(); i++){
@@ -207,7 +168,7 @@ public class Main implements Initializable {
                     }
                 });
 
-                table1.getColumns().add(col);
+                tabledepartment.getColumns().add(col);
             }
 
             while(rs.next()){
@@ -217,12 +178,12 @@ public class Main implements Initializable {
                     //Iterate Column
                     row.add(rs.getString(i));
                 }
-                data.add(row);
+                datadepartment.add(row);
 
             }
 
             //FINALLY ADDED TO TableView
-            table1.setItems(data);
+            tabledepartment.setItems(datadepartment);
             con.close();
         } catch (Exception e) {
             throw new RuntimeException(e);

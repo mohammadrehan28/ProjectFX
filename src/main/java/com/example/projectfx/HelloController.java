@@ -122,14 +122,14 @@ public class HelloController implements Initializable {
             T1.setToY(TopAnchor.getLayoutY() - 70);
             T2.setToY(BottomAnchor.getLayoutY() - 230);
             CloseB.setText("SignIn");
+            new FadeIn(SSNImage).play();
+            new FadeIn(SSNText).play();
+            new FadeIn(SSNLabel).play();
             SSNImage.setVisible(true);
             SSNText.setVisible(true);
             SSNLabel.setVisible(true);
             LogText.setText("SignUp Info");
             LoginB.setText("SignUp");
-            new FadeIn(SSNImage).play();
-            new FadeIn(SSNText).play();
-            new FadeIn(SSNLabel).play();
         }
         else {
             T1.setToY(TopAnchor.getLayoutY() - 30);
