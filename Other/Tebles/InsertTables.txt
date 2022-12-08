@@ -1,0 +1,68 @@
+INSERT INTO Department values(0001,'Planter','8:00-4:30','Palestine','Nablus','Tell');
+INSERT INTO Department values(0002,'Planter','8:00-4:30','Palestine','Nablus','Tell');
+INSERT INTO Department values(0003,'Roses gallery','10:00-6:30','Palestine','Nablus','Yafa');
+INSERT INTO Department values(0004,'Roses gallery','8:00-7:30','Palestine','Ramallah','AlErsal');
+INSERT INTO Department values(0005,'storehouse','8:00-8:30','Palestine','Nablus','Tell');
+
+INSERT INTO Employee values(000001,DATE '1998-12-17',0599123456,'Mohammad','Jafar','Aburihan','M','Nablus','Tell',1,'Computer Enginnering','Master',0,NULL,0,NULL,NULL,0,NULL);
+INSERT INTO Employee values(000002,DATE '1999-09-12',0599123457,'Rasheed','Sahem','Hendawi','M','Jenin','Alehef',0,NULL,NULL,1,'0123456789',0,NULL,NULL,0,NULL);
+INSERT INTO Employee values(000003,DATE '2000-07-03',0599123458,'Ahmad','Ali','Ashayer','M','Tullkarm','16 Street',0,NULL,NULL,0,NULL,1,0002,'accountant',0,NULL);
+INSERT INTO Employee values(000004,DATE '2001-10-12',0599123459,'Ahmad','Mohammad','Nazzal','M','Jenin','22 Street',0,NULL,NULL,0,NULL,0,NULL,NULL,1,3);
+INSERT INTO Employee values(000005,DATE '2002-11-22',0599123460,'Mahammud','Belal','Yameen','M','Nablus','Tell',0,NULL,NULL,0,NULL,0,NULL,NULL,1,2);
+
+INSERT INTO Project values(0001,'Anabtawi Villa',1,'Villa with score','On Working','Palestine','Nablus','Amrea',000001,DATE '2022-11-01',DATE '2022-11-22');
+INSERT INTO Project values(0002,'Masri Villa',1,'Villa','To Work','Palestine','Nablus','Aljadida',000001,DATE '2022-12-01',DATE '2022-12-15');
+INSERT INTO Project values(0003,'Allan Villa',1,'Villa','To Work','Palestine','Nablus','Amrea',000001,DATE '2022-12-15',DATE '2022-12-30');
+INSERT INTO Project values(0004,'Herbawi',1,'score','Done','Palestine','Nablus','Amrea',000001,DATE '2022-10-01',DATE '2022-10-22');
+INSERT INTO Project values(0005,'Herbawi',1,'Villa','Done','Palestine','Nablus','Amrea',000001,DATE '2022-09-01',DATE '2022-09-22');
+
+INSERT INTO Item values(000001,'Looz','Plant','Green',200,'Avaliable','M',100);
+INSERT INTO Item values(000002,'Looz','Plant','Green',100,'Avaliable','L',150);
+INSERT INTO Item values(000003,'Karaz','Plant','Red',150,'Avaliable','S',200);
+INSERT INTO Item values(000004,'Artificial Grass','Grass','Green',2200,'Avaliable','M',45);
+INSERT INTO Item values(000005,'Natural Grass','Grass','Green',900,'Avaliable','S',55);
+
+INSERT INTO Buyer values('00000001','ALi Ahmad');
+INSERT INTO Buyer values('00000002','Moneer Ahmad');
+INSERT INTO Buyer values('00000003','Mohammad Ali');
+INSERT INTO Buyer values('00000004','Naseem Nadeem');
+INSERT INTO Buyer values('00000005','Waseem Ahmad');
+
+INSERT INTO Provider values(000001,'CCGrass',00973828231122,'China','Honk Kong','115 Street','Agriculture equipment',35,NULL,NULL,NULL,'Grass and Tool');
+INSERT INTO Provider values(000002,'Rehan Tool',0592738483,'Palestine','Nablus','16 Street','Agriculture equipment',1,NULL,NULL,NULL,'Tools');
+INSERT INTO Provider values(000003,'Ali Plant',0592738213,'Palestine','Jenin','25 Street','Agriculture equipment',2,NULL,NULL,NULL,'Plants');
+INSERT INTO Provider values(000004,'Road Way',0592735321,'Palestine','Nablus','43 Street','Delivery',NULL,'Heavy Truck','Very Large','1234567890','For Heavy Truck');
+INSERT INTO Provider values(000005,'Faster',0592732153,'Palestine','Ramallah','20 Street','Delivery',NULL,'Caddy','Van','1234567891','Simple cars');
+
+INSERT INTO Department_Have_Items values(000001,0001,200);
+INSERT INTO Department_Have_Items values(000002,0001,100);
+INSERT INTO Department_Have_Items values(000003,0001,80);
+INSERT INTO Department_Have_Items values(000001,0002,50);
+INSERT INTO Department_Have_Items values(000001,0003,30);
+
+INSERT INTO Project_Need_Items values(000001,0001,2);
+INSERT INTO Project_Need_Items values(000002,0001,4);
+INSERT INTO Project_Need_Items values(000003,0001,3);
+INSERT INTO Project_Need_Items values(000001,0002,5);
+INSERT INTO Project_Need_Items values(000001,0003,3);
+
+INSERT INTO Buyer_Buy_Items values(000001,'00000001',1);
+INSERT INTO Buyer_Buy_Items values(000002,'00000002',1);
+INSERT INTO Buyer_Buy_Items values(000002,'00000001',5);
+INSERT INTO Buyer_Buy_Items values(000001,'00000003',3);
+INSERT INTO Buyer_Buy_Items values(000004,'00000004',4);
+
+INSERT INTO Provider_Provide_Items values(000001,000001,50);
+INSERT INTO Provider_Provide_Items values(000002,000002,20);
+INSERT INTO Provider_Provide_Items values(000003,000003,220);
+INSERT INTO Provider_Provide_Items values(000004,000002,222);
+INSERT INTO Provider_Provide_Items values(000005,000001,223);
+
+INSERT INTO Employee_Works_On_Projects values(000001,0001);
+INSERT INTO Employee_Works_On_Projects values(000002,0001);
+INSERT INTO Employee_Works_On_Projects values(000003,0001);
+INSERT INTO Employee_Works_On_Projects values(000004,0001);
+INSERT INTO Employee_Works_On_Projects values(000001,0002);
+
+INSERT INTO ADMIN_USER VALUES ('mohammad','123456','Admin');
+INSERT INTO ADMIN_USER VALUES ('1','1','Admin');

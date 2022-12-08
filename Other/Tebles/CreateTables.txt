@@ -1,0 +1,144 @@
+create table Employee(
+SSN INT NOT NULL,
+BirthDate Date,
+Phone_Number int,
+First_Name varchar2(20),
+Middle_Name varchar2(20),
+Last_Name varchar2(20),
+Gender varchar2(1),
+City varchar2(20),
+Street varchar2(20),
+Manager_Flag int,
+Degree_Manager varchar2(20),
+Qualification varchar2(20),
+Driver_Flag int,
+Driving_lisence varchar2(10),
+Nursery_Flag int,
+Department_ID int,
+Degree_Nursery varchar2(20),
+Project_Flag int,
+Experience_Year int,
+Primary key(SSN),
+constraint CH_GENDER check(gender in('M','F')),
+constraint CH_Manager_Flag check((Manager_Flag = 1) or (Manager_Flag = 0)),
+constraint CH_Driver_Flag check((Driver_Flag = 1) or (Driver_Flag = 0)),
+constraint CH_Nursery_Flag check((Nursery_Flag = 1) or (Nursery_Flag = 0)),
+constraint CH_Project_Flag check((Project_Flag = 1) or (Project_Flag = 0))
+);
+
+create table Department(
+Department_ID INT NOT NULL,
+Type varchar2(20),
+Hours_Working varchar2(12),
+Country varchar2(12),
+City varchar2(12),
+Street varchar2(12),
+Primary key(Department_ID),
+constraint CH_Type_Type check((Type = 'Planter') or (Type = 'Roses gallery') or (Type = 'storehouse'))
+);
+
+create table Project(
+Project_ID INT NOT NULL,
+Name_Project varchar2(20),
+Number_Project int,
+Type_Project varchar2(20),
+Status varchar2(20),
+Country varchar2(12),
+City varchar2(12),
+Street varchar2(12),
+SSN_Manager int not null,
+Start_Date date,
+Finish_Date date,
+Primary key(Project_ID),
+constraint FOR_SSNMANAGER_SSN Foreign key(SSN_Manager) references Employee(SSN),
+constraint CH_Status_Type check((Status = 'Done') or (Status = 'On Working') or (Status = 'To Work'))
+);
+
+create table Item(
+Item_ID INT NOT NULL,
+Name_Item varchar2(20),
+Type_Item varchar2(20),
+Color varchar2(20),
+Quantity int,
+Status varchar2(12),
+Size_Item varchar2(1),
+Salary int,
+Primary key(Item_ID),
+constraint CH_Size_Type check((Size_Item = 'L') or (Size_Item = 'M') or (Size_Item = 'S'))
+);
+
+create table Buyer(
+Buyer_ID varchar2(10) NOT NULL,
+Name_Buyer varchar2(20),
+Primary key(Buyer_ID)
+);
+
+create table Provider(
+Provider_ID INT NOT NULL,
+Name_Provider varchar2(20),
+Phone_Number int,
+Country varchar2(12),
+City varchar2(12),
+Street varchar2(12),
+Type_Provider varchar2(30),
+Dilivery_Time int,
+Type_of_cars varchar2(20),
+size_cars varchar2(12),
+Driving_lisence varchar2(10),
+Description varchar2(50),
+Primary key(Provider_ID),
+constraint CH_Type_Provider check((Type_Provider = 'Agriculture equipment') or (Type_Provider = 'Delivery'))
+);
+
+create table Department_Have_Items(
+Item_ID INT NOT NULL,
+Department_ID INT NOT NULL,
+Quantity INT,
+Primary key(Item_ID,Department_ID),
+constraint FOR_Have_ITEM Foreign key(Item_ID) references Item(Item_ID),
+constraint FOR_Have_Department Foreign key(Department_ID) references Department(Department_ID)
+);
+
+create table Project_Need_Items(
+Item_ID INT NOT NULL,
+Project_ID INT NOT NULL,
+Quantity INT,
+Primary key(Item_ID,Project_ID),
+constraint FOR_Need_ITEM Foreign key(Item_ID) references Item(Item_ID),
+constraint FOR_Need Foreign key(Project_ID) references Project(Project_ID)
+);
+
+create table Buyer_Buy_Items(
+Item_ID INT NOT NULL,
+Buyer_ID Varchar2(10) NOT NULL,
+Quantity INT,
+Primary key(Item_ID,Buyer_ID),
+constraint FOR_Buy_ITEM Foreign key(Item_ID) references Item(Item_ID),
+constraint FOR_Buy Foreign key(Buyer_ID) references Buyer(Buyer_ID)
+);
+
+create table Provider_Provide_Items(
+Item_ID INT NOT NULL,
+Provider_ID INT NOT NULL,
+Quantity INT,
+Primary key(Item_ID,Provider_ID),
+constraint FOR_Provide_ITEM Foreign key(Item_ID) references Item(Item_ID),
+constraint FOR_Provide Foreign key(Provider_ID) references Provider(Provider_ID)
+);
+
+create table Employee_Works_On_Projects(
+Employee_SSN INT NOT NULL,
+Project_ID INT NOT NULL,
+Primary key(Employee_SSN,Project_ID),
+constraint FOR_Employee Foreign key(Employee_SSN) references Employee(SSN),
+constraint FOR_Project Foreign key(Project_ID) references Project(Project_ID)
+);
+
+alter table Employee add constraint FOR_Employee_Dep_ID Foreign key(Department_ID) references Department(Department_ID);
+
+create table Admin_User (User_Name varchar2(20) primary key,
+User_Password varchar2(20),
+User_Type varchar2(20),
+User_SSN varchar2(10),
+constraint CH_User_Type check((User_Type = 'Admin') or (User_Type = 'User'))
+);
