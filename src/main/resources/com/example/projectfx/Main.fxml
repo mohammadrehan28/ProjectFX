@@ -122,7 +122,7 @@
             </Button>
          </children>
       </VBox>
-      <StackPane layoutX="194.0" layoutY="169.0">
+      <StackPane layoutX="194.0" layoutY="165.0">
          <children>
             <GridPane fx:id="grid5" prefHeight="523.0" prefWidth="728.0" style="-fx-background-color: #ffffff;">
                <columnConstraints>
@@ -250,7 +250,7 @@
                   </HBox>
                </children>
             </GridPane>
-            <GridPane fx:id="grid3" prefHeight="523.0" prefWidth="728.0" style="-fx-background-color: #ffffff;">
+            <GridPane fx:id="grid3" prefHeight="523.0" prefWidth="728.0" style="-fx-background-color: #F4F4F4;">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -262,7 +262,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" stylesheets="@StyleMouseHoverClick.css">
                      <children>
                         <ImageView fitHeight="135.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -289,10 +289,10 @@
                      <children>
                         <ImageView fitHeight="135.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@OutDoor.png" />
+                              <Image url="@Sabar.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="139.0" style="-fx-background-color: #A2D9CE; -fx-background-radius: 10;" text="OutDoor Plants" textFill="WHITE">
+                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="139.0" style="-fx-background-color: #A2D9CE; -fx-background-radius: 10;" text="InDoor Plants" textFill="WHITE">
                            <font>
                               <Font name="Verdana" size="16.0" />
                            </font>
@@ -309,10 +309,10 @@
                      <children>
                         <ImageView fitHeight="135.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@OutDoor.png" />
+                              <Image url="@Art.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="139.0" style="-fx-background-color: #A2D9CE; -fx-background-radius: 10;" text="OutDoor Plants" textFill="WHITE">
+                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="139.0" style="-fx-background-color: #A2D9CE; -fx-background-radius: 10;" text="Art Plants" textFill="WHITE">
                            <font>
                               <Font name="Verdana" size="16.0" />
                            </font>
@@ -329,10 +329,10 @@
                      <children>
                         <ImageView fitHeight="135.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@OutDoor.png" />
+                              <Image url="@Palm.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="139.0" style="-fx-background-color: #A2D9CE; -fx-background-radius: 10;" text="OutDoor Plants" textFill="WHITE">
+                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="139.0" style="-fx-background-color: #A2D9CE; -fx-background-radius: 10;" text="Plants" textFill="WHITE">
                            <font>
                               <Font name="Verdana" size="16.0" />
                            </font>
@@ -349,10 +349,10 @@
                      <children>
                         <ImageView fitHeight="135.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@OutDoor.png" />
+                              <Image url="@Things.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="139.0" style="-fx-background-color: #A2D9CE; -fx-background-radius: 10;" text="OutDoor Plants" textFill="WHITE">
+                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="139.0" style="-fx-background-color: #A2D9CE; -fx-background-radius: 10;" text="Equipments" textFill="WHITE">
                            <font>
                               <Font name="Verdana" size="16.0" />
                            </font>
@@ -369,10 +369,10 @@
                      <children>
                         <ImageView fitHeight="135.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@OutDoor.png" />
+                              <Image url="@Stone.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="139.0" style="-fx-background-color: #A2D9CE; -fx-background-radius: 10;" text="OutDoor Plants" textFill="WHITE">
+                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="139.0" style="-fx-background-color: #A2D9CE; -fx-background-radius: 10;" text="Others" textFill="WHITE">
                            <font>
                               <Font name="Verdana" size="16.0" />
                            </font>
@@ -385,34 +385,18 @@
                         </Label>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
-                     <children>
-                        <ImageView fitHeight="135.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@OutDoor.png" />
-                           </image>
-                        </ImageView>
-                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="139.0" style="-fx-background-color: #A2D9CE; -fx-background-radius: 10;" text="OutDoor Plants" textFill="WHITE">
-                           <font>
-                              <Font name="Verdana" size="16.0" />
-                           </font>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
-                        </Label>
-                     </children>
-                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2" />
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
-                        <ImageView fitHeight="135.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="110.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@OutDoor.png" />
+                              <Image url="@green-grass-texture-close-up.jpg" />
                            </image>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
                         </ImageView>
-                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="139.0" style="-fx-background-color: #A2D9CE; -fx-background-radius: 10;" text="OutDoor Plants" textFill="WHITE">
+                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="139.0" style="-fx-background-color: #A2D9CE; -fx-background-radius: 10;" text="Grass" textFill="WHITE">
                            <font>
                               <Font name="Verdana" size="16.0" />
                            </font>

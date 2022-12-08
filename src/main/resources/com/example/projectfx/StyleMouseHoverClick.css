@@ -1,0 +1,7 @@
+*:hover {
+    -fx-background-color: #E9E9E9;
+}
+
+*:pressed {
+    -fx-background-color: #CDCDCD;
+}
