@@ -1,0 +1,55 @@
+.button{
+-fx-background-color:#A2D9CE;
+}
+.button:hover{
+-fx-background-color:#16A085;
+}
+.button:pressed{
+-fx-background-color:#0B5345;
+}
+.table-view .column-header,
+.table-view .column-header-background .filler{
+-fx-cell-size:20;
+-fx-background-color:#A2D9CE;
+}
+.table-view .column-header .label{
+-fx-text-fill: white;
+-fx-font-weight:bold;
+-fx-aligment:CENTER_LEFT;
+}
+.table-view.cell{
+-fx-cell-size :30;
+-fx-aligment:center-left;
+-fx-text-fill:#000000;
+-fx-aligment:CENTER_LEFT;
+}
+.table-row-selected{
+-fx-background-color: rgb(127,172,243);
+}
+.table-row-cell:selected .text{
+-fx-fill:white;
+}
+.table-view .increment-button,.table-view .decrement-button{
+-fx-background-color:transparent;
+-fx-background-radius:2cm;
+}
+.table-view.scroll-bar:horizantal.track{
+-fx-background-color:transparent;
+-fx-border-color:derive(#212F3C,80%);
+-fx-background-radius: 2cm;
+}
+.table-view.scroll-bar:horizantal.thumb,
+.table-view.scroll-bar:vertical.thumb{
+-fx-border-color:derive(#212F3C,90%);
+-fx-background-insets:2,0,0;
+-fx-background-radius: 2cm;
+}
+.chart{
+-fx-padding:10 px;
+-fx-background-color:transparent;
+-fx-legend-visible:false;
+}
+.chart-plot-background{
+-fx-background-color:transparent;
+}
+
