@@ -64,7 +64,16 @@ public class HelloController implements Initializable {
                         IncorrectLabel.setText("Invalid Password");
                         break;
                     } else if (UserNameText.getText().equals(ID) && PasswordText.getText().equals(Password)) {
-                        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Main.fxml"));
+                        FXMLLoader fxmlLoader;
+                        if(rs.getString(3).equals("Admin")) {
+                            fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Main.fxml"));
+                        }
+                        else if(rs.getString(3).equals("User")) {
+                            fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Main.fxml"));
+                        }
+                        else {
+                            fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Main.fxml"));
+                        }
                         Scene scene = new Scene(fxmlLoader.load());
                         Stage stage = (Stage) LoginB.getScene().getWindow();
                         stage.setScene(scene);
