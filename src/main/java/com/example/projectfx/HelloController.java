@@ -72,7 +72,7 @@ public class HelloController implements Initializable {
                             fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Main.fxml"));
                         }
                         else {
-                            fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Main.fxml"));
+                            fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Buyer.fxml"));
                         }
                         Scene scene = new Scene(fxmlLoader.load());
                         Stage stage = (Stage) LoginB.getScene().getWindow();

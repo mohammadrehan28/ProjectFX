@@ -195,6 +195,8 @@ public class Main implements Initializable {
             String all = "select * from Item";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(all);
+            gridItems.getChildren().clear();
+            ItemsController ItemController;
             int column = 0;
             int row = 1;
             while (rs.next()) {
@@ -202,17 +204,17 @@ public class Main implements Initializable {
                     FXMLLoader fxmlLoad = new FXMLLoader();
                     fxmlLoad.setLocation(getClass().getResource("Items.fxml"));
                     HBox Item = fxmlLoad.load();
-                    ItemsController ItemController = fxmlLoad.getController();
+                    ItemController = fxmlLoad.getController();
                     boolean ava;
                     if(rs.getInt(5) > 0) ava = true;
                     else ava = false;
                     ItemController.SetData(rs.getString(2),rs.getString(7),rs.getString(4),rs.getString(8),ava,true);
-                    if(column == 3){
+                    if(column == 2){
                         column = 0;
                         row++;
                     }
                     gridItems.add(Item,column++,row);
-                    GridPane.setMargin(Item,new Insets(10));
+                    GridPane.setMargin(Item,new Insets(20));
                 }
             }
             con.close();

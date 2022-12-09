@@ -1,7 +1,18 @@
 *:hover {
     -fx-background-color: #E9E9E9;
+    -fx-background-radius: 10px;
 }
 
 *:pressed {
     -fx-background-color: #CDCDCD;
+    -fx-background-radius: 10px;
+}
+
+* {
+    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.1),10.0,0.0,0.0,10.0);
+}
+
+VBox {
+    -fx-background-radius:20px;
+    
 }
