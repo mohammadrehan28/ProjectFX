@@ -43,7 +43,6 @@ public class HelloController implements Initializable {
     public ImageView SSNImage;
     public Label SSNLabel;
     public TextField SSNText;
-
     private double xOffset = 0;
     private double yOffset = 0;
 

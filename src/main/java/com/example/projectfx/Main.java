@@ -13,6 +13,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
@@ -24,7 +26,6 @@ import oracle.jdbc.pool.OracleDataSource;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 
 import java.awt.*;
-import java.awt.event.MouseEvent;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -91,46 +92,52 @@ public class Main implements Initializable {
     @FXML
     private GridPane grid6;
 
+
+    //For Items
+    public VBox VBoxOutDoor;
+    public VBox VBoxInDoor;
+    public VBox VBoxArt;
+    public VBox VBoxPlants;
+    public VBox VBoxEqu;
+    public VBox VBoxOthers;
+    public VBox VBoxGrass;
+    public ScrollPane scrollItems;
+    public GridPane gridItems;
+    public String Items[] = {"OutDoor","InDoor","Art","Plant","Equipment","Other","Grass"};
+    public int Indicator = 0;
+    //End For Items
+
+
     @Override
-    public void initialize (URL location,ResourceBundle resources){
-        //data.clear();
-        //datadepartment.clear();
+    public void initialize (URL location,ResourceBundle resources){;
         getFromAllData(data, table1,"Employee");
         getFromAllData(datadepartment, tabledepartment, "Department");
+        pane_state.setBackground(new Background(new BackgroundFill(Color.rgb(162, 217, 206), CornerRadii.EMPTY, Insets.EMPTY)));
     }
     @FXML
     private void handleClicks(ActionEvent event){
         if(event.getSource()==employee_btn){
             text_state.setText("Employee");
-            pane_state.setBackground(new Background(new BackgroundFill(Color.rgb(162, 217, 206), CornerRadii.EMPTY, Insets.EMPTY)));
             grid1.toFront();
-            //getFromAllData(data, table1,"Employee");
         }
         else  if(event.getSource()==department_btn){
             text_state.setText("Department");
-            pane_state.setBackground(new Background(new BackgroundFill(Color.rgb(162, 217, 206), CornerRadii.EMPTY, Insets.EMPTY)));
             grid2.toFront();
-            //getFromAllData(datadepartment, tabledepartment, "Department");
         }
         else if(event.getSource()==item_btn){
             text_state.setText("Item");
-            pane_state.setBackground(new Background(new BackgroundFill(Color.rgb(162, 217, 206), CornerRadii.EMPTY, Insets.EMPTY)));
             grid3.toFront();
-
         }
         else if(event.getSource()==project_btn){
             text_state.setText("Project");
-            pane_state.setBackground(new Background(new BackgroundFill(Color.rgb(162, 217, 206), CornerRadii.EMPTY, Insets.EMPTY)));
             grid4.toFront();
         }
         else if(event.getSource()==provider_btn){
             text_state.setText("Provider");
-            pane_state.setBackground(new Background(new BackgroundFill(Color.rgb(162, 217, 206), CornerRadii.EMPTY, Insets.EMPTY)));
             grid5.toFront();
         }
         else if(event.getSource()==buyer_btn){
             text_state.setText("Buyer");
-            pane_state.setBackground(new Background(new BackgroundFill(Color.rgb(162, 217, 206), CornerRadii.EMPTY, Insets.EMPTY)));
             grid6.toFront();
         }
 
@@ -144,6 +151,72 @@ public class Main implements Initializable {
             stage.setScene(scene);
         }
         catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    public void handleClicksItems(MouseEvent mouseEvent) {
+        scrollItems.toFront();
+        if(mouseEvent.getSource() == VBoxOutDoor) {
+            text_state.setText("OutDoor");
+            Indicator = 0;
+        }
+        else if(mouseEvent.getSource() == VBoxInDoor) {
+            text_state.setText("InDoor");
+            Indicator = 1;
+        }
+        else if(mouseEvent.getSource() == VBoxArt) {
+            text_state.setText("Art");
+            Indicator = 2;
+        }
+        else if(mouseEvent.getSource() == VBoxPlants) {
+            text_state.setText("Plants");
+            Indicator = 3;
+        }
+        else if(mouseEvent.getSource() == VBoxEqu) {
+            text_state.setText("Equipment");
+            Indicator = 4;
+        }
+        else if(mouseEvent.getSource() == VBoxOthers) {
+            text_state.setText("Others");
+            Indicator = 5;
+        }
+        else if(mouseEvent.getSource() == VBoxGrass) {
+            text_state.setText("Grass");
+            Indicator = 6;
+        }
+        try {
+            OracleDataSource ods = new OracleDataSource();
+            ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+            ods.setUser("mohammad");
+            ods.setPassword("123456");
+            Connection con = ods.getConnection();
+            String all = "select * from Item";
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(all);
+            int column = 0;
+            int row = 1;
+            while (rs.next()) {
+                if(rs.getString(3).equals(Items[Indicator])) {
+                    FXMLLoader fxmlLoad = new FXMLLoader();
+                    fxmlLoad.setLocation(getClass().getResource("Items.fxml"));
+                    HBox Item = fxmlLoad.load();
+                    ItemsController ItemController = fxmlLoad.getController();
+                    boolean ava;
+                    if(rs.getInt(5) > 0) ava = true;
+                    else ava = false;
+                    ItemController.SetData(rs.getString(2),rs.getString(7),rs.getString(4),rs.getString(8),ava,true);
+                    if(column == 3){
+                        column = 0;
+                        row++;
+                    }
+                    gridItems.add(Item,column++,row);
+                    GridPane.setMargin(Item,new Insets(10));
+                }
+            }
+            con.close();
+        }catch(Exception e) {
             throw new RuntimeException(e);
         }
     }
@@ -192,4 +265,6 @@ public class Main implements Initializable {
             throw new RuntimeException(e);
         }
     }
+
+
 }

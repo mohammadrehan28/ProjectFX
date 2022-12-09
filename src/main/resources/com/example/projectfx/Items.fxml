@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="132.0" prefWidth="262.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectfx.ItemsController">
+   <children>
+      <VBox alignment="CENTER" prefHeight="132.0" prefWidth="131.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="33.0" prefWidth="131.0">
+               <children>
+                  <Label text="Name: " />
+                  <Label fx:id="NameLabel" text="NoInfo" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="33.0" prefWidth="131.0">
+               <children>
+                  <Label text="Size: " />
+                  <Label fx:id="SizeLabel" text="NoInfo" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="33.0" prefWidth="131.0">
+               <children>
+                  <Label text="Color: " />
+                  <Label fx:id="ColorLabel" text="NoInfo" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="93.0" prefHeight="33.0" prefWidth="131.0">
+               <children>
+                  <Label text="Prize: " />
+                  <Label fx:id="PrizeLabel" text="NoInfo" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <ImageView fx:id="Available" fitHeight="66.0" fitWidth="65.5" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="Delivery" fitHeight="66.0" fitWidth="65.5" layoutX="174.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</HBox>
