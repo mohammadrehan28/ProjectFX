@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -27,7 +28,8 @@ import java.util.ResourceBundle;
 
 public class BuyerController implements Initializable {
 
-    private ItemsController ItemController;;
+    public AnchorPane AnchorItems;
+    private ItemsController ItemController;
     private ResultSet rs;
     private ObservableList<ObservableList> datadepartment;
     public GridPane grid3;
@@ -65,7 +67,7 @@ public class BuyerController implements Initializable {
 
     @FXML
     public void handleClicksItems(MouseEvent mouseEvent) {
-        scrollItems.toFront();
+        AnchorItems.toFront();
         if(mouseEvent.getSource() == VBoxOutDoor) {
             text_state.setText("OutDoor");
             Indicator = 0;
