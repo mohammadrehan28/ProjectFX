@@ -6,13 +6,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="132.0" prefWidth="316.0" style="-fx-border-color: #A2D9CE; -fx-border-width: 7px; -fx-border-radius: 10px; -fx-background-color: #ffffff; -fx-background-radius: 10px;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectfx.ItemsController">
+<HBox fx:id="VBoxAll" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="132.0" prefWidth="316.0" style="-fx-border-color: #A2D9CE; -fx-border-width: 7px; -fx-border-radius: 10px; -fx-background-color: #ffffff; -fx-background-radius: 10px;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectfx.ItemsController">
    <children>
       <VBox alignment="CENTER" prefHeight="118.0" prefWidth="148.0">
          <children>
             <HBox alignment="CENTER" prefHeight="33.0" prefWidth="131.0">
                <children>
-                  <Label fx:id="NamLabel2" text="Name: ">
+                  <Label fx:id="NameLabel2" text="Name: ">
                      <font>
                         <Font name="Verdana Italic" size="14.0" />
                      </font></Label>
@@ -48,7 +48,7 @@
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="93.0" prefHeight="33.0" prefWidth="131.0">
                <children>
-                  <Label text="Prize: ">
+                  <Label text="Prise: ">
                      <font>
                         <Font size="14.0" />
                      </font></Label>

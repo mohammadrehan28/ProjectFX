@@ -4,6 +4,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
@@ -22,7 +24,9 @@ public class ItemsController implements Initializable {
     public Label PrizeLabel;
     public ImageView Available;
     public ImageView Delivery;
-    public void SetData(String Name, String Size, String Color, String Prize, boolean Available, boolean Delivery) {
+    public HBox VBoxAll;
+
+    public void SetData(String Name, String Size, String Color1, String Prize, boolean Available, boolean Delivery) {
         NameLabel.setText(Name);
         NameLabel.setFont(Font.font(14));
         NameLabel.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -47,13 +51,13 @@ public class ItemsController implements Initializable {
             }
         });
         SizeLabel.setText(Size);
-        ColorLabel.setText(Color);
+        ColorLabel.setText(Color1);
         PrizeLabel.setText(Prize);
         Image image;
         Image image2;
         if(Available){
             try {
-                InputStream stream = new FileInputStream("C:/Users/MohammadRehan/IdeaProjects/ProjectFX/src/main/resources/com/example/projectfx/Ava.png");
+                InputStream stream = new FileInputStream("C:/Users/MohammadRehan/IdeaProjects/ProjectFX/src/main/resources/com/example/projectfx/Ava2.png");
                 image = new Image(stream);
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
@@ -61,15 +65,16 @@ public class ItemsController implements Initializable {
         }
         else {
             try {
-                InputStream stream = new FileInputStream("C:/Users/MohammadRehan/IdeaProjects/ProjectFX/src/main/resources/com/example/projectfx/NotAva.png");
+                InputStream stream = new FileInputStream("C:/Users/MohammadRehan/IdeaProjects/ProjectFX/src/main/resources/com/example/projectfx/NotAva2.png");
                 image = new Image(stream);
+                VBoxAll.setStyle("-fx-border-color: #FC6464; -fx-border-width: 7px; -fx-border-radius: 10px; -fx-background-color: #ffffff; -fx-background-radius: 10px;");
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
             }
         }
         if(Delivery) {
             try {
-                InputStream stream = new FileInputStream("C:/Users/MohammadRehan/IdeaProjects/ProjectFX/src/main/resources/com/example/projectfx/Del.png");
+                InputStream stream = new FileInputStream("C:/Users/MohammadRehan/IdeaProjects/ProjectFX/src/main/resources/com/example/projectfx/Del2.png");
                 image2 = new Image(stream);
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
@@ -77,7 +82,7 @@ public class ItemsController implements Initializable {
         }
         else {
             try {
-                InputStream stream = new FileInputStream("C:/Users/MohammadRehan/IdeaProjects/ProjectFX/src/main/resources/com/example/projectfx/NotDel.png");
+                InputStream stream = new FileInputStream("C:/Users/MohammadRehan/IdeaProjects/ProjectFX/src/main/resources/com/example/projectfx/NotDel2.png");
                 image2 = new Image(stream);
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);

@@ -4,6 +4,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +14,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
@@ -91,6 +94,7 @@ public class Main implements Initializable {
 
     @FXML
     private GridPane grid6;
+    ResultSet rs;
 
 
     //For Items
@@ -110,8 +114,8 @@ public class Main implements Initializable {
 
     @Override
     public void initialize (URL location,ResourceBundle resources){;
-        getFromAllData(data, table1,"Employee");
-        getFromAllData(datadepartment, tabledepartment, "Department");
+        //getFromAllData(data, table1,"Employee");
+        //getFromAllData(datadepartment, tabledepartment, "Department");
         pane_state.setBackground(new Background(new BackgroundFill(Color.rgb(162, 217, 206), CornerRadii.EMPTY, Insets.EMPTY)));
     }
     @FXML
@@ -224,44 +228,69 @@ public class Main implements Initializable {
     }
 
 
-    public void getFromAllData(ObservableList<ObservableList> datadepartment, TableView tabledepartment, String name) {
+    public void getFromAllData(ObservableList<ObservableList> datadepartment, TableView tabledepartment, String name, int columnNumber, TextField searchText,int selectedCombo) {
         try {
             datadepartment = FXCollections.observableArrayList();
             OracleDataSource ods = new OracleDataSource();
             ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
-            ods.setUser("mohammad");
+            ods.setUser("shahd");
             ods.setPassword("123456");
             Connection con = ods.getConnection();
             String qry = "Select * from " + name;
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery(qry);
-            for(int i=0 ; i<rs.getMetaData().getColumnCount(); i++){
+            rs = stmt.executeQuery(qry);
+            for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) {
                 //We are using non property style for making dynamic table
                 final int j = i;
-                TableColumn col = new TableColumn(rs.getMetaData().getColumnName(i+1));
-                col.setCellValueFactory(new Callback<CellDataFeatures<ObservableList,String>, ObservableValue<String>>(){
+                TableColumn col = new TableColumn(rs.getMetaData().getColumnName(i + 1));
+                col.setCellValueFactory(new Callback<CellDataFeatures<ObservableList, String>, ObservableValue<String>>() {
                     public ObservableValue<String> call(CellDataFeatures<ObservableList, String> param) {
-                        if(param.getValue().get(j)==null) return new SimpleStringProperty("");
+                        if (param.getValue().get(j) == null) return new SimpleStringProperty("");
                         return new SimpleStringProperty(param.getValue().get(j).toString());
                     }
                 });
 
                 tabledepartment.getColumns().add(col);
             }
-
-            while(rs.next()){
+            while (rs.next()) {
                 //Iterate Row
                 ObservableList<String> row = FXCollections.observableArrayList();
-                for(int i=1 ; i<=rs.getMetaData().getColumnCount(); i++){
+                for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
                     //Iterate Column
-                    row.add(rs.getString(i));
+                    if (rs.getString(i) == null) row.add("null");
+                    else row.add(rs.getString(i));
                 }
                 datadepartment.add(row);
 
             }
-
             //FINALLY ADDED TO TableView
             tabledepartment.setItems(datadepartment);
+            FilteredList<ObservableList> filter = new FilteredList<>(datadepartment, b->true);
+            searchText.textProperty().addListener((observable,oldValue,newValue)->{
+                filter.setPredicate(ObservableList->{
+                    if(newValue.isBlank()||newValue.isEmpty()||newValue==null){
+                        return true;
+                    }
+                    try {
+                        String SearchKey = newValue.toLowerCase();
+                        if(selectedCombo!=-1) {if (ObservableList.get(selectedCombo).toString().toLowerCase().indexOf(SearchKey) > -1) {
+                            return true;
+                        }return false;
+                        }
+
+                        for (int i = 0; i <= columnNumber; i++) {
+                            if (ObservableList.get(i).toString().toLowerCase().indexOf(SearchKey) > -1) {
+                                return true;
+                            }
+                        } return false;
+                    }catch(Exception e){
+                        return false;
+                    }
+                });
+            });
+            SortedList<ObservableList> sortedData = new SortedList<>(filter);
+            sortedData.comparatorProperty().bind(tabledepartment.comparatorProperty());
+            tabledepartment.setItems(sortedData);
             con.close();
         } catch (Exception e) {
             throw new RuntimeException(e);

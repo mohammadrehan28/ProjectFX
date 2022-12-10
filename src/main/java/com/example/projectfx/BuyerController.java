@@ -1,14 +1,17 @@
 package com.example.projectfx;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -16,13 +19,20 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import oracle.jdbc.pool.OracleDataSource;
 
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ResourceBundle;
 
-public class BuyerController {
+public class BuyerController implements Initializable {
 
+    private ItemsController ItemController;;
+    private ResultSet rs;
+    private ObservableList<ObservableList> datadepartment;
     public GridPane grid3;
+    public TextField TextS;
+    public ComboBox<String> selectedCombo;
     @FXML
     private Button exit_btn;
     @FXML
@@ -38,6 +48,7 @@ public class BuyerController {
     public GridPane gridItems;
     public String Items[] = {"OutDoor","InDoor","Art","Plant","Equipment","Other","Grass"};
     public int Indicator = 0;
+    public int selectCombo = -1;
 
     @FXML
     public void handleExit(ActionEvent actionEvent) {
@@ -91,28 +102,85 @@ public class BuyerController {
             Connection con = ods.getConnection();
             String all = "select * from Item";
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery(all);
+            rs = stmt.executeQuery(all);
             gridItems.getChildren().clear();
-            ItemsController ItemController;
             int column = 0;
             int row = 1;
+            datadepartment = FXCollections.observableArrayList();
             while (rs.next()) {
                 if(rs.getString(3).equals(Items[Indicator])) {
-                    FXMLLoader fxmlLoad = new FXMLLoader();
-                    fxmlLoad.setLocation(getClass().getResource("Items.fxml"));
-                    HBox Item = fxmlLoad.load();
-                    ItemController = fxmlLoad.getController();
-                    boolean ava;
-                    if(rs.getInt(5) > 0) ava = true;
-                    else ava = false;
-                    ItemController.SetData(rs.getString(2),rs.getString(7),rs.getString(4),rs.getString(8),ava,true);
-                    if(column == 2){
-                        column = 0;
-                        row++;
+                    ObservableList<String> row1 = FXCollections.observableArrayList();
+                    for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
+                        //Iterate Column
+                        if (rs.getString(i) == null) row1.add("null");
+                        else row1.add(rs.getString(i));
                     }
-                    gridItems.add(Item,column++,row);
-                    GridPane.setMargin(Item,new Insets(20));
+                    datadepartment.add(row1);
                 }
+            }
+            FilteredList<ObservableList> filter = new FilteredList<>(datadepartment, b->true);
+            TextS.textProperty().addListener((observable,oldValue,newValue)->{
+                System.out.println(1);
+                filter.setPredicate(ObservableList->{
+                    if(newValue.isBlank()||newValue.isEmpty()||newValue==null){
+                        return true;
+                    }
+                    try {
+                        String SearchKey = newValue.toLowerCase();
+                        if(selectCombo!=-1) {
+                            if(selectCombo != 4) {
+                                if (ObservableList.get(selectCombo).toString().toLowerCase().indexOf(SearchKey) > -1) {
+                                    return true;
+                                }
+                            }
+                            else {
+                                if (Integer.parseInt(ObservableList.get(4).toString()) != 0) {
+                                    return true;
+                                }
+                            }
+                            return false;
+                        }
+                        if (ObservableList.get(1).toString().toLowerCase().indexOf(SearchKey) > -1) {
+                            return true;
+                        }
+                        else if (ObservableList.get(3).toString().toLowerCase().indexOf(SearchKey) > -1) {
+                            return true;
+                        }
+                        else if (ObservableList.get(4).toString().toLowerCase().indexOf(SearchKey) > -1) {
+                            return true;
+                        }
+                        else if (ObservableList.get(6).toString().toLowerCase().indexOf(SearchKey) > -1) {
+                            return true;
+                        }
+                        else if (ObservableList.get(7).toString().toLowerCase().indexOf(SearchKey) > -1) {
+                            return true;
+                        }
+                        else return false;
+                    }catch(Exception e){
+                        return false;
+                    }
+                });
+            });
+            System.out.println(3);
+            SortedList<ObservableList> sortedData = new SortedList<>(filter);
+            gridItems.getChildren().clear();
+            System.out.println(3);
+            for(int i=0;i<sortedData.size();i++) {
+                System.out.println(2);
+                FXMLLoader fxmlLoad = new FXMLLoader();
+                fxmlLoad.setLocation(getClass().getResource("Items.fxml"));
+                HBox Item = fxmlLoad.load();
+                ItemController = fxmlLoad.getController();
+                boolean ava;
+                if(Integer.parseInt(sortedData.get(i).get(4).toString()) > 0) ava = true;
+                else ava = false;
+                ItemController.SetData(sortedData.get(i).get(1).toString(),sortedData.get(i).get(6).toString(),sortedData.get(i).get(3).toString(),sortedData.get(i).get(7).toString(),ava,true);
+                if(column == 2){
+                    column = 0;
+                    row++;
+                }
+                gridItems.add(Item,column++,row);
+                GridPane.setMargin(Item,new Insets(20));
             }
             con.close();
         }catch(Exception e) {
@@ -123,5 +191,20 @@ public class BuyerController {
     public void LogoPressed(MouseEvent mouseEvent) {
         text_state.setText("Item");
         grid3.toFront();
+    }
+
+    public void SelectAction(ActionEvent actionEvent) {
+        int A = selectedCombo.getSelectionModel().getSelectedIndex();
+        if (A == 0) selectCombo = -1;
+        else if(A == 1) selectCombo = 1;
+        else if(A == 2) selectCombo = 3;
+        else if(A == 3) selectCombo = 4;
+        else if(A == 4) selectCombo = 6;
+        else if(A == 5) selectCombo = 7;
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        selectedCombo.getItems().addAll("All","Name","Color","Available","Size","Salary");
     }
 }
