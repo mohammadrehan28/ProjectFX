@@ -16,7 +16,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import oracle.jdbc.pool.OracleDataSource;
 
@@ -66,10 +65,10 @@ public class HelloController implements Initializable {
                     } else if (UserNameText.getText().equals(ID) && PasswordText.getText().equals(Password)) {
                         FXMLLoader fxmlLoader;
                         if(rs.getString(3).equals("Admin")) {
-                            fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Main.fxml"));
+                            fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("screen2.fxml"));
                         }
                         else if(rs.getString(3).equals("User")) {
-                            fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Main.fxml"));
+                            fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("screen2.fxml"));
                         }
                         else {
                             fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Buyer.fxml"));

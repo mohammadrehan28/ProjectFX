@@ -62,6 +62,7 @@ public class BuyerController implements Initializable {
         }
         catch (Exception e) {
             throw new RuntimeException(e);
+
         }
     }
 

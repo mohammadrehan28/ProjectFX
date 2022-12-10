@@ -33,7 +33,7 @@
             </ImageView>
             <ImageView fitHeight="196.0" fitWidth="195.0" onMousePressed="#LogoPressed" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Logo-finish.png" />
+                  <Image url="@nersery.png" />
                </image>
                <VBox.margin>
                   <Insets top="100.0" />
