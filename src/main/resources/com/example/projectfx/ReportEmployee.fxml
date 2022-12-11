@@ -20,7 +20,7 @@
          <children>
             <ImageView fitHeight="143.0" fitWidth="194.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Island.png" />
+                  <Image url="@Image/Island.png" />
                </image>
                <VBox.margin>
                   <Insets bottom="20.0" />
@@ -30,7 +30,7 @@
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@groups_FILL0_wght400_GRAD200_opsz48.png" />
+                        <Image url="@Image/groups_FILL0_wght400_GRAD200_opsz48.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -45,7 +45,7 @@
                <graphic>
                   <ImageView fx:id="icon2" fitHeight="20.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@store_FILL0_wght400_GRAD200_opsz48.png" />
+                        <Image url="@Image/store_FILL0_wght400_GRAD200_opsz48.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -60,7 +60,7 @@
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@eco_FILL0_wght400_GRAD200_opsz48.png" />
+                        <Image url="@Image/eco_FILL0_wght400_GRAD200_opsz48.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -75,7 +75,7 @@
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@order_approve_FILL0_wght400_GRAD0_opsz48.png" />
+                        <Image url="@Image/order_approve_FILL0_wght400_GRAD0_opsz48.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -90,7 +90,7 @@
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@local_shipping_FILL0_wght400_GRAD0_opsz48.png" />
+                        <Image url="@Image/local_shipping_FILL0_wght400_GRAD0_opsz48.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -105,7 +105,7 @@
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@shopping_bag_FILL0_wght400_GRAD200_opsz48.png" />
+                        <Image url="@Image/shopping_bag_FILL0_wght400_GRAD200_opsz48.png" />
                      </image>
                   </ImageView>
                </graphic>

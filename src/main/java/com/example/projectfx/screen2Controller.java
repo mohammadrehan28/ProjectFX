@@ -213,7 +213,6 @@ public class screen2Controller implements Initializable {
         Ecombo.getItems().addAll("Maneger", "Driver", "Nursery", "Project", "All");
         selectedCombo.getItems().addAll("All","Name","Color","Available","Size","Salary");
         pane_state.setBackground(new Background(new BackgroundFill(Color.rgb(162, 217, 206), CornerRadii.EMPTY, Insets.EMPTY)));
-
     }
 
     @FXML

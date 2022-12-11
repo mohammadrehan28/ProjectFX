@@ -57,7 +57,7 @@ public class ItemsController implements Initializable {
         Image image2;
         if(Available){
             try {
-                InputStream stream = new FileInputStream("C:/Users/MohammadRehan/IdeaProjects/ProjectFX/src/main/resources/com/example/projectfx/Ava2.png");
+                InputStream stream = new FileInputStream("C:/Users/MohammadRehan/IdeaProjects/ProjectFX/src/main/resources/com/example/projectfx/Image/Ava2.png");
                 image = new Image(stream);
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
@@ -65,7 +65,7 @@ public class ItemsController implements Initializable {
         }
         else {
             try {
-                InputStream stream = new FileInputStream("C:/Users/MohammadRehan/IdeaProjects/ProjectFX/src/main/resources/com/example/projectfx/NotAva2.png");
+                InputStream stream = new FileInputStream("C:/Users/MohammadRehan/IdeaProjects/ProjectFX/src/main/resources/com/example/projectfx/Image/NotAva2.png");
                 image = new Image(stream);
                 VBoxAll.setStyle("-fx-border-color: #FC6464; -fx-border-width: 7px; -fx-border-radius: 10px; -fx-background-color: #ffffff; -fx-background-radius: 10px;");
             } catch (FileNotFoundException e) {
@@ -74,7 +74,7 @@ public class ItemsController implements Initializable {
         }
         if(Delivery) {
             try {
-                InputStream stream = new FileInputStream("C:/Users/MohammadRehan/IdeaProjects/ProjectFX/src/main/resources/com/example/projectfx/Del2.png");
+                InputStream stream = new FileInputStream("C:/Users/MohammadRehan/IdeaProjects/ProjectFX/src/main/resources/com/example/projectfx/Image/Del2.png");
                 image2 = new Image(stream);
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
@@ -82,7 +82,7 @@ public class ItemsController implements Initializable {
         }
         else {
             try {
-                InputStream stream = new FileInputStream("C:/Users/MohammadRehan/IdeaProjects/ProjectFX/src/main/resources/com/example/projectfx/NotDel2.png");
+                InputStream stream = new FileInputStream("C:/Users/MohammadRehan/IdeaProjects/ProjectFX/src/main/resources/com/example/projectfx/Image/NotDel2.png");
                 image2 = new Image(stream);
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);

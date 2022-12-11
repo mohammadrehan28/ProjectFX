@@ -25,7 +25,7 @@
          <children>
             <ImageView fitHeight="143.0" fitWidth="194.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Island.png" />
+                  <Image url="@Image/Island.png" />
                </image>
                <VBox.margin>
                   <Insets bottom="20.0" top="20.0" />
@@ -33,7 +33,7 @@
             </ImageView>
             <ImageView fitHeight="196.0" fitWidth="195.0" onMousePressed="#LogoPressed" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@nersery.png" />
+                  <Image url="@Image/nersery.png" />
                </image>
                <VBox.margin>
                   <Insets top="100.0" />
@@ -64,7 +64,7 @@
                               <Insets bottom="10.0" left="15.0" top="10.0" />
                            </HBox.margin>
                            <image>
-                              <Image url="@search_FILL0_wght400_GRAD0_opsz48.png" />
+                              <Image url="@Image/search_FILL0_wght400_GRAD0_opsz48.png" />
                            </image>
                         </ImageView>
                         <TextField fx:id="TextS" style="-fx-border-color: #212F3C;">
@@ -97,7 +97,7 @@
                      <children>
                         <ImageView fitHeight="135.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@OutDoor.png" />
+                              <Image url="@Image/OutDoor.png" />
                            </image>
                         </ImageView>
                         <Label alignment="CENTER" prefHeight="30.0" prefWidth="139.0" style="-fx-background-color: #A2D9CE; -fx-background-radius: 10;" text="OutDoor Plants" textFill="WHITE">
@@ -120,7 +120,7 @@
                      <children>
                         <ImageView fitHeight="135.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@Sabar.png" />
+                              <Image url="@Image/Sabar.png" />
                            </image>
                         </ImageView>
                         <Label alignment="CENTER" prefHeight="30.0" prefWidth="139.0" style="-fx-background-color: #A2D9CE; -fx-background-radius: 10;" text="InDoor Plants" textFill="WHITE">
@@ -140,7 +140,7 @@
                      <children>
                         <ImageView fitHeight="135.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@Art.png" />
+                              <Image url="@Image/Art.png" />
                            </image>
                         </ImageView>
                         <Label alignment="CENTER" prefHeight="30.0" prefWidth="139.0" style="-fx-background-color: #A2D9CE; -fx-background-radius: 10;" text="Art Plants" textFill="WHITE">
@@ -160,7 +160,7 @@
                      <children>
                         <ImageView fitHeight="135.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@Palm.png" />
+                              <Image url="@Image/Palm.png" />
                            </image>
                         </ImageView>
                         <Label alignment="CENTER" prefHeight="30.0" prefWidth="139.0" style="-fx-background-color: #A2D9CE; -fx-background-radius: 10;" text="Plants" textFill="WHITE">
@@ -180,7 +180,7 @@
                      <children>
                         <ImageView fitHeight="135.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@Things.png" />
+                              <Image url="@Image/Things.png" />
                            </image>
                         </ImageView>
                         <Label alignment="CENTER" prefHeight="30.0" prefWidth="139.0" style="-fx-background-color: #A2D9CE; -fx-background-radius: 10;" text="Equipments" textFill="WHITE">
@@ -200,7 +200,7 @@
                      <children>
                         <ImageView fitHeight="135.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@Stone.png" />
+                              <Image url="@Image/Stone.png" />
                            </image>
                         </ImageView>
                         <Label alignment="CENTER" prefHeight="30.0" prefWidth="139.0" style="-fx-background-color: #A2D9CE; -fx-background-radius: 10;" text="Others" textFill="WHITE">
@@ -221,7 +221,7 @@
                      <children>
                         <ImageView fitHeight="110.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@green-grass-texture-close-up.jpg" />
+                              <Image url="@Image/green-grass-texture-close-up.jpg" />
                            </image>
                            <VBox.margin>
                               <Insets bottom="10.0" />

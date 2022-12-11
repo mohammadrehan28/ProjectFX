@@ -18,7 +18,7 @@
             <children>
                 <ImageView fitHeight="196.0" fitWidth="202.0" layoutX="16.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@nersery.png" />
+                        <Image url="@Image/nersery.png" />
                     </image>
                 </ImageView>
             </children>
@@ -43,7 +43,7 @@
                       <TextField fx:id="UserNameText" cache="true" layoutX="37.0" layoutY="101.0" prefHeight="28.0" prefWidth="230.0" promptText="EX.Mohammad" style="-fx-background-color: transparent; -fx-border-color: #b2d8d8; -fx-border-width: 0px 0px 2px 0px;" />
                       <ImageView fitHeight="22.0" fitWidth="23.0" layoutX="12.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
                           <image>
-                              <Image url="@person_FILL1_wght400_GRAD0_opsz48.png" />
+                              <Image url="@Image/person_FILL1_wght400_GRAD0_opsz48.png" />
                           </image>
                       </ImageView>
                       <Label layoutX="110.0" layoutY="143.0" text="Password">
@@ -54,7 +54,7 @@
                       <PasswordField fx:id="PasswordText" cache="true" layoutX="37.0" layoutY="161.0" prefHeight="28.0" prefWidth="230.0" promptText="EX.Moh123" style="-fx-background-color: transparent; -fx-border-color: #b2d8d8; -fx-border-width: 0px 0px 2px 0px;" />
                       <ImageView fitHeight="22.0" fitWidth="23.0" layoutX="12.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true">
                           <image>
-                              <Image url="@password_FILL0_wght400_GRAD0_opsz48.png" />
+                              <Image url="@Image/password_FILL0_wght400_GRAD0_opsz48.png" />
                           </image>
                       </ImageView>
                   <TextField fx:id="SSNText" cache="true" layoutX="35.0" layoutY="220.0" prefHeight="28.0" prefWidth="230.0" promptText="EX.408349108" style="-fx-background-color: transparent; -fx-border-color: #b2d8d8; -fx-border-width: 0px 0px 2px 0px;" />
@@ -65,7 +65,7 @@
                   </Label>
                   <ImageView fx:id="SSNImage" fitHeight="22.0" fitWidth="23.0" layoutX="12.0" layoutY="223.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@demography_FILL0_wght400_GRAD0_opsz48.png" />
+                        <Image url="@Image/demography_FILL0_wght400_GRAD0_opsz48.png" />
                      </image>
                   </ImageView>
                </children>
