@@ -77,6 +77,35 @@ public class screen2Controller implements Initializable {
     private TextField searchText;
     @FXML
     private ResultSet rs;
+    @FXML
+    private TextField searchB;
+
+    @FXML
+    private TextField searchBID;
+
+    @FXML
+    private TextField searchD;
+
+    @FXML
+    private TextField searchDID;
+
+    @FXML
+    private TextField searchE;
+
+    @FXML
+    private TextField searchEID;
+
+    @FXML
+    private TextField searchP;
+
+    @FXML
+    private TextField searchPID;
+
+    @FXML
+    private TextField searchProvider;
+
+    @FXML
+    private TextField searchProviderID;
 
 
     @FXML
@@ -138,20 +167,6 @@ public class screen2Controller implements Initializable {
 
     @FXML
     private GridPane grid6;
-    @FXML
-    private TextField searchB;
-
-    @FXML
-    private TextField searchD;
-
-    @FXML
-    private TextField searchE;
-
-    @FXML
-    private TextField searchP;
-
-    @FXML
-    private TextField searchProvider;
     @FXML
     private ComboBox<String> Ecombo;
 
@@ -270,7 +285,7 @@ public class screen2Controller implements Initializable {
     @FXML
     void AddListener(ActionEvent event) {
         if (event.getSource() == addE) {
-            
+
         }
         else if (event.getSource() == addD) {
 
@@ -288,20 +303,88 @@ public class screen2Controller implements Initializable {
 
     @FXML
     void DeleteListener(ActionEvent event) {
+        Connection con;
+        OracleDataSource ods;
+        try {
+            ods = new OracleDataSource();
+            ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+            ods.setUser("mohammad");
+            ods.setPassword("123456");
+            con = ods.getConnection();
+            con.setAutoCommit(false);
         if (event.getSource() == DeleteE) {
-
+            String exe = searchEID.getText();
+            searchEID.setText("");
+            if(exe.isBlank() || exe.isEmpty() || exe == null) {
+                con.close();
+                return;
+            }
+            String all = "delete from Employee where SSN = "+exe;
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(all);
+            con.commit();
+            con.close();
+            getFromAllData(employee, tableEmployee,  18, searchE, -1,"Select * from employee");
         }
         else if (event.getSource() == DeleteD) {
-
+            String exe = searchDID.getText();
+            searchDID.setText("");
+            if(exe.isBlank() || exe.isEmpty() || exe == null) {
+                con.close();
+                return;
+            }
+            String all = "delete from Department where Department_ID = "+exe;
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(all);
+            con.commit();
+            con.close();
+            getFromAllData(department, tableDepartment,  5, searchD, -1,"Select * from department");
         }
         else if (event.getSource() == DeleteP) {
-
+            String exe = searchPID.getText();
+            searchPID.setText("");
+            if(exe.isBlank() || exe.isEmpty() || exe == null) {
+                con.close();
+                return;
+            }
+            String all = "delete from Project where Project_ID = "+exe;
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(all);
+            con.commit();
+            con.close();
+            getFromAllData(project, tableProject,  10, searchP, -1,"Select * from project");
         }
         else if (event.getSource() == DeleteProvider) {
-
+            String exe = searchProviderID.getText();
+            searchProviderID.setText("");
+            if(exe.isBlank() || exe.isEmpty() || exe == null) {
+                con.close();
+                return;
+            }
+            String all = "delete from Provider where Provider_ID = "+exe;
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(all);
+            con.commit();
+            con.close();
+            getFromAllData(provider, tableProvider,  11, searchProvider, -1,"Select * from provider");
         }
         else if (event.getSource() == DeleteB) {
-
+            String exe = searchBID.getText();
+            searchBID.setText("");
+            if(exe.isBlank() || exe.isEmpty() || exe == null) {
+                con.close();
+                return;
+            }
+            String all = "delete from Buyer where Buyer_ID = '"+exe+"'";
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(all);
+            con.commit();
+            con.close();
+            getFromAllData(buyer, tableBuyer,  1, searchB, -1,"Select * from buyer");
+        }
+        }
+        catch(Exception e) {
+            System.out.println(e);
         }
     }
 

@@ -364,7 +364,7 @@
                         </HBox>
                         <HBox>
                            <children>
-                              <TextField fx:id="searchE11" prefHeight="27.0" prefWidth="204.0" promptText="ID" style="-fx-border-color: #212F3C;">
+                              <TextField fx:id="searchD" prefHeight="27.0" prefWidth="204.0" promptText="ID" style="-fx-border-color: #212F3C;">
                                  <HBox.margin>
                                     <Insets left="52.0" />
                                  </HBox.margin>
@@ -436,7 +436,7 @@
                         </HBox>
                         <HBox>
                            <children>
-                              <TextField fx:id="searchE1111" prefHeight="27.0" prefWidth="204.0" promptText="ID" style="-fx-border-color: #212F3C;">
+                              <TextField fx:id="searchProviderID" prefHeight="27.0" prefWidth="204.0" promptText="ID" style="-fx-border-color: #212F3C;">
                                  <HBox.margin>
                                     <Insets left="52.0" />
                                  </HBox.margin>
@@ -509,7 +509,7 @@
                         </HBox>
                         <HBox>
                            <children>
-                              <TextField fx:id="searchE111" prefHeight="27.0" prefWidth="204.0" promptText="ID" style="-fx-border-color: #212F3C;">
+                              <TextField fx:id="searchPID" prefHeight="27.0" prefWidth="204.0" promptText="ID" style="-fx-border-color: #212F3C;">
                                  <HBox.margin>
                                     <Insets left="52.0" />
                                  </HBox.margin>
@@ -580,7 +580,7 @@
                         </HBox>
                         <HBox>
                            <children>
-                              <TextField fx:id="searchE11111" prefHeight="27.0" prefWidth="204.0" promptText="ID" style="-fx-border-color: #212F3C;">
+                              <TextField fx:id="searchBID" prefHeight="27.0" prefWidth="204.0" promptText="ID" style="-fx-border-color: #212F3C;">
                                  <HBox.margin>
                                     <Insets left="52.0" />
                                  </HBox.margin>
@@ -671,7 +671,7 @@
                         </HBox>
                         <HBox>
                            <children>
-                              <TextField fx:id="searchE1" prefHeight="27.0" prefWidth="204.0" promptText="ID" style="-fx-border-color: #212F3C;">
+                              <TextField fx:id="searchEID" prefHeight="27.0" prefWidth="204.0" promptText="ID" style="-fx-border-color: #212F3C;">
                                  <HBox.margin>
                                     <Insets left="52.0" />
                                  </HBox.margin>
