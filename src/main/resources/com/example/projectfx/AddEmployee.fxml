@@ -13,7 +13,6 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="427.0" maxWidth="546.0" prefHeight="427.0" prefWidth="667.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectfx.AddEmployeeController">
    <children>
       <Circle fill="DODGERBLUE" radius="153.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: #A2D9CE; -fx-stroke-width: 0px;" />
@@ -21,7 +20,7 @@
          <children>
             <Label fx:id="AddEmployee" onMousePressed="#AddEmployeeListener" style="-fx-background-color: #A2D9CE; -fx-background-radius: 10;" text="Add Employee" textFill="WHITE">
                <font>
-                  <Font name="Verdana Italic" size="16.0" />
+                  <Font name="Verdana Bold Italic" size="16.0" />
                </font>
                <VBox.margin>
                   <Insets bottom="10.0" top="25.0" />
@@ -42,13 +41,13 @@
                               <Insets bottom="3.0" />
                            </VBox.margin>
                            <font>
-                              <Font size="14.0" />
+                              <Font name="System Bold Italic" size="14.0" />
                            </font>
                            <padding>
                               <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                            </padding>
                         </Label>
-                        <TextField />
+                        <TextField fx:id="textSSN" />
                      </children>
                      <HBox.margin>
                         <Insets right="10.0" />
@@ -61,13 +60,13 @@
                               <Insets bottom="3.0" />
                            </VBox.margin>
                            <font>
-                              <Font size="14.0" />
+                              <Font name="System Bold Italic" size="14.0" />
                            </font>
                            <padding>
                               <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                            </padding>
                         </Label>
-                        <DatePicker />
+                        <DatePicker fx:id="textBirth" />
                      </children>
                      <HBox.margin>
                         <Insets left="10.0" />
@@ -80,13 +79,13 @@
                               <Insets bottom="3.0" />
                            </VBox.margin>
                            <font>
-                              <Font size="14.0" />
+                              <Font name="System Bold Italic" size="14.0" />
                            </font>
                            <padding>
                               <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                            </padding>
                         </Label>
-                        <TextField />
+                        <TextField fx:id="textPhone" />
                      </children>
                      <HBox.margin>
                         <Insets left="20.0" />
@@ -103,13 +102,13 @@
                               <Insets bottom="3.0" />
                            </VBox.margin>
                            <font>
-                              <Font size="14.0" />
+                              <Font name="System Bold Italic" size="14.0" />
                            </font>
                            <padding>
                               <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                            </padding>
                         </Label>
-                        <TextField />
+                        <TextField fx:id="textFirst" />
                      </children>
                      <HBox.margin>
                         <Insets right="10.0" />
@@ -122,13 +121,13 @@
                               <Insets bottom="3.0" />
                            </VBox.margin>
                            <font>
-                              <Font size="14.0" />
+                              <Font name="System Bold Italic" size="14.0" />
                            </font>
                            <padding>
                               <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                            </padding>
                         </Label>
-                        <TextField />
+                        <TextField fx:id="textSecond" />
                      </children>
                      <HBox.margin>
                         <Insets left="10.0" />
@@ -141,13 +140,13 @@
                               <Insets bottom="3.0" />
                            </VBox.margin>
                            <font>
-                              <Font size="14.0" />
+                              <Font name="System Bold Italic" size="14.0" />
                            </font>
                            <padding>
                               <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                            </padding>
                         </Label>
-                        <TextField />
+                        <TextField fx:id="textLast" />
                      </children>
                      <HBox.margin>
                         <Insets left="20.0" />
@@ -164,13 +163,13 @@
                               <Insets bottom="3.0" />
                            </VBox.margin>
                            <font>
-                              <Font size="14.0" />
+                              <Font name="System Bold Italic" size="14.0" />
                            </font>
                            <padding>
                               <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                            </padding>
                         </Label>
-                        <TextField />
+                        <TextField fx:id="textGender" />
                      </children>
                      <HBox.margin>
                         <Insets right="10.0" />
@@ -183,13 +182,13 @@
                               <Insets bottom="3.0" />
                            </VBox.margin>
                            <font>
-                              <Font size="14.0" />
+                              <Font name="System Bold Italic" size="14.0" />
                            </font>
                            <padding>
                               <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                            </padding>
                         </Label>
-                        <TextField />
+                        <TextField fx:id="textCity" />
                      </children>
                      <HBox.margin>
                         <Insets left="10.0" />
@@ -202,13 +201,13 @@
                               <Insets bottom="3.0" />
                            </VBox.margin>
                            <font>
-                              <Font size="14.0" />
+                              <Font name="System Bold Italic" size="14.0" />
                            </font>
                            <padding>
                               <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                            </padding>
                         </Label>
-                        <TextField />
+                        <TextField fx:id="textStreet" />
                      </children>
                      <HBox.margin>
                         <Insets left="20.0" />
@@ -223,17 +222,40 @@
                         <Insets bottom="3.0" />
                      </VBox.margin>
                      <font>
-                        <Font size="14.0" />
+                        <Font name="System Bold Italic" size="14.0" />
                      </font>
                      <padding>
                         <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                      </padding>
                   </Label>
-                  <ComboBox prefWidth="150.0" />
+                  <ComboBox fx:id="comboType" prefWidth="150.0" />
                </children>
             </VBox>
             <StackPane prefHeight="82.0" prefWidth="546.0">
                <children>
+                  <HBox alignment="CENTER" prefHeight="70.0" prefWidth="372.0" style="-fx-background-color: #F4F4F4;">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="157.0">
+                           <children>
+                              <Label style="-fx-background-color: #A2D9CE; -fx-background-radius: 10px;" text="Driving Licenise" textFill="WHITE">
+                                 <VBox.margin>
+                                    <Insets bottom="3.0" />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font name="System Bold Italic" size="14.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                                 </padding>
+                              </Label>
+                              <TextField fx:id="textDriv" />
+                           </children>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </VBox>
+                     </children>
+                  </HBox>
                   <HBox alignment="CENTER" prefHeight="70.0" prefWidth="372.0" style="-fx-background-color: #F4F4F4;">
                      <children>
                         <VBox alignment="CENTER" prefHeight="100.0" prefWidth="157.0">
@@ -243,13 +265,13 @@
                                     <Insets bottom="3.0" />
                                  </VBox.margin>
                                  <font>
-                                    <Font size="14.0" />
+                                    <Font name="System Bold Italic" size="14.0" />
                                  </font>
                                  <padding>
                                     <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                                  </padding>
                               </Label>
-                              <TextField />
+                              <TextField fx:id="textExp" />
                            </children>
                            <HBox.margin>
                               <Insets />
@@ -266,13 +288,13 @@
                                     <Insets bottom="3.0" />
                                  </VBox.margin>
                                  <font>
-                                    <Font size="14.0" />
+                                    <Font name="System Bold Italic" size="14.0" />
                                  </font>
                                  <padding>
                                     <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                                  </padding>
                               </Label>
-                              <TextField />
+                              <TextField fx:id="textDep" />
                            </children>
                            <HBox.margin>
                               <Insets left="10.0" />
@@ -285,39 +307,16 @@
                                     <Insets bottom="3.0" />
                                  </VBox.margin>
                                  <font>
-                                    <Font size="14.0" />
+                                    <Font name="System Bold Italic" size="14.0" />
                                  </font>
                                  <padding>
                                     <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                                  </padding>
                               </Label>
-                              <TextField />
+                              <TextField fx:id="textDegree" />
                            </children>
                            <HBox.margin>
                               <Insets left="20.0" />
-                           </HBox.margin>
-                        </VBox>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="70.0" prefWidth="372.0" style="-fx-background-color: #F4F4F4;">
-                     <children>
-                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="157.0">
-                           <children>
-                              <Label style="-fx-background-color: #A2D9CE; -fx-background-radius: 10px;" text="Driving Licenise" textFill="WHITE">
-                                 <VBox.margin>
-                                    <Insets bottom="3.0" />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                                 </padding>
-                              </Label>
-                              <TextField />
-                           </children>
-                           <HBox.margin>
-                              <Insets />
                            </HBox.margin>
                         </VBox>
                      </children>
@@ -331,13 +330,13 @@
                                     <Insets bottom="3.0" />
                                  </VBox.margin>
                                  <font>
-                                    <Font size="14.0" />
+                                    <Font name="System Bold Italic" size="14.0" />
                                  </font>
                                  <padding>
                                     <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                                  </padding>
                               </Label>
-                              <TextField />
+                              <TextField fx:id="textDegreeManager" />
                            </children>
                            <HBox.margin>
                               <Insets />
@@ -350,13 +349,13 @@
                                     <Insets bottom="3.0" />
                                  </VBox.margin>
                                  <font>
-                                    <Font size="14.0" />
+                                    <Font name="System Bold Italic" size="14.0" />
                                  </font>
                                  <padding>
                                     <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                                  </padding>
                               </Label>
-                              <TextField />
+                              <TextField fx:id="textQual" />
                            </children>
                            <HBox.margin>
                               <Insets left="20.0" />
