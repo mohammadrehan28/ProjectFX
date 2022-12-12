@@ -16,7 +16,7 @@
 <AnchorPane maxHeight="427.0" maxWidth="546.0" prefHeight="427.0" prefWidth="667.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectfx.AddEmployeeController">
    <children>
       <Circle fill="DODGERBLUE" radius="153.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: #A2D9CE; -fx-stroke-width: 0px;" />
-      <VBox alignment="CENTER" prefHeight="408.0" prefWidth="546.0">
+      <VBox fx:id="All" alignment="CENTER" prefHeight="408.0" prefWidth="546.0">
          <children>
             <Label fx:id="AddEmployee" onMousePressed="#AddEmployeeListener" style="-fx-background-color: #A2D9CE; -fx-background-radius: 10;" text="Add Employee" textFill="WHITE">
                <font>
@@ -215,7 +215,7 @@
                   </VBox>
                </children>
             </HBox>
-            <VBox alignment="CENTER" prefHeight="70.0" prefWidth="546.0">
+            <VBox fx:id="VBoxType" alignment="CENTER" prefHeight="70.0" prefWidth="546.0">
                <children>
                   <Label style="-fx-background-color: #A2D9CE; -fx-background-radius: 10px;" text="Type" textFill="WHITE">
                      <VBox.margin>
@@ -233,11 +233,11 @@
             </VBox>
             <StackPane prefHeight="82.0" prefWidth="546.0">
                <children>
-                  <HBox alignment="CENTER" prefHeight="70.0" prefWidth="372.0" style="-fx-background-color: #F4F4F4;">
+                  <HBox fx:id="PaneManager" alignment="CENTER" prefHeight="73.0" prefWidth="546.0" style="-fx-background-color: #F4F4F4;">
                      <children>
                         <VBox alignment="CENTER" prefHeight="100.0" prefWidth="157.0">
                            <children>
-                              <Label style="-fx-background-color: #A2D9CE; -fx-background-radius: 10px;" text="Driving Licenise" textFill="WHITE">
+                              <Label style="-fx-background-color: #A2D9CE; -fx-background-radius: 10px;" text="Degree Manager" textFill="WHITE">
                                  <VBox.margin>
                                     <Insets bottom="3.0" />
                                  </VBox.margin>
@@ -248,19 +248,15 @@
                                     <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                                  </padding>
                               </Label>
-                              <TextField fx:id="textDriv" />
+                              <TextField fx:id="textDegreeManager" />
                            </children>
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
                         </VBox>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="70.0" prefWidth="372.0" style="-fx-background-color: #F4F4F4;">
-                     <children>
                         <VBox alignment="CENTER" prefHeight="100.0" prefWidth="157.0">
                            <children>
-                              <Label style="-fx-background-color: #A2D9CE; -fx-background-radius: 10px;" text="Experence Year" textFill="WHITE">
+                              <Label style="-fx-background-color: #A2D9CE; -fx-background-radius: 10px;" text="Qualification" textFill="WHITE">
                                  <VBox.margin>
                                     <Insets bottom="3.0" />
                                  </VBox.margin>
@@ -271,15 +267,15 @@
                                     <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                                  </padding>
                               </Label>
-                              <TextField fx:id="textExp" />
+                              <TextField fx:id="textQual" />
                            </children>
                            <HBox.margin>
-                              <Insets />
+                              <Insets left="20.0" />
                            </HBox.margin>
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="70.0" prefWidth="372.0" style="-fx-background-color: #F4F4F4;">
+                  <HBox fx:id="PaneNursery" alignment="CENTER" prefHeight="70.0" prefWidth="372.0" style="-fx-background-color: #F4F4F4;">
                      <children>
                         <VBox alignment="CENTER" prefHeight="100.0" prefWidth="157.0">
                            <children>
@@ -321,11 +317,11 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox fx:id="Manager" alignment="CENTER" prefHeight="73.0" prefWidth="546.0" style="-fx-background-color: #F4F4F4;">
+                  <HBox fx:id="PaneProject" alignment="CENTER" prefHeight="70.0" prefWidth="372.0" style="-fx-background-color: #F4F4F4;">
                      <children>
                         <VBox alignment="CENTER" prefHeight="100.0" prefWidth="157.0">
                            <children>
-                              <Label style="-fx-background-color: #A2D9CE; -fx-background-radius: 10px;" text="Degree Manager" textFill="WHITE">
+                              <Label style="-fx-background-color: #A2D9CE; -fx-background-radius: 10px;" text="Experence Year" textFill="WHITE">
                                  <VBox.margin>
                                     <Insets bottom="3.0" />
                                  </VBox.margin>
@@ -336,15 +332,19 @@
                                     <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                                  </padding>
                               </Label>
-                              <TextField fx:id="textDegreeManager" />
+                              <TextField fx:id="textExp" />
                            </children>
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
                         </VBox>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="PaneDrive" alignment="CENTER" prefHeight="70.0" prefWidth="372.0" style="-fx-background-color: #F4F4F4;">
+                     <children>
                         <VBox alignment="CENTER" prefHeight="100.0" prefWidth="157.0">
                            <children>
-                              <Label style="-fx-background-color: #A2D9CE; -fx-background-radius: 10px;" text="Qualification" textFill="WHITE">
+                              <Label style="-fx-background-color: #A2D9CE; -fx-background-radius: 10px;" text="Driving Licenise" textFill="WHITE">
                                  <VBox.margin>
                                     <Insets bottom="3.0" />
                                  </VBox.margin>
@@ -355,10 +355,10 @@
                                     <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                                  </padding>
                               </Label>
-                              <TextField fx:id="textQual" />
+                              <TextField fx:id="textDriv" />
                            </children>
                            <HBox.margin>
-                              <Insets left="20.0" />
+                              <Insets />
                            </HBox.margin>
                         </VBox>
                      </children>

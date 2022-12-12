@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="427.0" maxWidth="546.0" prefHeight="389.0" prefWidth="546.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectfx.AddProjectController">
+    <children>
+        <Circle fill="DODGERBLUE" radius="153.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: #A2D9CE; -fx-stroke-width: 0px;" />
+        <VBox fx:id="All" alignment="CENTER" prefHeight="378.0" prefWidth="546.0">
+            <children>
+                <Label fx:id="AddEmployee" onMousePressed="#AddEmployeeListener" style="-fx-background-color: #A2D9CE; -fx-background-radius: 10;" text="Add Project" textFill="WHITE">
+                    <font>
+                        <Font name="Verdana Bold Italic" size="16.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets bottom="10.0" top="25.0" />
+                    </VBox.margin>
+                    <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </padding>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Label>
+                <HBox alignment="CENTER" prefHeight="70.0" prefWidth="372.0">
+                    <children>
+                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="157.0">
+                            <children>
+                                <Label style="-fx-background-color: #F4F4F4; -fx-background-radius: 10px;" text="ID" textFill="#a2d9ce">
+                                    <VBox.margin>
+                                        <Insets bottom="3.0" />
+                                    </VBox.margin>
+                                    <font>
+                                        <Font name="System Bold Italic" size="14.0" />
+                                    </font>
+                                    <padding>
+                                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                                    </padding>
+                                </Label>
+                                <TextField fx:id="textSSN" />
+                            </children>
+                            <HBox.margin>
+                                <Insets right="10.0" />
+                            </HBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER" layoutX="238.0" layoutY="10.0" prefHeight="100.0" prefWidth="157.0">
+                            <children>
+                                <Label style="-fx-background-color: #A2D9CE; -fx-background-radius: 10px;" text="Name" textFill="WHITE">
+                                    <VBox.margin>
+                                        <Insets bottom="3.0" />
+                                    </VBox.margin>
+                                    <font>
+                                        <Font name="System Bold Italic" size="14.0" />
+                                    </font>
+                                    <padding>
+                                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                                    </padding>
+                                </Label>
+                                  <TextField fx:id="textName" />
+                            </children>
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="157.0">
+                            <children>
+                                <Label style="-fx-background-color: #A2D9CE; -fx-background-radius: 10px;" text="NumberProject" textFill="WHITE">
+                                    <VBox.margin>
+                                        <Insets bottom="3.0" />
+                                    </VBox.margin>
+                                    <font>
+                                        <Font name="System Bold Italic" size="14.0" />
+                                    </font>
+                                    <padding>
+                                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                                    </padding>
+                                </Label>
+                                <TextField fx:id="textNumber" />
+                            </children>
+                            <HBox.margin>
+                                <Insets left="20.0" />
+                            </HBox.margin>
+                        </VBox>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" layoutX="10.0" layoutY="247.0" prefHeight="70.0" prefWidth="372.0">
+                    <children>
+                        <VBox alignment="CENTER" layoutX="238.0" layoutY="10.0" prefHeight="100.0" prefWidth="157.0">
+                            <children>
+                              <Label style="-fx-background-color: #A2D9CE; -fx-background-radius: 10px;" text="Type" textFill="WHITE">
+                                  <VBox.margin>
+                                      <Insets bottom="3.0" />
+                                  </VBox.margin>
+                                  <font>
+                                      <Font name="System Bold Italic" size="14.0" />
+                                  </font>
+                                  <padding>
+                                      <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                                  </padding>
+                              </Label>
+                              <ComboBox fx:id="comboType" prefWidth="150.0" />
+                            </children>
+                            <HBox.margin>
+                                <Insets right="10.0" />
+                            </HBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="157.0">
+                            <children>
+                                <Label style="-fx-background-color: #A2D9CE; -fx-background-radius: 10px;" text="Status" textFill="WHITE">
+                                    <VBox.margin>
+                                        <Insets bottom="3.0" />
+                                    </VBox.margin>
+                                    <font>
+                                        <Font name="System Bold Italic" size="14.0" />
+                                    </font>
+                                    <padding>
+                                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                                    </padding>
+                                </Label>
+                        <ComboBox fx:id="comboStatus" prefWidth="150.0" />
+                            </children>
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="157.0">
+                            <children>
+                                <Label style="-fx-background-color: #A2D9CE; -fx-background-radius: 10px;" text="Country" textFill="WHITE">
+                                    <VBox.margin>
+                                        <Insets bottom="3.0" />
+                                    </VBox.margin>
+                                    <font>
+                                        <Font name="System Bold Italic" size="14.0" />
+                                    </font>
+                                    <padding>
+                                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                                    </padding>
+                                </Label>
+                                <TextField fx:id="textContry" />
+                            </children>
+                            <HBox.margin>
+                                <Insets left="20.0" />
+                            </HBox.margin>
+                        </VBox>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" layoutX="10.0" layoutY="247.0" prefHeight="70.0" prefWidth="372.0">
+                    <children>
+                        <VBox alignment="CENTER" layoutX="238.0" layoutY="10.0" prefHeight="100.0" prefWidth="157.0">
+                            <children>
+                                <Label style="-fx-background-color: #A2D9CE; -fx-background-radius: 10px;" text="SSN Manager" textFill="WHITE">
+                                    <VBox.margin>
+                                        <Insets bottom="3.0" />
+                                    </VBox.margin>
+                                    <font>
+                                        <Font name="System Bold Italic" size="14.0" />
+                                    </font>
+                                    <padding>
+                                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                                    </padding>
+                                </Label>
+                                <TextField fx:id="textSSNM" />
+                            </children>
+                            <HBox.margin>
+                                <Insets right="10.0" />
+                            </HBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="157.0">
+                            <children>
+                                <Label style="-fx-background-color: #A2D9CE; -fx-background-radius: 10px;" text="City" textFill="WHITE">
+                                    <VBox.margin>
+                                        <Insets bottom="3.0" />
+                                    </VBox.margin>
+                                    <font>
+                                        <Font name="System Bold Italic" size="14.0" />
+                                    </font>
+                                    <padding>
+                                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                                    </padding>
+                                </Label>
+                                <TextField fx:id="textCity" />
+                            </children>
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="157.0">
+                            <children>
+                                <Label style="-fx-background-color: #A2D9CE; -fx-background-radius: 10px;" text="Street" textFill="WHITE">
+                                    <VBox.margin>
+                                        <Insets bottom="3.0" />
+                                    </VBox.margin>
+                                    <font>
+                                        <Font name="System Bold Italic" size="14.0" />
+                                    </font>
+                                    <padding>
+                                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                                    </padding>
+                                </Label>
+                                <TextField fx:id="textStreet" />
+                            </children>
+                            <HBox.margin>
+                                <Insets left="20.0" />
+                            </HBox.margin>
+                        </VBox>
+                    </children>
+                </HBox>
+                <StackPane prefHeight="82.0" prefWidth="546.0">
+                    <children>
+                        <HBox alignment="CENTER" prefHeight="70.0" prefWidth="372.0" style="-fx-background-color: #F4F4F4;">
+                            <children>
+                                <VBox alignment="CENTER" prefHeight="100.0" prefWidth="157.0">
+                                    <children>
+                                        <Label style="-fx-background-color: #A2D9CE; -fx-background-radius: 10px;" text="Driving Licenise" textFill="WHITE">
+                                            <VBox.margin>
+                                                <Insets bottom="3.0" />
+                                            </VBox.margin>
+                                            <font>
+                                                <Font name="System Bold Italic" size="14.0" />
+                                            </font>
+                                            <padding>
+                                                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                                            </padding>
+                                        </Label>
+                                        <TextField fx:id="textDriv" />
+                                    </children>
+                                    <HBox.margin>
+                                        <Insets />
+                                    </HBox.margin>
+                                </VBox>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="70.0" prefWidth="372.0" style="-fx-background-color: #F4F4F4;">
+                            <children>
+                                <VBox alignment="CENTER" prefHeight="100.0" prefWidth="157.0">
+                                    <children>
+                                        <Label style="-fx-background-color: #A2D9CE; -fx-background-radius: 10px;" text="Experence Year" textFill="WHITE">
+                                            <VBox.margin>
+                                                <Insets bottom="3.0" />
+                                            </VBox.margin>
+                                            <font>
+                                                <Font name="System Bold Italic" size="14.0" />
+                                            </font>
+                                            <padding>
+                                                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                                            </padding>
+                                        </Label>
+                                        <TextField fx:id="textExp" />
+                                    </children>
+                                    <HBox.margin>
+                                        <Insets />
+                                    </HBox.margin>
+                                </VBox>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="70.0" prefWidth="372.0" style="-fx-background-color: #F4F4F4;">
+                            <children>
+                                <VBox alignment="CENTER" prefHeight="100.0" prefWidth="157.0">
+                                    <children>
+                                        <Label style="-fx-background-color: #A2D9CE; -fx-background-radius: 10px;" text="Department ID" textFill="WHITE">
+                                            <VBox.margin>
+                                                <Insets bottom="3.0" />
+                                            </VBox.margin>
+                                            <font>
+                                                <Font name="System Bold Italic" size="14.0" />
+                                            </font>
+                                            <padding>
+                                                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                                            </padding>
+                                        </Label>
+                                        <TextField fx:id="textDep" />
+                                    </children>
+                                    <HBox.margin>
+                                        <Insets left="10.0" />
+                                    </HBox.margin>
+                                </VBox>
+                                <VBox alignment="CENTER" prefHeight="100.0" prefWidth="157.0">
+                                    <children>
+                                        <Label style="-fx-background-color: #A2D9CE; -fx-background-radius: 10px;" text="Degree Nursery" textFill="WHITE">
+                                            <VBox.margin>
+                                                <Insets bottom="3.0" />
+                                            </VBox.margin>
+                                            <font>
+                                                <Font name="System Bold Italic" size="14.0" />
+                                            </font>
+                                            <padding>
+                                                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                                            </padding>
+                                        </Label>
+                                        <TextField fx:id="textDegree" />
+                                    </children>
+                                    <HBox.margin>
+                                        <Insets left="20.0" />
+                                    </HBox.margin>
+                                </VBox>
+                            </children>
+                        </HBox>
+                        <HBox fx:id="Manager" alignment="CENTER" prefHeight="73.0" prefWidth="546.0" style="-fx-background-color: #F4F4F4;">
+                            <children>
+                                <VBox alignment="CENTER" prefHeight="100.0" prefWidth="157.0">
+                                    <children>
+                                        <Label style="-fx-background-color: #A2D9CE; -fx-background-radius: 10px;" text="Start Date" textFill="WHITE">
+                                            <VBox.margin>
+                                                <Insets bottom="3.0" />
+                                            </VBox.margin>
+                                            <font>
+                                                <Font name="System Bold Italic" size="14.0" />
+                                            </font>
+                                            <padding>
+                                                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                                            </padding>
+                                        </Label>
+                                      <DatePicker fx:id="textStart" />
+                                    </children>
+                                    <HBox.margin>
+                                        <Insets />
+                                    </HBox.margin>
+                                </VBox>
+                                <VBox alignment="CENTER" prefHeight="100.0" prefWidth="157.0">
+                                    <children>
+                                        <Label style="-fx-background-color: #A2D9CE; -fx-background-radius: 10px;" text="Finish Date" textFill="WHITE">
+                                            <VBox.margin>
+                                                <Insets bottom="3.0" />
+                                            </VBox.margin>
+                                            <font>
+                                                <Font name="System Bold Italic" size="14.0" />
+                                            </font>
+                                            <padding>
+                                                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                                            </padding>
+                                        </Label>
+                              <DatePicker fx:id="textEnd" />
+                                    </children>
+                                    <HBox.margin>
+                                        <Insets left="20.0" />
+                                    </HBox.margin>
+                                </VBox>
+                            </children>
+                        </HBox>
+                    </children>
+                </StackPane>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

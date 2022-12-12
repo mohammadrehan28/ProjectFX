@@ -13,7 +13,7 @@ import javafx.scene.layout.VBox;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class AddEmployeeController implements Initializable {
+public class AddProjectController implements Initializable {
 
     @FXML
     private Label AddEmployee;
@@ -22,34 +22,22 @@ public class AddEmployeeController implements Initializable {
     private VBox All;
 
     @FXML
-    private HBox PaneDrive;
+    private HBox Manager;
 
     @FXML
-    private HBox PaneManager;
-
-    @FXML
-    private HBox PaneNursery;
-
-    @FXML
-    private HBox PaneProject;
-
-    @FXML
-    private VBox VBoxType;
+    private ComboBox<?> comboStatus;
 
     @FXML
     private ComboBox<?> comboType;
 
     @FXML
-    private DatePicker textBirth;
-
-    @FXML
     private TextField textCity;
 
     @FXML
-    private TextField textDegree;
+    private TextField textContry;
 
     @FXML
-    private TextField textDegreeManager;
+    private TextField textDegree;
 
     @FXML
     private TextField textDep;
@@ -58,28 +46,25 @@ public class AddEmployeeController implements Initializable {
     private TextField textDriv;
 
     @FXML
+    private DatePicker textEnd;
+
+    @FXML
     private TextField textExp;
 
     @FXML
-    private TextField textFirst;
+    private TextField textName;
 
     @FXML
-    private TextField textGender;
-
-    @FXML
-    private TextField textLast;
-
-    @FXML
-    private TextField textPhone;
-
-    @FXML
-    private TextField textQual;
+    private TextField textNumber;
 
     @FXML
     private TextField textSSN;
 
     @FXML
-    private TextField textSecond;
+    private TextField textSSNM;
+
+    @FXML
+    private DatePicker textStart;
 
     @FXML
     private TextField textStreet;

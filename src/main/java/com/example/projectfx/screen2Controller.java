@@ -1,5 +1,6 @@
 package com.example.projectfx;
 
+import animatefx.animation.FadeIn;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -284,7 +285,17 @@ public class screen2Controller implements Initializable {
     @FXML
     void AddListener(ActionEvent event) {
         if (event.getSource() == addE) {
-
+            try {
+                Stage stage = new Stage();
+                Parent root = FXMLLoader.load(getClass().getResource("AddEmployee.fxml"));
+                stage.setTitle("Our Big Project!!");
+                stage.setScene(new Scene(root));
+                stage.show();
+                new FadeIn(root).play();
+            }
+            catch(Exception e){
+                System.out.println(e);
+            }
         }
         else if (event.getSource() == addD) {
 

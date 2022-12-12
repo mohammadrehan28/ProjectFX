@@ -3,7 +3,6 @@ package com.example.projectfx;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -13,7 +12,7 @@ import javafx.scene.layout.VBox;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class AddEmployeeController implements Initializable {
+public class AddProviderController implements Initializable {
 
     @FXML
     private Label AddEmployee;
@@ -22,16 +21,10 @@ public class AddEmployeeController implements Initializable {
     private VBox All;
 
     @FXML
-    private HBox PaneDrive;
+    private HBox PaneArgi;
 
     @FXML
-    private HBox PaneManager;
-
-    @FXML
-    private HBox PaneNursery;
-
-    @FXML
-    private HBox PaneProject;
+    private HBox PaneDel;
 
     @FXML
     private VBox VBoxType;
@@ -40,49 +33,34 @@ public class AddEmployeeController implements Initializable {
     private ComboBox<?> comboType;
 
     @FXML
-    private DatePicker textBirth;
-
-    @FXML
     private TextField textCity;
 
     @FXML
-    private TextField textDegree;
-
-    @FXML
-    private TextField textDegreeManager;
-
-    @FXML
-    private TextField textDep;
+    private TextField textCountry;
 
     @FXML
     private TextField textDriv;
 
     @FXML
-    private TextField textExp;
+    private TextField textID;
 
     @FXML
-    private TextField textFirst;
-
-    @FXML
-    private TextField textGender;
-
-    @FXML
-    private TextField textLast;
+    private TextField textName;
 
     @FXML
     private TextField textPhone;
 
     @FXML
-    private TextField textQual;
-
-    @FXML
-    private TextField textSSN;
-
-    @FXML
-    private TextField textSecond;
+    private TextField textSize;
 
     @FXML
     private TextField textStreet;
+
+    @FXML
+    private TextField textTime;
+
+    @FXML
+    private TextField textTypeCars;
 
     @FXML
     void AddEmployeeListener(MouseEvent event) {

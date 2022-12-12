@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -59,23 +60,25 @@ public class HelloController implements Initializable {
                 while (rs.next()) {
                     String ID = rs.getString(1);
                     String Password = rs.getString(2);
+                    Parent root;
                     if (UserNameText.getText().equals(ID) && !PasswordText.getText().equals(Password)) {
                         IncorrectLabel.setText("Invalid Password");
                         break;
                     } else if (UserNameText.getText().equals(ID) && PasswordText.getText().equals(Password)) {
                         FXMLLoader fxmlLoader;
                         if(rs.getString(3).equals("Admin")) {
-                            fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("screen2.fxml"));
+                            root = FXMLLoader.load(getClass().getResource("screen2.fxml"));
                         }
                         else if(rs.getString(3).equals("User")) {
-                            fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("screen2.fxml"));
+                            root = FXMLLoader.load(getClass().getResource("screen2.fxml"));
                         }
                         else {
-                            fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Buyer.fxml"));
+                            root = FXMLLoader.load(getClass().getResource("Buyer.fxml"));
                         }
-                        Scene scene = new Scene(fxmlLoader.load());
                         Stage stage = (Stage) LoginB.getScene().getWindow();
-                        stage.setScene(scene);
+                        stage.setScene(new Scene(root));
+                        stage.show();
+                        new FadeIn(root).play();
                         break;
                     }
                 }
