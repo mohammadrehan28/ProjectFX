@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="427.0" maxWidth="546.0" prefHeight="257.0" prefWidth="546.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectfx.AddDepartmentController">
+<AnchorPane fx:id="scenePane" maxHeight="427.0" maxWidth="546.0" prefHeight="257.0" prefWidth="546.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectfx.AddDepartmentController">
     <children>
         <Circle fill="DODGERBLUE" radius="153.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: #A2D9CE; -fx-stroke-width: 0px;" />
         <VBox fx:id="All" alignment="CENTER" prefHeight="235.0" prefWidth="546.0">

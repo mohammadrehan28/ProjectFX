@@ -1,5 +1,6 @@
 package com.example.projectfx;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -7,8 +8,11 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import oracle.jdbc.pool.OracleDataSource;
 
 import javax.swing.*;
@@ -22,6 +26,8 @@ import java.util.ResourceBundle;
 
 public class AddEmployeeController implements Initializable {
 
+    public StackPane StackAll;
+    public AnchorPane scenePane;
     @FXML
     private Label AddEmployee;
 
@@ -105,20 +111,20 @@ public class AddEmployeeController implements Initializable {
             if(textSSN.getText().isEmpty()||textSSN.getText().isBlank()||textSSN.getText() == null) {
                 JOptionPane.showMessageDialog(null, "The SSN is Empty", "ERROR", JOptionPane.ERROR_MESSAGE);
                 con.close();
-                return;
+                throw new Exception();
             }
             while (rs.next()) {
                 String SSN = rs.getString(1);
                 if(SSN.equals(textSSN.getText())) {
                     JOptionPane.showMessageDialog(null, "The SSN is already contains", "ERROR", JOptionPane.ERROR_MESSAGE);
                     con.close();
-                    return;
+                    throw new Exception();
                 }
             }
             if(textSSN.getText().isEmpty()||textBirth.getValue() == null||textPhone.getText().isEmpty()||textFirst.getText().isEmpty()||textSecond.getText().isEmpty()||textLast.getText().isEmpty()||textCity.getText().isEmpty()||textStreet.getText().isEmpty()){
                 JOptionPane.showMessageDialog(null, "Field is Empty", "ERROR", JOptionPane.ERROR_MESSAGE);
                 con.close();
-                return;
+                throw new Exception();
             }
             String SSN = textSSN.getText();
             LocalDate Birth = textBirth.getValue();
@@ -134,7 +140,7 @@ public class AddEmployeeController implements Initializable {
             else {
                 JOptionPane.showMessageDialog(null, "The Gender is not allowed", "ERROR", JOptionPane.ERROR_MESSAGE);
                 con.close();
-                return;
+                throw new Exception();
             }
             String City = textCity.getText();
             String Street = textStreet.getText();
@@ -142,7 +148,7 @@ public class AddEmployeeController implements Initializable {
                 if(textDegreeManager.getText().isEmpty()||textQual.getText().isEmpty()){
                     JOptionPane.showMessageDialog(null, "Field is Empty", "ERROR", JOptionPane.ERROR_MESSAGE);
                     con.close();
-                    return;
+                    throw new Exception();
                 }
                 String Degree = textDegreeManager.getText();
                 String Qual = textQual.getText();
@@ -152,7 +158,7 @@ public class AddEmployeeController implements Initializable {
                 if(textDriv.getText().isEmpty()){
                     JOptionPane.showMessageDialog(null, "Field is Empty", "ERROR", JOptionPane.ERROR_MESSAGE);
                     con.close();
-                    return;
+                    throw new Exception();
                 }
                 String Drive = textDriv.getText();
                 all = "INSERT INTO Employee values("+SSN+","+FormatBirth+","+Phone+",'"+First+"','"+Second+"','"+Last+"','"+Gender+"','"+City+"','"+Street+"',0,null,null,1,'"+Drive+"',0,null,null,0,null)";
@@ -161,7 +167,7 @@ public class AddEmployeeController implements Initializable {
                 if(textDep.getText().isEmpty()||textDegree.getText().isEmpty()){
                     JOptionPane.showMessageDialog(null, "Field is Empty", "ERROR", JOptionPane.ERROR_MESSAGE);
                     con.close();
-                    return;
+                    throw new Exception();
                 }
                 String Dep = textDep.getText();
                 String Degree = textDegree.getText();
@@ -171,20 +177,36 @@ public class AddEmployeeController implements Initializable {
                 if(textExp.getText().isEmpty()){
                     JOptionPane.showMessageDialog(null, "Field is Empty", "ERROR", JOptionPane.ERROR_MESSAGE);
                     con.close();
-                    return;
+                    throw new Exception();
                 }
                 String Exp = textExp.getText();
                 all = "INSERT INTO Employee values("+SSN+","+FormatBirth+","+Phone+",'"+First+"','"+Second+"','"+Last+"','"+Gender+"','"+City+"','"+Street+"',0,null,null,0,null,0,null,null,1,'"+Exp+"')";
             }
+            stmt.executeUpdate(all);
             con.commit();
             con.close();
+            Stage stage = (Stage) scenePane.getScene().getWindow();
+            stage.close();
         } catch(Exception e) {
-            System.out.println(e);
+            //System.out.println(e);
         }
     }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         comboType.getItems().addAll("Manager Employee", "Driver Employee", "Nursery Employee", "Project Employee");
+    }
+
+    public void ComboAction(ActionEvent actionEvent) {
+        if (comboType.getSelectionModel().getSelectedItem().equals("Manager Employee")) {
+            PaneManager.toFront();
+        } else if (comboType.getSelectionModel().getSelectedItem().equals("Driver Employee")) {
+            PaneDrive.toFront();
+        } else if (comboType.getSelectionModel().getSelectedItem().equals("Nursery Employee")) {
+            PaneNursery.toFront();
+        } else {
+            PaneProject.toFront();
+        }
     }
 }

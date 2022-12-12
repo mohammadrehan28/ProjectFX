@@ -65,62 +65,62 @@ public class screen2Controller implements Initializable {
     @FXML
     public CheckBox checkEF;
     @FXML
-    private TableView tableEmployee;
+    public TableView tableEmployee;
     @FXML
-    private TableView tableDepartment;
+    public TableView tableDepartment;
     @FXML
-    private TableView tableProject;
+    public TableView tableProject;
     @FXML
-    private TableView tableProvider;
+    public TableView tableProvider;
     @FXML
-    private TableView tableBuyer;
+    public TableView tableBuyer;
     @FXML
-    private TextField searchText;
+    public TextField searchText;
     @FXML
     private ResultSet rs;
     @FXML
-    private TextField searchB;
+    public TextField searchB;
 
     @FXML
-    private TextField searchBID;
+    public TextField searchBID;
 
     @FXML
-    private TextField searchD;
+    public TextField searchD;
 
     @FXML
-    private TextField searchDID;
+    public TextField searchDID;
 
     @FXML
-    private TextField searchE;
+    public TextField searchE;
 
     @FXML
-    private TextField searchEID;
+    public TextField searchEID;
 
     @FXML
-    private TextField searchP;
+    public TextField searchP;
 
     @FXML
-    private TextField searchPID;
+    public TextField searchPID;
 
     @FXML
-    private TextField searchProvider;
+    public TextField searchProvider;
 
     @FXML
-    private TextField searchProviderID;
+    public TextField searchProviderID;
 
 
     @FXML
-    private ObservableList<ObservableList> employee;
+    public ObservableList<ObservableList> employee;
     @FXML
-    private ObservableList<ObservableList> department;
+    public ObservableList<ObservableList> department;
     @FXML
-    private ObservableList<ObservableList> project;
+    public ObservableList<ObservableList> project;
     @FXML
-    private ObservableList<ObservableList> provider;
+    public ObservableList<ObservableList> provider;
     @FXML
-    private ObservableList<ObservableList> buyer;
+    public ObservableList<ObservableList> buyer;
     @FXML
-    private ObservableList<ObservableList> datadepartment;
+    public ObservableList<ObservableList> datadepartment;
 
     @FXML
     private Button buyer_btn;
@@ -298,16 +298,56 @@ public class screen2Controller implements Initializable {
             }
         }
         else if (event.getSource() == addD) {
-
+            try {
+                Stage stage = new Stage();
+                Parent root = FXMLLoader.load(getClass().getResource("AddDepartment.fxml"));
+                stage.setTitle("Our Big Project!!");
+                stage.setScene(new Scene(root));
+                stage.show();
+                new FadeIn(root).play();
+            }
+            catch(Exception e){
+                System.out.println(e);
+            }
         }
         else if (event.getSource() == addP) {
-
+            try {
+                Stage stage = new Stage();
+                Parent root = FXMLLoader.load(getClass().getResource("AddProject.fxml"));
+                stage.setTitle("Our Big Project!!");
+                stage.setScene(new Scene(root));
+                stage.show();
+                new FadeIn(root).play();
+            }
+            catch(Exception e){
+                System.out.println(e);
+            }
         }
         else if (event.getSource() == addProvider) {
-
+            try {
+                Stage stage = new Stage();
+                Parent root = FXMLLoader.load(getClass().getResource("AddProvider.fxml"));
+                stage.setTitle("Our Big Project!!");
+                stage.setScene(new Scene(root));
+                stage.show();
+                new FadeIn(root).play();
+            }
+            catch(Exception e){
+                System.out.println(e);
+            }
         }
         else if (event.getSource() == addB) {
-
+            try {
+                Stage stage = new Stage();
+                Parent root = FXMLLoader.load(getClass().getResource("AddBuyer.fxml"));
+                stage.setTitle("Our Big Project!!");
+                stage.setScene(new Scene(root));
+                stage.show();
+                new FadeIn(root).play();
+            }
+            catch(Exception e){
+                System.out.println(e);
+            }
         }
     }
 

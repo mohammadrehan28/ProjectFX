@@ -12,10 +12,10 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="427.0" maxWidth="546.0" prefHeight="365.0" prefWidth="546.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectfx.AddProviderController">
+<AnchorPane fx:id="scenePane" maxHeight="427.0" maxWidth="546.0" prefHeight="402.0" prefWidth="546.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectfx.AddProviderController">
     <children>
         <Circle fill="DODGERBLUE" radius="153.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: #A2D9CE; -fx-stroke-width: 0px;" />
-        <VBox fx:id="All" alignment="CENTER" prefHeight="348.0" prefWidth="546.0">
+        <VBox fx:id="All" alignment="CENTER" prefHeight="390.0" prefWidth="546.0">
             <children>
                 <Label fx:id="AddEmployee" onMousePressed="#AddEmployeeListener" style="-fx-background-color: #A2D9CE; -fx-background-radius: 10;" text="Add Provider" textFill="WHITE">
                     <font>
@@ -153,6 +153,22 @@
                         </VBox>
                     </children>
                 </HBox>
+            <VBox alignment="CENTER" prefHeight="76.0" prefWidth="546.0">
+               <children>
+                  <Label style="-fx-background-color: #A2D9CE; -fx-background-radius: 10px;" text="Description" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets bottom="3.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                     </padding>
+                  </Label>
+                  <TextField fx:id="textDesc" maxWidth="160.0" prefWidth="160.0" />
+               </children>
+            </VBox>
                 <VBox fx:id="VBoxType" alignment="CENTER" prefHeight="70.0" prefWidth="546.0">
                     <children>
                         <Label style="-fx-background-color: #A2D9CE; -fx-background-radius: 10px;" text="Type" textFill="WHITE">
@@ -166,34 +182,11 @@
                                 <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                             </padding>
                         </Label>
-                        <ComboBox fx:id="comboType" prefWidth="150.0" />
+                        <ComboBox fx:id="comboType" onAction="#ComboAction" prefWidth="150.0" />
                     </children>
                 </VBox>
-                <StackPane prefHeight="82.0" prefWidth="546.0">
+                <StackPane fx:id="StackP" prefHeight="82.0" prefWidth="546.0">
                     <children>
-                        <HBox fx:id="PaneArgi" alignment="CENTER" prefHeight="73.0" prefWidth="546.0" style="-fx-background-color: #F4F4F4;">
-                            <children>
-                                <VBox alignment="CENTER" prefHeight="100.0" prefWidth="157.0">
-                                    <children>
-                                        <Label style="-fx-background-color: #A2D9CE; -fx-background-radius: 10px;" text="Delivery Time" textFill="WHITE">
-                                            <VBox.margin>
-                                                <Insets bottom="3.0" />
-                                            </VBox.margin>
-                                            <font>
-                                                <Font name="System Bold Italic" size="14.0" />
-                                            </font>
-                                            <padding>
-                                                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                                            </padding>
-                                        </Label>
-                                        <TextField fx:id="textTime" />
-                                    </children>
-                                    <HBox.margin>
-                                        <Insets />
-                                    </HBox.margin>
-                                </VBox>
-                            </children>
-                        </HBox>
                         <HBox fx:id="PaneDel" alignment="CENTER" prefHeight="70.0" prefWidth="372.0" style="-fx-background-color: #F4F4F4;">
                             <children>
                                 <VBox alignment="CENTER" prefHeight="100.0" prefWidth="157.0">
@@ -250,6 +243,29 @@
                               <Insets left="20.0" />
                            </HBox.margin>
                         </VBox>
+                            </children>
+                        </HBox>
+                        <HBox fx:id="PaneArgi" alignment="CENTER" prefHeight="73.0" prefWidth="546.0" style="-fx-background-color: #F4F4F4;">
+                            <children>
+                                <VBox alignment="CENTER" prefHeight="100.0" prefWidth="157.0">
+                                    <children>
+                                        <Label style="-fx-background-color: #A2D9CE; -fx-background-radius: 10px;" text="Delivery Time" textFill="WHITE">
+                                            <VBox.margin>
+                                                <Insets bottom="3.0" />
+                                            </VBox.margin>
+                                            <font>
+                                                <Font name="System Bold Italic" size="14.0" />
+                                            </font>
+                                            <padding>
+                                                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                                            </padding>
+                                        </Label>
+                                        <TextField fx:id="textTime" />
+                                    </children>
+                                    <HBox.margin>
+                                        <Insets />
+                                    </HBox.margin>
+                                </VBox>
                             </children>
                         </HBox>
                     </children>
