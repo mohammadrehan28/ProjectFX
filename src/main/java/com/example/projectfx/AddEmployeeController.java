@@ -102,6 +102,11 @@ public class AddEmployeeController implements Initializable {
             String all = "select SSN from Employee";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(all);
+            if(textSSN.getText().isEmpty()||textSSN.getText().isBlank()||textSSN.getText() == null) {
+                JOptionPane.showMessageDialog(null, "The SSN is Empty", "ERROR", JOptionPane.ERROR_MESSAGE);
+                con.close();
+                return;
+            }
             while (rs.next()) {
                 String SSN = rs.getString(1);
                 if(SSN.equals(textSSN.getText())) {
@@ -109,6 +114,11 @@ public class AddEmployeeController implements Initializable {
                     con.close();
                     return;
                 }
+            }
+            if(textSSN.getText().isEmpty()||textBirth.getValue() == null||textPhone.getText().isEmpty()||textFirst.getText().isEmpty()||textSecond.getText().isEmpty()||textLast.getText().isEmpty()||textCity.getText().isEmpty()||textStreet.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "Field is Empty", "ERROR", JOptionPane.ERROR_MESSAGE);
+                con.close();
+                return;
             }
             String SSN = textSSN.getText();
             LocalDate Birth = textBirth.getValue();
@@ -129,18 +139,42 @@ public class AddEmployeeController implements Initializable {
             String City = textCity.getText();
             String Street = textStreet.getText();
             if(comboType.getSelectionModel().getSelectedItem().equals("Manager Employee")) {
-                String Degree = textDegree.getText();
+                if(textDegreeManager.getText().isEmpty()||textQual.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Field is Empty", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    con.close();
+                    return;
+                }
+                String Degree = textDegreeManager.getText();
                 String Qual = textQual.getText();
-                all = "INSERT INTO Employee values("+SSN+",)";
+                all = "INSERT INTO Employee values("+SSN+","+FormatBirth+","+Phone+",'"+First+"','"+Second+"','"+Last+"','"+Gender+"','"+City+"','"+Street+"',1,'"+Degree+"','"+Qual+"',0,null,0,null,null,0,null)";
             }
             else if (comboType.getSelectionModel().getSelectedItem().equals("Driver Employee")) {
-
+                if(textDriv.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Field is Empty", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    con.close();
+                    return;
+                }
+                String Drive = textDriv.getText();
+                all = "INSERT INTO Employee values("+SSN+","+FormatBirth+","+Phone+",'"+First+"','"+Second+"','"+Last+"','"+Gender+"','"+City+"','"+Street+"',0,null,null,1,'"+Drive+"',0,null,null,0,null)";
             }
             else if (comboType.getSelectionModel().getSelectedItem().equals("Nursery Employee")) {
-
+                if(textDep.getText().isEmpty()||textDegree.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Field is Empty", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    con.close();
+                    return;
+                }
+                String Dep = textDep.getText();
+                String Degree = textDegree.getText();
+                all = "INSERT INTO Employee values("+SSN+","+FormatBirth+","+Phone+",'"+First+"','"+Second+"','"+Last+"','"+Gender+"','"+City+"','"+Street+"',0,null,null,0,null,1,"+Dep+",'"+Degree+"',0,null)";
             }
             else {
-
+                if(textExp.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Field is Empty", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    con.close();
+                    return;
+                }
+                String Exp = textExp.getText();
+                all = "INSERT INTO Employee values("+SSN+","+FormatBirth+","+Phone+",'"+First+"','"+Second+"','"+Last+"','"+Gender+"','"+City+"','"+Street+"',0,null,null,0,null,0,null,null,1,'"+Exp+"')";
             }
             con.commit();
             con.close();
