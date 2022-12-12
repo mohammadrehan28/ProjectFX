@@ -290,7 +290,8 @@ public class screen2Controller implements Initializable {
                 Parent root = FXMLLoader.load(getClass().getResource("AddEmployee.fxml"));
                 stage.setTitle("Our Big Project!!");
                 stage.setScene(new Scene(root));
-                stage.show();
+                stage.showAndWait();
+                getFromAllData(employee, tableEmployee,  18, searchE, -1,"Select * from employee");
                 new FadeIn(root).play();
             }
             catch(Exception e){
@@ -303,7 +304,8 @@ public class screen2Controller implements Initializable {
                 Parent root = FXMLLoader.load(getClass().getResource("AddDepartment.fxml"));
                 stage.setTitle("Our Big Project!!");
                 stage.setScene(new Scene(root));
-                stage.show();
+                stage.showAndWait();
+                getFromAllData(department, tableDepartment,  5, searchD, -1,"Select * from department");
                 new FadeIn(root).play();
             }
             catch(Exception e){
@@ -316,7 +318,8 @@ public class screen2Controller implements Initializable {
                 Parent root = FXMLLoader.load(getClass().getResource("AddProject.fxml"));
                 stage.setTitle("Our Big Project!!");
                 stage.setScene(new Scene(root));
-                stage.show();
+                stage.showAndWait();
+                getFromAllData(project, tableProject,  10, searchP, -1,"Select * from project");
                 new FadeIn(root).play();
             }
             catch(Exception e){
@@ -329,7 +332,8 @@ public class screen2Controller implements Initializable {
                 Parent root = FXMLLoader.load(getClass().getResource("AddProvider.fxml"));
                 stage.setTitle("Our Big Project!!");
                 stage.setScene(new Scene(root));
-                stage.show();
+                stage.showAndWait();
+                getFromAllData(provider, tableProvider,  11, searchProvider, -1,"Select * from provider");
                 new FadeIn(root).play();
             }
             catch(Exception e){
@@ -342,7 +346,8 @@ public class screen2Controller implements Initializable {
                 Parent root = FXMLLoader.load(getClass().getResource("AddBuyer.fxml"));
                 stage.setTitle("Our Big Project!!");
                 stage.setScene(new Scene(root));
-                stage.show();
+                stage.showAndWait();
+                getFromAllData(buyer, tableBuyer,  1, searchB, -1,"Select * from buyer");
                 new FadeIn(root).play();
             }
             catch(Exception e){

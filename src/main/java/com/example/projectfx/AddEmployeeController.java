@@ -185,10 +185,11 @@ public class AddEmployeeController implements Initializable {
             stmt.executeUpdate(all);
             con.commit();
             con.close();
-            Stage stage = (Stage) scenePane.getScene().getWindow();
-            stage.close();
+            throw new Exception();
         } catch(Exception e) {
             //System.out.println(e);
+            Stage stage = (Stage) scenePane.getScene().getWindow();
+            stage.close();
         }
     }
 
@@ -196,6 +197,7 @@ public class AddEmployeeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         comboType.getItems().addAll("Manager Employee", "Driver Employee", "Nursery Employee", "Project Employee");
+        comboType.setValue("Manager Employee");
     }
 
     public void ComboAction(ActionEvent actionEvent) {

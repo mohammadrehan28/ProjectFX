@@ -76,18 +76,18 @@ public class AddProjectController implements Initializable {
             ods.setUser("mohammad");
             ods.setPassword("123456");
             Connection con = ods.getConnection();
-            String all = "select SSN from Department";
+            String all = "select Project_ID from Department";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(all);
             if(textSSN.getText().isEmpty()||textSSN.getText().isBlank()||textSSN.getText() == null) {
-                JOptionPane.showMessageDialog(null, "The SSN is Empty", "ERROR", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "The ID is Empty", "ERROR", JOptionPane.ERROR_MESSAGE);
                 con.close();
                 throw new Exception();
             }
             while (rs.next()) {
                 String SSN = rs.getString(1);
                 if(SSN.equals(textSSN.getText())) {
-                    JOptionPane.showMessageDialog(null, "The SSN is already contains", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "The ID is already contains", "ERROR", JOptionPane.ERROR_MESSAGE);
                     con.close();
                     throw new Exception();
                 }
@@ -114,10 +114,11 @@ public class AddProjectController implements Initializable {
             stmt.executeUpdate(all);
             con.commit();
             con.close();
-            Stage stage = (Stage) scenePane.getScene().getWindow();
-            stage.close();
+            throw new Exception();
         } catch(Exception e) {
             //System.out.println(e);
+            Stage stage = (Stage) scenePane.getScene().getWindow();
+            stage.close();
         }
     }
 

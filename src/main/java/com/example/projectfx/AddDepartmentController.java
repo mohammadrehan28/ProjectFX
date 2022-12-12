@@ -49,25 +49,25 @@ public class AddDepartmentController implements Initializable {
     private TextField textStreet;
 
     @FXML
-    void AddEmployeeListener(MouseEvent event) {
+    void AddDepListener(MouseEvent event) {
         try {
             OracleDataSource ods = new OracleDataSource();
             ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
             ods.setUser("mohammad");
             ods.setPassword("123456");
             Connection con = ods.getConnection();
-            String all = "select SSN from Department";
+            String all = "select Department_ID from Department";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(all);
             if(textID.getText().isEmpty()||textID.getText().isBlank()||textID.getText() == null) {
-                JOptionPane.showMessageDialog(null, "The SSN is Empty", "ERROR", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "The ID is Empty", "ERROR", JOptionPane.ERROR_MESSAGE);
                 con.close();
                 throw new Exception();
             }
             while (rs.next()) {
                 String ID = rs.getString(1);
                 if(ID.equals(textID.getText())) {
-                    JOptionPane.showMessageDialog(null, "The SSN is already contains", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "The ID is already contains", "ERROR", JOptionPane.ERROR_MESSAGE);
                     con.close();
                     throw new Exception();
                 }
@@ -87,10 +87,11 @@ public class AddDepartmentController implements Initializable {
             stmt.executeUpdate(all);
             con.commit();
             con.close();
-            Stage stage = (Stage) scenePane.getScene().getWindow();
-            stage.close();
+            throw new Exception();
         } catch(Exception e) {
             //System.out.println(e);
+            Stage stage = (Stage) scenePane.getScene().getWindow();
+            stage.close();
         }
     }
 

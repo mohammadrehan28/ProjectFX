@@ -16,7 +16,7 @@
         <Circle fill="DODGERBLUE" radius="153.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: #A2D9CE; -fx-stroke-width: 0px;" />
         <VBox fx:id="All" alignment="CENTER" prefHeight="235.0" prefWidth="546.0">
             <children>
-                <Label fx:id="AddDep" onMousePressed="#AddEmployeeListener" style="-fx-background-color: #A2D9CE; -fx-background-radius: 10;" text="Add Department" textFill="WHITE">
+                <Label fx:id="AddDep" onMousePressed="#AddDepListener" style="-fx-background-color: #A2D9CE; -fx-background-radius: 10;" text="Add Department" textFill="WHITE">
                     <font>
                         <Font name="Verdana Bold Italic" size="16.0" />
                     </font>
