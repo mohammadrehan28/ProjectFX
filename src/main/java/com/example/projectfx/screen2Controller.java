@@ -16,6 +16,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
@@ -33,8 +34,12 @@ import java.util.ResourceBundle;
 
 public class screen2Controller implements Initializable {
 
+    @FXML
     public Button SearchItem;
-    public ComboBox ComboSearchItem;
+    @FXML
+    public ComboBox<String> ComboSearchItem;
+    @FXML
+    public ComboBox<String> ComboDep;
     @FXML
     private Button DeleteB;
 
@@ -202,20 +207,28 @@ public class screen2Controller implements Initializable {
     public ComboBox<String> selectedCombo;
     @FXML
     public AnchorPane AnchorItems;
+    public int selectedComboBuyer = -1;
+    public int selectedComboDepartment = -1;
+    public int selectedComboProvider = -1;
+    public int selectedComboProject = -1;
+    public int selectedComboEmployee = -1;
+    FilteredList<ObservableList> filterEmp;
     //End For Items
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //data.clear();
         //datadepartment.clear();
-        getFromAllData(employee, tableEmployee,  18, searchE, -1,"Select * from employee");
-        getFromAllData(department, tableDepartment,  5, searchD, -1,"Select * from department");
-        getFromAllData(project, tableProject,  10, searchP, -1,"Select * from project");
-        getFromAllData(provider, tableProvider,  11, searchProvider, -1,"Select * from provider");
-        getFromAllData(buyer, tableBuyer,  1, searchB, -1,"Select * from buyer");
+        getFromAllDataEmp(employee, tableEmployee,  18, searchE,"Select * from employee",true);
+        getFromAllDataDep(department, tableDepartment,  5, searchD,"Select * from department",true);
+        getFromAllDataPro(project, tableProject,  10, searchP,"Select * from project",true);
+        getFromAllDataProvider(provider, tableProvider,  11, searchProvider,"Select * from provider",true);
+        getFromAllDataBuyer(buyer, tableBuyer,  1, searchB,"Select * from buyer",true);
         // Ecombo =new ComboBox<>();
         Ecombo.getItems().addAll("Maneger", "Driver", "Nursery", "Project", "All");
         Ecombo.setValue("All");
+        ComboDep.getItems().addAll("All", "Type");
+        ComboDep.setValue("All");
         ComboSearchItem.getItems().addAll("Name","Salary less than", "Salary more than");
         ComboSearchItem.setValue("Name");
         //selectedCombo.getItems().addAll("All","Name","Color","Available","Size","Salary");
@@ -226,27 +239,40 @@ public class screen2Controller implements Initializable {
     @FXML
     public void itemStateChanged(ActionEvent event) {
         if (Ecombo.getSelectionModel().getSelectedItem().equals("All")) {
-            getFromAllData(employee, tableEmployee,  18, searchE, -1,"Select * from employee");
+            selectedComboEmployee = -1;
         } else if (Ecombo.getSelectionModel().getSelectedItem().equals("Maneger")) {
-            getFromAllData(employee, tableEmployee,  18, searchE, 9,"Select * from employee ");
+            selectedComboEmployee = 9;
         } else if (Ecombo.getSelectionModel().getSelectedItem().equals("Driver")) {
-            getFromAllData(employee, tableEmployee,  18, searchE, 12,"Select * from employee");
+            selectedComboEmployee = 12;
         } else if (Ecombo.getSelectionModel().getSelectedItem().equals("Nursery")) {
-            getFromAllData(employee, tableEmployee,  18, searchE, 14,"Select * from employee");
+            selectedComboEmployee = 14;
         } else if (Ecombo.getSelectionModel().getSelectedItem().equals("Project")) {
-            getFromAllData(employee, tableEmployee, 18, searchE, 17,"Select * from employee");
+            selectedComboEmployee = 17;
+        }
+    }
+
+    @FXML
+    public void itemStateChangedDep(ActionEvent actionEvent) {
+        if (ComboDep.getSelectionModel().getSelectedItem().equals("All")) {
+            selectedComboDepartment = -1;
+        }
+        else if (ComboDep.getSelectionModel().getSelectedItem().equals("Type")){
+            selectedComboDepartment = 1;
         }
     }
 
     public void itemcheck(ActionEvent event) {
         if(checkEM.isSelected()){
-            getFromAllData(employee, tableEmployee,  18, searchE, 6,"Select * from employee where GENDER='M'");
+            selectedComboEmployee = 6;
+            getFromAllDataEmp(employee, tableEmployee,  18, searchE,"Select * from employee where GENDER='M'",false);
         }
         else if(checkEF.isSelected()){
-            getFromAllData(employee, tableEmployee,  18, searchE, 6,"Select * from employee where GENDER='F'");
+            selectedComboEmployee = 6;
+            getFromAllDataEmp(employee, tableEmployee,  18, searchE,"Select * from employee where GENDER='F'",false);
         }
         else if (!checkEM.isSelected() && !checkEF.isSelected()){
-            getFromAllData(employee, tableEmployee,  18, searchE, 6,"Select * from employee");
+            selectedComboEmployee = -1;
+            getFromAllDataEmp(employee, tableEmployee,  18, searchE,"Select * from employee",false);
         }
     }
 
@@ -297,7 +323,7 @@ public class screen2Controller implements Initializable {
                 stage.setTitle("Our Big Project!!");
                 stage.setScene(new Scene(root));
                 stage.showAndWait();
-                getFromAllData(employee, tableEmployee,  18, searchE, -1,"Select * from employee");
+                getFromAllDataEmp(employee, tableEmployee,  18, searchE,"Select * from employee",false);
                 new FadeIn(root).play();
             }
             catch(Exception e){
@@ -311,7 +337,7 @@ public class screen2Controller implements Initializable {
                 stage.setTitle("Our Big Project!!");
                 stage.setScene(new Scene(root));
                 stage.showAndWait();
-                getFromAllData(department, tableDepartment,  5, searchD, -1,"Select * from department");
+                getFromAllDataDep(department, tableDepartment,  5, searchD,"Select * from department",false);
                 new FadeIn(root).play();
             }
             catch(Exception e){
@@ -325,7 +351,7 @@ public class screen2Controller implements Initializable {
                 stage.setTitle("Our Big Project!!");
                 stage.setScene(new Scene(root));
                 stage.showAndWait();
-                getFromAllData(project, tableProject,  10, searchP, -1,"Select * from project");
+                getFromAllDataPro(project, tableProject,  10, searchP,"Select * from project",false);
                 new FadeIn(root).play();
             }
             catch(Exception e){
@@ -339,7 +365,7 @@ public class screen2Controller implements Initializable {
                 stage.setTitle("Our Big Project!!");
                 stage.setScene(new Scene(root));
                 stage.showAndWait();
-                getFromAllData(provider, tableProvider,  11, searchProvider, -1,"Select * from provider");
+                getFromAllDataProvider(provider, tableProvider,  11, searchProvider,"Select * from provider",false);
                 new FadeIn(root).play();
             }
             catch(Exception e){
@@ -353,7 +379,7 @@ public class screen2Controller implements Initializable {
                 stage.setTitle("Our Big Project!!");
                 stage.setScene(new Scene(root));
                 stage.showAndWait();
-                getFromAllData(buyer, tableBuyer,  1, searchB, -1,"Select * from buyer");
+                getFromAllDataBuyer(buyer, tableBuyer,  1, searchB,"Select * from buyer",false);
                 new FadeIn(root).play();
             }
             catch(Exception e){
@@ -385,7 +411,7 @@ public class screen2Controller implements Initializable {
             stmt.executeUpdate(all);
             con.commit();
             con.close();
-            getFromAllData(employee, tableEmployee,  18, searchE, -1,"Select * from employee");
+            getFromAllDataEmp(employee, tableEmployee,  18, searchE,"Select * from employee",false);
         }
         else if (event.getSource() == DeleteD) {
             String exe = searchDID.getText();
@@ -399,7 +425,7 @@ public class screen2Controller implements Initializable {
             stmt.executeUpdate(all);
             con.commit();
             con.close();
-            getFromAllData(department, tableDepartment,  5, searchD, -1,"Select * from department");
+            getFromAllDataDep(department, tableDepartment,  5, searchD,"Select * from department",false);
         }
         else if (event.getSource() == DeleteP) {
             String exe = searchPID.getText();
@@ -413,7 +439,7 @@ public class screen2Controller implements Initializable {
             stmt.executeUpdate(all);
             con.commit();
             con.close();
-            getFromAllData(project, tableProject,  10, searchP, -1,"Select * from project");
+            getFromAllDataPro(project, tableProject,  10, searchP,"Select * from project",false);
         }
         else if (event.getSource() == DeleteProvider) {
             String exe = searchProviderID.getText();
@@ -427,7 +453,7 @@ public class screen2Controller implements Initializable {
             stmt.executeUpdate(all);
             con.commit();
             con.close();
-            getFromAllData(provider, tableProvider,  11, searchProvider, -1,"Select * from provider");
+            getFromAllDataProvider(provider, tableProvider,  11, searchProvider,"Select * from provider",false);
         }
         else if (event.getSource() == DeleteB) {
             String exe = searchBID.getText();
@@ -441,7 +467,7 @@ public class screen2Controller implements Initializable {
             stmt.executeUpdate(all);
             con.commit();
             con.close();
-            getFromAllData(buyer, tableBuyer,  1, searchB, -1,"Select * from buyer");
+            getFromAllDataBuyer(buyer, tableBuyer,  1, searchB,"Select * from buyer",false);
         }
         }
         catch(Exception e) {
@@ -449,7 +475,7 @@ public class screen2Controller implements Initializable {
         }
     }
 
-    public void getFromAllData(ObservableList<ObservableList> datadepartment, TableView tabledepartment, int columnNumber, TextField searchText, int selectedCombo,String qry2) {
+    public void getFromAllDataBuyer(ObservableList<ObservableList> datadepartment, TableView tabledepartment, int columnNumber, TextField searchText,String qry2,boolean flag) {
         try {
             datadepartment = FXCollections.observableArrayList();
             OracleDataSource ods = new OracleDataSource();
@@ -460,18 +486,20 @@ public class screen2Controller implements Initializable {
             String qry = qry2 ;
             Statement stmt = con.createStatement();
             rs = stmt.executeQuery(qry);
-            for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) {
-                //We are using non property style for making dynamic table
-                final int j = i;
-                TableColumn col = new TableColumn(rs.getMetaData().getColumnName(i + 1));
-                col.setCellValueFactory(new Callback<CellDataFeatures<ObservableList, String>, ObservableValue<String>>() {
-                    public ObservableValue<String> call(CellDataFeatures<ObservableList, String> param) {
-                        if (param.getValue().get(j) == null) return new SimpleStringProperty("");
-                        return new SimpleStringProperty(param.getValue().get(j).toString());
-                    }
-                });
+            if(flag == true) {
+                for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) {
+                    //We are using non property style for making dynamic table
+                    final int j = i;
+                    TableColumn col = new TableColumn(rs.getMetaData().getColumnName(i + 1));
+                    col.setCellValueFactory(new Callback<CellDataFeatures<ObservableList, String>, ObservableValue<String>>() {
+                        public ObservableValue<String> call(CellDataFeatures<ObservableList, String> param) {
+                            if (param.getValue().get(j) == null) return new SimpleStringProperty("");
+                            return new SimpleStringProperty(param.getValue().get(j).toString());
+                        }
+                    });
 
-                tabledepartment.getColumns().add(col);
+                    tabledepartment.getColumns().add(col);
+                }
             }
             while (rs.next()) {
                 //Iterate Row
@@ -487,31 +515,337 @@ public class screen2Controller implements Initializable {
             //FINALLY ADDED TO TableView
             tabledepartment.setItems(datadepartment);
             FilteredList<ObservableList> filter = new FilteredList<>(datadepartment, b -> true);
-            searchText.textProperty().addListener((observable, oldValue, newValue) -> {
-                filter.setPredicate(ObservableList -> {
-                    if (newValue.isBlank() || newValue.isEmpty() || newValue == null) {
-                        return true;
-                    }
-                    try {
-                        String SearchKey = newValue.toLowerCase();
-                        if (selectedCombo != -1) {
-                            if (ObservableList.get(selectedCombo).toString().toLowerCase().indexOf(SearchKey) > -1) {
-                                return true;
+            if(flag == true) {
+                searchText.textProperty().addListener((observable, oldValue, newValue) -> {
+                    filter.setPredicate(ObservableList -> {
+                        if (newValue.isBlank() || newValue.isEmpty() || newValue == null) {
+                            return true;
+                        }
+                        try {
+                            String SearchKey = newValue.toLowerCase();
+                            if (selectedComboBuyer != -1) {
+                                if (ObservableList.get(selectedComboBuyer).toString().toLowerCase().indexOf(SearchKey) > -1) {
+                                    return true;
+                                }
+                                return false;
+                            }
+
+                            for (int i = 0; i <= columnNumber; i++) {
+                                if (ObservableList.get(i).toString().toLowerCase().indexOf(SearchKey) > -1) {
+                                    return true;
+                                }
                             }
                             return false;
+                        } catch (Exception e) {
+                            return false;
                         }
-
-                        for (int i = 0; i <= columnNumber; i++) {
-                            if (ObservableList.get(i).toString().toLowerCase().indexOf(SearchKey) > -1) {
-                                return true;
-                            }
-                        }
-                        return false;
-                    } catch (Exception e) {
-                        return false;
-                    }
+                    });
                 });
-            });
+            }
+            SortedList<ObservableList> sortedData = new SortedList<>(filter);
+            sortedData.comparatorProperty().bind(tabledepartment.comparatorProperty());
+            tabledepartment.setItems(sortedData);
+            con.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void getFromAllDataProvider(ObservableList<ObservableList> datadepartment, TableView tabledepartment, int columnNumber, TextField searchText,String qry2,boolean flag) {
+        try {
+            datadepartment = FXCollections.observableArrayList();
+            OracleDataSource ods = new OracleDataSource();
+            ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+            ods.setUser("mohammad");
+            ods.setPassword("123456");
+            Connection con = ods.getConnection();
+            String qry = qry2 ;
+            Statement stmt = con.createStatement();
+            rs = stmt.executeQuery(qry);
+            if(flag == true) {
+                for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) {
+                    //We are using non property style for making dynamic table
+                    final int j = i;
+                    TableColumn col = new TableColumn(rs.getMetaData().getColumnName(i + 1));
+                    col.setCellValueFactory(new Callback<CellDataFeatures<ObservableList, String>, ObservableValue<String>>() {
+                        public ObservableValue<String> call(CellDataFeatures<ObservableList, String> param) {
+                            if (param.getValue().get(j) == null) return new SimpleStringProperty("");
+                            return new SimpleStringProperty(param.getValue().get(j).toString());
+                        }
+                    });
+
+                    tabledepartment.getColumns().add(col);
+                }
+            }
+            while (rs.next()) {
+                //Iterate Row
+                ObservableList<String> row = FXCollections.observableArrayList();
+                for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
+                    //Iterate Column
+                    if (rs.getString(i) == null) row.add("null");
+                    else row.add(rs.getString(i));
+                }
+                datadepartment.add(row);
+
+            }
+            //FINALLY ADDED TO TableView
+            tabledepartment.setItems(datadepartment);
+            FilteredList<ObservableList> filter = new FilteredList<>(datadepartment, b -> true);
+            if(flag == true) {
+                searchText.textProperty().addListener((observable, oldValue, newValue) -> {
+                    filter.setPredicate(ObservableList -> {
+                        if (newValue.isBlank() || newValue.isEmpty() || newValue == null) {
+                            return true;
+                        }
+                        try {
+                            String SearchKey = newValue.toLowerCase();
+                            if (selectedComboProvider != -1) {
+                                if (ObservableList.get(selectedComboProvider).toString().toLowerCase().indexOf(SearchKey) > -1) {
+                                    return true;
+                                }
+                                return false;
+                            }
+
+                            for (int i = 0; i <= columnNumber; i++) {
+                                if (ObservableList.get(i).toString().toLowerCase().indexOf(SearchKey) > -1) {
+                                    return true;
+                                }
+                            }
+                            return false;
+                        } catch (Exception e) {
+                            return false;
+                        }
+                    });
+                });
+            }
+            SortedList<ObservableList> sortedData = new SortedList<>(filter);
+            sortedData.comparatorProperty().bind(tabledepartment.comparatorProperty());
+            tabledepartment.setItems(sortedData);
+            con.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void getFromAllDataPro(ObservableList<ObservableList> datadepartment, TableView tabledepartment, int columnNumber, TextField searchText,String qry2,boolean flag) {
+        try {
+            datadepartment = FXCollections.observableArrayList();
+            OracleDataSource ods = new OracleDataSource();
+            ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+            ods.setUser("mohammad");
+            ods.setPassword("123456");
+            Connection con = ods.getConnection();
+            String qry = qry2 ;
+            Statement stmt = con.createStatement();
+            rs = stmt.executeQuery(qry);
+            if(flag == true) {
+                for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) {
+                    //We are using non property style for making dynamic table
+                    final int j = i;
+                    TableColumn col = new TableColumn(rs.getMetaData().getColumnName(i + 1));
+                    col.setCellValueFactory(new Callback<CellDataFeatures<ObservableList, String>, ObservableValue<String>>() {
+                        public ObservableValue<String> call(CellDataFeatures<ObservableList, String> param) {
+                            if (param.getValue().get(j) == null) return new SimpleStringProperty("");
+                            return new SimpleStringProperty(param.getValue().get(j).toString());
+                        }
+                    });
+
+                    tabledepartment.getColumns().add(col);
+                }
+            }
+            while (rs.next()) {
+                //Iterate Row
+                ObservableList<String> row = FXCollections.observableArrayList();
+                for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
+                    //Iterate Column
+                    if (rs.getString(i) == null) row.add("null");
+                    else row.add(rs.getString(i));
+                }
+                datadepartment.add(row);
+
+            }
+            //FINALLY ADDED TO TableView
+            tabledepartment.setItems(datadepartment);
+            FilteredList<ObservableList> filter = new FilteredList<>(datadepartment, b -> true);
+            if(flag == true) {
+                searchText.textProperty().addListener((observable, oldValue, newValue) -> {
+                    filter.setPredicate(ObservableList -> {
+                        if (newValue.isBlank() || newValue.isEmpty() || newValue == null) {
+                            return true;
+                        }
+                        try {
+                            String SearchKey = newValue.toLowerCase();
+                            if (selectedComboProject != -1) {
+                                if (ObservableList.get(selectedComboProject).toString().toLowerCase().indexOf(SearchKey) > -1) {
+                                    return true;
+                                }
+                                return false;
+                            }
+
+                            for (int i = 0; i <= columnNumber; i++) {
+                                if (ObservableList.get(i).toString().toLowerCase().indexOf(SearchKey) > -1) {
+                                    return true;
+                                }
+                            }
+                            return false;
+                        } catch (Exception e) {
+                            return false;
+                        }
+                    });
+                });
+            }
+            SortedList<ObservableList> sortedData = new SortedList<>(filter);
+            sortedData.comparatorProperty().bind(tabledepartment.comparatorProperty());
+            tabledepartment.setItems(sortedData);
+            con.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void getFromAllDataEmp(ObservableList<ObservableList> datadepartment, TableView tabledepartment, int columnNumber, TextField searchText,String qry2,boolean flag) {
+        try {
+            employee = FXCollections.observableArrayList();
+            OracleDataSource ods = new OracleDataSource();
+            ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+            ods.setUser("mohammad");
+            ods.setPassword("123456");
+            Connection con = ods.getConnection();
+            String qry = qry2 ;
+            Statement stmt = con.createStatement();
+            rs = stmt.executeQuery(qry);
+            if(flag == true) {
+                for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) {
+                    //We are using non property style for making dynamic table
+                    final int j = i;
+                    TableColumn col = new TableColumn(rs.getMetaData().getColumnName(i + 1));
+                    col.setCellValueFactory(new Callback<CellDataFeatures<ObservableList, String>, ObservableValue<String>>() {
+                        public ObservableValue<String> call(CellDataFeatures<ObservableList, String> param) {
+                            if (param.getValue().get(j) == null) return new SimpleStringProperty("");
+                            return new SimpleStringProperty(param.getValue().get(j).toString());
+                        }
+                    });
+
+                    tabledepartment.getColumns().add(col);
+                }
+            }
+            while (rs.next()) {
+                //Iterate Row
+                ObservableList<String> row = FXCollections.observableArrayList();
+                for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
+                    //Iterate Column
+                    if (rs.getString(i) == null) row.add("null");
+                    else row.add(rs.getString(i));
+                }
+                employee.add(row);
+
+            }
+            //FINALLY ADDED TO TableView
+            tabledepartment.setItems(employee);
+            filterEmp = new FilteredList<>(employee, b -> true);
+            if(flag == true) {
+                searchText.textProperty().addListener((observable, oldValue, newValue) -> {
+                    filterEmp.setPredicate(ObservableList -> {
+                        if (newValue.isBlank() || newValue.isEmpty() || newValue == null) {
+                            return true;
+                        }
+                        try {
+                            String SearchKey = newValue.toLowerCase();
+                            if (selectedComboEmployee != -1) {
+                                if (ObservableList.get(selectedComboEmployee).toString().toLowerCase().indexOf(SearchKey) > -1) {
+                                    return true;
+                                }
+                                return false;
+                            }
+
+                            for (int i = 0; i <= columnNumber; i++) {
+                                if (ObservableList.get(i).toString().toLowerCase().indexOf(SearchKey) > -1) {
+                                    return true;
+                                }
+                            }
+                            return false;
+                        } catch (Exception e) {
+                            return false;
+                        }
+                    });
+                });
+            }
+            SortedList<ObservableList> sortedData = new SortedList<>(filterEmp);
+            sortedData.comparatorProperty().bind(tabledepartment.comparatorProperty());
+            tabledepartment.setItems(sortedData);
+            con.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void getFromAllDataDep(ObservableList<ObservableList> datadepartment, TableView tabledepartment, int columnNumber, TextField searchText,String qry2,boolean flag) {
+        try {
+            datadepartment = FXCollections.observableArrayList();
+            OracleDataSource ods = new OracleDataSource();
+            ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+            ods.setUser("mohammad");
+            ods.setPassword("123456");
+            Connection con = ods.getConnection();
+            String qry = qry2 ;
+            Statement stmt = con.createStatement();
+            rs = stmt.executeQuery(qry);
+            if(flag == true) {
+                for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) {
+                    //We are using non property style for making dynamic table
+                    final int j = i;
+                    TableColumn col = new TableColumn(rs.getMetaData().getColumnName(i + 1));
+                    col.setCellValueFactory(new Callback<CellDataFeatures<ObservableList, String>, ObservableValue<String>>() {
+                        public ObservableValue<String> call(CellDataFeatures<ObservableList, String> param) {
+                            if (param.getValue().get(j) == null) return new SimpleStringProperty("");
+                            return new SimpleStringProperty(param.getValue().get(j).toString());
+                        }
+                    });
+
+                    tabledepartment.getColumns().add(col);
+                }
+            }
+            while (rs.next()) {
+                //Iterate Row
+                ObservableList<String> row = FXCollections.observableArrayList();
+                for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
+                    //Iterate Column
+                    if (rs.getString(i) == null) row.add("null");
+                    else row.add(rs.getString(i));
+                }
+                datadepartment.add(row);
+
+            }
+            //FINALLY ADDED TO TableView
+            tabledepartment.setItems(datadepartment);
+            FilteredList<ObservableList> filter = new FilteredList<>(datadepartment, b -> true);
+            if(flag == true) {
+                searchText.textProperty().addListener((observable, oldValue, newValue) -> {
+                    filter.setPredicate(ObservableList -> {
+                        if (newValue.isBlank() || newValue.isEmpty() || newValue == null) {
+                            return true;
+                        }
+                        try {
+                            String SearchKey = newValue.toLowerCase();
+                            if (selectedComboDepartment != -1) {
+                                if (ObservableList.get(selectedComboDepartment).toString().toLowerCase().indexOf(SearchKey) > -1) {
+                                    return true;
+                                }
+                                return false;
+                            }
+
+                            for (int i = 0; i <= columnNumber; i++) {
+                                if (ObservableList.get(i).toString().toLowerCase().indexOf(SearchKey) > -1) {
+                                    return true;
+                                }
+                            }
+                            return false;
+                        } catch (Exception e) {
+                            return false;
+                        }
+                    });
+                });
+            }
             SortedList<ObservableList> sortedData = new SortedList<>(filter);
             sortedData.comparatorProperty().bind(tabledepartment.comparatorProperty());
             tabledepartment.setItems(sortedData);
@@ -620,14 +954,12 @@ public class screen2Controller implements Initializable {
                 }
             }
             FilteredList<ObservableList> filter = new FilteredList<>(datadepartment, b -> true);
-            if(TextS.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Field is Empty", "ERROR", JOptionPane.ERROR_MESSAGE);
-                con.close();
-                return;
-            }
             String newValue = TextS.getText();
             filter.setPredicate(ObservableList -> {
                 try {
+                    if(TextS.getText().isEmpty()) {
+                        return true;
+                    }
                     String SearchKey = newValue.toLowerCase();
                     if (ComboSearchItem.getSelectionModel().getSelectedItem().equals("Name")) {
                         if (ObservableList.get(1).toString().toLowerCase().indexOf(SearchKey) > -1) {
@@ -670,4 +1002,5 @@ public class screen2Controller implements Initializable {
             throw new RuntimeException(e);
         }
     }
+
 }
