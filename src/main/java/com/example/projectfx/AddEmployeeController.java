@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import oracle.jdbc.pool.OracleDataSource;
 
 import javax.swing.*;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -111,20 +112,20 @@ public class AddEmployeeController implements Initializable {
             if(textSSN.getText().isEmpty()||textSSN.getText().isBlank()||textSSN.getText() == null) {
                 JOptionPane.showMessageDialog(null, "The SSN is Empty", "ERROR", JOptionPane.ERROR_MESSAGE);
                 con.close();
-                throw new Exception();
+                return;
             }
             while (rs.next()) {
                 String SSN = rs.getString(1);
                 if(SSN.equals(textSSN.getText())) {
                     JOptionPane.showMessageDialog(null, "The SSN is already contains", "ERROR", JOptionPane.ERROR_MESSAGE);
                     con.close();
-                    throw new Exception();
+                    return;
                 }
             }
             if(textSSN.getText().isEmpty()||textBirth.getValue() == null||textPhone.getText().isEmpty()||textFirst.getText().isEmpty()||textSecond.getText().isEmpty()||textLast.getText().isEmpty()||textCity.getText().isEmpty()||textStreet.getText().isEmpty()){
                 JOptionPane.showMessageDialog(null, "Field is Empty", "ERROR", JOptionPane.ERROR_MESSAGE);
                 con.close();
-                throw new Exception();
+                return;
             }
             String SSN = textSSN.getText();
             LocalDate Birth = textBirth.getValue();
@@ -140,7 +141,7 @@ public class AddEmployeeController implements Initializable {
             else {
                 JOptionPane.showMessageDialog(null, "The Gender is not allowed", "ERROR", JOptionPane.ERROR_MESSAGE);
                 con.close();
-                throw new Exception();
+                return;
             }
             String City = textCity.getText();
             String Street = textStreet.getText();
@@ -148,7 +149,7 @@ public class AddEmployeeController implements Initializable {
                 if(textDegreeManager.getText().isEmpty()||textQual.getText().isEmpty()){
                     JOptionPane.showMessageDialog(null, "Field is Empty", "ERROR", JOptionPane.ERROR_MESSAGE);
                     con.close();
-                    throw new Exception();
+                    return;
                 }
                 String Degree = textDegreeManager.getText();
                 String Qual = textQual.getText();
@@ -158,7 +159,7 @@ public class AddEmployeeController implements Initializable {
                 if(textDriv.getText().isEmpty()){
                     JOptionPane.showMessageDialog(null, "Field is Empty", "ERROR", JOptionPane.ERROR_MESSAGE);
                     con.close();
-                    throw new Exception();
+                    return;
                 }
                 String Drive = textDriv.getText();
                 all = "INSERT INTO Employee values("+SSN+","+FormatBirth+","+Phone+",'"+First+"','"+Second+"','"+Last+"','"+Gender+"','"+City+"','"+Street+"',0,null,null,1,'"+Drive+"',0,null,null,0,null)";
@@ -167,7 +168,7 @@ public class AddEmployeeController implements Initializable {
                 if(textDep.getText().isEmpty()||textDegree.getText().isEmpty()){
                     JOptionPane.showMessageDialog(null, "Field is Empty", "ERROR", JOptionPane.ERROR_MESSAGE);
                     con.close();
-                    throw new Exception();
+                    return;
                 }
                 String Dep = textDep.getText();
                 String Degree = textDegree.getText();
@@ -177,7 +178,7 @@ public class AddEmployeeController implements Initializable {
                 if(textExp.getText().isEmpty()){
                     JOptionPane.showMessageDialog(null, "Field is Empty", "ERROR", JOptionPane.ERROR_MESSAGE);
                     con.close();
-                    throw new Exception();
+                    return;
                 }
                 String Exp = textExp.getText();
                 all = "INSERT INTO Employee values("+SSN+","+FormatBirth+","+Phone+",'"+First+"','"+Second+"','"+Last+"','"+Gender+"','"+City+"','"+Street+"',0,null,null,0,null,0,null,null,1,'"+Exp+"')";

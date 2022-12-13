@@ -26,12 +26,15 @@ import javafx.util.Callback;
 import oracle.jdbc.pool.OracleDataSource;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 
+import javax.swing.*;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
 
 public class screen2Controller implements Initializable {
 
+    public Button SearchItem;
+    public ComboBox ComboSearchItem;
     @FXML
     private Button DeleteB;
 
@@ -212,7 +215,11 @@ public class screen2Controller implements Initializable {
         getFromAllData(buyer, tableBuyer,  1, searchB, -1,"Select * from buyer");
         // Ecombo =new ComboBox<>();
         Ecombo.getItems().addAll("Maneger", "Driver", "Nursery", "Project", "All");
-        selectedCombo.getItems().addAll("All","Name","Color","Available","Size","Salary");
+        Ecombo.setValue("All");
+        ComboSearchItem.getItems().addAll("Name","Salary less than", "Salary more than");
+        ComboSearchItem.setValue("Name");
+        //selectedCombo.getItems().addAll("All","Name","Color","Available","Size","Salary");
+        //selectedCombo.setValue("All");
         pane_state.setBackground(new Background(new BackgroundFill(Color.rgb(162, 217, 206), CornerRadii.EMPTY, Insets.EMPTY)));
     }
 
@@ -234,7 +241,6 @@ public class screen2Controller implements Initializable {
     public void itemcheck(ActionEvent event) {
         if(checkEM.isSelected()){
             getFromAllData(employee, tableEmployee,  18, searchE, 6,"Select * from employee where GENDER='M'");
-
         }
         else if(checkEF.isSelected()){
             getFromAllData(employee, tableEmployee,  18, searchE, 6,"Select * from employee where GENDER='F'");
@@ -515,16 +521,6 @@ public class screen2Controller implements Initializable {
         }
     }
 
-    public void SelectAction(ActionEvent actionEvent) {
-        int A = selectedCombo.getSelectionModel().getSelectedIndex();
-        if (A == 0) selectCombo = -1;
-        else if(A == 1) selectCombo = 1;
-        else if(A == 2) selectCombo = 3;
-        else if(A == 3) selectCombo = 4;
-        else if(A == 4) selectCombo = 6;
-        else if(A == 5) selectCombo = 7;
-    }
-
     @FXML
     public void handleClicksItems(MouseEvent mouseEvent) {
         AnchorItems.toFront();
@@ -574,49 +570,86 @@ public class screen2Controller implements Initializable {
                     datadepartment.add(row1);
                 }
             }
-            FilteredList<ObservableList> filter = new FilteredList<>(datadepartment, b -> true);
-            TextS.textProperty().addListener((observable, oldValue, newValue) -> {
-                System.out.println(1);
-                filter.setPredicate(ObservableList -> {
-                    if (newValue.isBlank() || newValue.isEmpty() || newValue == null) {
-                        return true;
+            gridItems.getChildren().clear();
+            for (int i = 0; i < datadepartment.size(); i++) {
+                FXMLLoader fxmlLoad = new FXMLLoader();
+                fxmlLoad.setLocation(getClass().getResource("Items.fxml"));
+                HBox Item = fxmlLoad.load();
+                ItemController = fxmlLoad.getController();
+                boolean ava;
+                if (Integer.parseInt(datadepartment.get(i).get(4).toString()) > 0) ava = true;
+                else ava = false;
+                ItemController.SetData(datadepartment.get(i).get(1).toString(), datadepartment.get(i).get(6).toString(), datadepartment.get(i).get(3).toString(), datadepartment.get(i).get(7).toString(), ava, true);
+                if (column == 2) {
+                    column = 0;
+                    row++;
+                }
+                gridItems.add(Item, column++, row);
+                GridPane.setMargin(Item, new Insets(20));
+            }
+            con.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    public void SearchActionItem(ActionEvent actionEvent) {
+        try {
+            OracleDataSource ods = new OracleDataSource();
+            ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+            ods.setUser("mohammad");
+            ods.setPassword("123456");
+            Connection con = ods.getConnection();
+            String all = "select * from Item";
+            Statement stmt = con.createStatement();
+            rs = stmt.executeQuery(all);
+            gridItems.getChildren().clear();
+            int column = 0;
+            int row = 1;
+            datadepartment = FXCollections.observableArrayList();
+            while (rs.next()) {
+                if (rs.getString(3).equals(Items[Indicator])) {
+                    ObservableList<String> row1 = FXCollections.observableArrayList();
+                    for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
+                        //Iterate Column
+                        if (rs.getString(i) == null) row1.add("null");
+                        else row1.add(rs.getString(i));
                     }
-                    try {
-                        String SearchKey = newValue.toLowerCase();
-                        if (selectCombo != -1) {
-                            if (selectCombo != 4) {
-                                if (ObservableList.get(selectCombo).toString().toLowerCase().indexOf(SearchKey) > -1) {
-                                    return true;
-                                }
-                            } else {
-                                if (Integer.parseInt(ObservableList.get(4).toString()) != 0) {
-                                    return true;
-                                }
-                            }
-                            return false;
-                        }
+                    datadepartment.add(row1);
+                }
+            }
+            FilteredList<ObservableList> filter = new FilteredList<>(datadepartment, b -> true);
+            if(TextS.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Field is Empty", "ERROR", JOptionPane.ERROR_MESSAGE);
+                con.close();
+                return;
+            }
+            String newValue = TextS.getText();
+            filter.setPredicate(ObservableList -> {
+                try {
+                    String SearchKey = newValue.toLowerCase();
+                    if (ComboSearchItem.getSelectionModel().getSelectedItem().equals("Name")) {
                         if (ObservableList.get(1).toString().toLowerCase().indexOf(SearchKey) > -1) {
                             return true;
-                        } else if (ObservableList.get(3).toString().toLowerCase().indexOf(SearchKey) > -1) {
+                        }
+                    } else if (ComboSearchItem.getSelectionModel().getSelectedItem().equals("Salary less than")) {
+                        if (Integer.parseInt(ObservableList.get(7).toString()) <= (Integer.parseInt(SearchKey))) {
                             return true;
-                        } else if (ObservableList.get(4).toString().toLowerCase().indexOf(SearchKey) > -1) {
+                        }
+                    } else {
+                        if (Integer.parseInt(ObservableList.get(7).toString()) >= (Integer.parseInt(SearchKey))) {
                             return true;
-                        } else if (ObservableList.get(6).toString().toLowerCase().indexOf(SearchKey) > -1) {
-                            return true;
-                        } else if (ObservableList.get(7).toString().toLowerCase().indexOf(SearchKey) > -1) {
-                            return true;
-                        } else return false;
-                    } catch (Exception e) {
-                        return false;
+                        }
                     }
-                });
+                    return false;
+                } catch (Exception e) {
+                    return false;
+                }
             });
-            System.out.println(3);
             SortedList<ObservableList> sortedData = new SortedList<>(filter);
             gridItems.getChildren().clear();
-            System.out.println(3);
             for (int i = 0; i < sortedData.size(); i++) {
-                System.out.println(2);
                 FXMLLoader fxmlLoad = new FXMLLoader();
                 fxmlLoad.setLocation(getClass().getResource("Items.fxml"));
                 HBox Item = fxmlLoad.load();
