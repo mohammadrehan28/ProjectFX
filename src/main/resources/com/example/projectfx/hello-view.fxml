@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -9,14 +10,13 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane fx:id="All" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#MouseReleaseListener" onMousePressed="#MousePressListener" prefHeight="400.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectfx.HelloController">
     <left>
         <AnchorPane prefHeight="400.0" prefWidth="228.0" style="-fx-background-color: #b2d8d8;" BorderPane.alignment="CENTER">
             <children>
-                <ImageView fitHeight="196.0" fitWidth="202.0" layoutX="16.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="196.0" fitWidth="202.0" layoutX="16.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="102.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="102.0">
                     <image>
                         <Image url="@Image/nersery.png" />
                     </image>
@@ -27,38 +27,40 @@
     <center>
         <AnchorPane prefHeight="400.0" prefWidth="332.0" BorderPane.alignment="CENTER">
             <children>
-            <AnchorPane fx:id="TopAnchor" layoutY="36.0" prefHeight="266.0" prefWidth="292.0">
+            <AnchorPane fx:id="TopAnchor" layoutY="36.0" prefHeight="266.0" prefWidth="292.0" AnchorPane.bottomAnchor="98.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="36.0">
                <children>
-                      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b2d8d8" height="33.0" layoutX="75.0" layoutY="12.0" stroke="BLACK" strokeMiterLimit="0.0" strokeWidth="0.0" width="137.0" />
-                      <Label fx:id="LogText" alignment="CENTER" layoutX="79.0" layoutY="17.0" prefHeight="23.0" prefWidth="127.0" text="Login Info" textAlignment="CENTER" textFill="WHITE">
+                      <Label fx:id="LogText" alignment="CENTER" layoutX="83.0" layoutY="13.0" prefHeight="29.0" prefWidth="127.0" style="-fx-background-color: #b2d8d8; -fx-background-radius: 5px;" text="Login Info" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="83.0" AnchorPane.rightAnchor="82.0">
                           <font>
                               <Font name="Verdana" size="18.0" />
                           </font>
+                     <padding>
+                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                     </padding>
                       </Label>
-                      <Label layoutX="107.0" layoutY="76.0" text="UserName">
+                      <Label layoutX="107.0" layoutY="75.0" prefHeight="18.0" prefWidth="75.0" text="UserName" AnchorPane.leftAnchor="107.0" AnchorPane.rightAnchor="110.0">
                           <font>
                               <Font name="Verdana" size="14.0" />
                           </font>
                       </Label>
-                      <TextField fx:id="UserNameText" cache="true" layoutX="37.0" layoutY="101.0" prefHeight="28.0" prefWidth="230.0" promptText="EX.Mohammad" style="-fx-background-color: transparent; -fx-border-color: #b2d8d8; -fx-border-width: 0px 0px 2px 0px;" />
+                      <TextField fx:id="UserNameText" cache="true" layoutX="37.0" layoutY="101.0" prefHeight="28.0" prefWidth="230.0" promptText="EX.Mohammad" style="-fx-background-color: transparent; -fx-border-color: #b2d8d8; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="25.0" />
                       <ImageView fitHeight="22.0" fitWidth="23.0" layoutX="12.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
                           <image>
                               <Image url="@Image/person_FILL1_wght400_GRAD0_opsz48.png" />
                           </image>
                       </ImageView>
-                      <Label layoutX="110.0" layoutY="143.0" text="Password">
+                      <Label layoutX="110.0" layoutY="143.0" text="Password" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="115.0">
                           <font>
                               <Font name="Verdana" size="14.0" />
                           </font>
                       </Label>
-                      <PasswordField fx:id="PasswordText" cache="true" layoutX="37.0" layoutY="161.0" prefHeight="28.0" prefWidth="230.0" promptText="EX.Moh123" style="-fx-background-color: transparent; -fx-border-color: #b2d8d8; -fx-border-width: 0px 0px 2px 0px;" />
+                      <PasswordField fx:id="PasswordText" cache="true" layoutX="37.0" layoutY="161.0" prefHeight="28.0" prefWidth="230.0" promptText="EX.Moh123" style="-fx-background-color: transparent; -fx-border-color: #b2d8d8; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="25.0" />
                       <ImageView fitHeight="22.0" fitWidth="23.0" layoutX="12.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true">
                           <image>
                               <Image url="@Image/password_FILL0_wght400_GRAD0_opsz48.png" />
                           </image>
                       </ImageView>
-                  <TextField fx:id="SSNText" cache="true" layoutX="35.0" layoutY="220.0" prefHeight="28.0" prefWidth="230.0" promptText="EX.408349108" style="-fx-background-color: transparent; -fx-border-color: #b2d8d8; -fx-border-width: 0px 0px 2px 0px;" />
-                  <Label fx:id="SSNLabel" layoutX="126.0" layoutY="200.0" text="SSN">
+                  <TextField fx:id="SSNText" cache="true" layoutX="35.0" layoutY="220.0" prefHeight="28.0" prefWidth="230.0" promptText="EX.408349108" style="-fx-background-color: transparent; -fx-border-color: #b2d8d8; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="27.0" />
+                  <Label fx:id="SSNLabel" layoutX="124.0" layoutY="200.0" prefHeight="18.0" prefWidth="35.0" text="SSN" AnchorPane.leftAnchor="124.0" AnchorPane.rightAnchor="133.0">
                      <font>
                         <Font name="Verdana" size="14.0" />
                      </font>
@@ -70,9 +72,9 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="BottomAnchor" layoutX="4.0" layoutY="250.0" prefHeight="139.0" prefWidth="288.0">
+            <AnchorPane fx:id="BottomAnchor" layoutX="4.0" layoutY="250.0" prefHeight="139.0" prefWidth="288.0" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="250.0">
                <children>
-                      <Button fx:id="LoginB" layoutX="19.0" layoutY="20.0" mnemonicParsing="false" onAction="#LoginButton" prefHeight="26.0" prefWidth="244.0" style="-fx-background-color: #b2d8d8;" text="Login" textFill="WHITE">
+                      <Button fx:id="LoginB" layoutX="19.0" layoutY="20.0" mnemonicParsing="false" onAction="#LoginButton" prefHeight="26.0" prefWidth="244.0" style="-fx-background-color: #b2d8d8;" text="Login" textFill="WHITE" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="25.0">
                           <font>
                               <Font name="Verdana" size="14.0" />
                           </font>
@@ -80,7 +82,7 @@
                               <Cursor fx:constant="HAND" />
                           </cursor>
                       </Button>
-                      <Button fx:id="CloseB" layoutX="19.0" layoutY="58.0" mnemonicParsing="false" onAction="#CloseButton" prefHeight="26.0" prefWidth="244.0" style="-fx-background-color: #b2d8d8;" text="SignUp" textFill="WHITE">
+                      <Button fx:id="CloseB" layoutX="19.0" layoutY="58.0" mnemonicParsing="false" onAction="#CloseButton" prefHeight="26.0" prefWidth="244.0" style="-fx-background-color: #b2d8d8;" text="SignUp" textFill="WHITE" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="25.0">
                           <font>
                               <Font name="Verdana" size="14.0" />
                           </font>
