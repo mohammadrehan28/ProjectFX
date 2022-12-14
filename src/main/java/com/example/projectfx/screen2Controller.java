@@ -334,20 +334,22 @@ public class screen2Controller implements Initializable {
                     ods.setUser("mohammad");
                     ods.setPassword("123456");
                     Connection con = ods.getConnection();
-                    String qry = "select name_Buyer from Buyer where buyer_id = " + searchBID.getText();
+                    String qry = "select name_Buyer from Buyer where buyer_id = '" + searchBID.getText()+"'";
+
                     Statement stmt = con.createStatement();
                     rs = stmt.executeQuery(qry);
                     rs.next();
-                    Map<String, Object> parameter = new HashMap<String, Object>();
-                    parameter.put("ProjectP1", searchBID.getText());
-                    parameter.put("ProjectP2", TextReportBuyer.getText());
-                    parameter.put("ProjectP3", rs.getString(1));//rs.getString(1)
+                    System.out.println(rs.getString(1));
+                    Map<String, Object> parameter2 = new HashMap<String, Object>();
+                    parameter2.put("Parameter1", searchBID.getText());
+                    parameter2.put("Parameter2", TextReportBuyer.getText());
+                    parameter2.put("Parameter3", rs.getString(1));//rs.getString(1)
 
 
                     InputStream input = new FileInputStream(new File("REPORT2.jrxml"));
                     JasperDesign jd = JRXmlLoader.load(input);
                     JasperReport jr = JasperCompileManager.compileReport(jd);
-                    JasperPrint jp = JasperFillManager.fillReport(jr, parameter, con);
+                    JasperPrint jp = JasperFillManager.fillReport(jr, parameter2, con);
                     //as pdf dirictly
            /* OutputStream os=new FileOutputStream(new File("EmplyeeSUM.pdf"));
             JasperExportManager.exportReportToPdfStream(jp,os);

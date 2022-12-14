@@ -144,7 +144,7 @@ FROM "BUYER",
 			<textField>
 				<reportElement x="415" y="40" width="134" height="20" uuid="2dd15587-1a51-4983-b162-c8fe37bfc910"/>
 				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[Name: $P{Parameter3}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Name: "+$P{Parameter3}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
@@ -217,7 +217,7 @@ FROM "BUYER",
 	</columnHeader>
 	<detail>
 		<band height="20">
-			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+			<textField isBlankWhenNull="true">
 				<reportElement style="Detail" positionType="Float" x="0" y="0" width="79" height="20" uuid="cb4e92a2-b9f0-4362-a405-e0b3c0d46599">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ffc3f036-8943-4ef8-9634-38e50aad7b5c"/>
 				</reportElement>
@@ -226,7 +226,7 @@ FROM "BUYER",
 				</textElement>
 				<textFieldExpression><![CDATA[$F{BUYER_ID}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+			<textField isBlankWhenNull="true">
 				<reportElement style="Detail" positionType="Float" x="79" y="0" width="79" height="20" uuid="cfccd6b1-0c0a-403c-8974-5d56178ffcd3">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="97b29831-b437-4488-8749-62346dc94646"/>
 				</reportElement>
@@ -235,7 +235,7 @@ FROM "BUYER",
 				</textElement>
 				<textFieldExpression><![CDATA[$F{NAME_BUYER}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+			<textField isBlankWhenNull="true">
 				<reportElement style="Detail" positionType="Float" x="158" y="0" width="79" height="20" uuid="2ca1f850-0826-47a0-b3d3-7e5e4aa7d12c">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1aa6c8b5-d039-438f-aa54-c53041e3de5a"/>
 				</reportElement>
@@ -244,7 +244,7 @@ FROM "BUYER",
 				</textElement>
 				<textFieldExpression><![CDATA[$F{NAME_ITEM}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+			<textField isBlankWhenNull="true">
 				<reportElement style="Detail" positionType="Float" x="237" y="0" width="79" height="20" uuid="7f740bfa-577f-4703-b5c4-b6e4366b1b1c">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4c839d77-399e-490a-9469-2108f07965dc"/>
 				</reportElement>
@@ -253,7 +253,7 @@ FROM "BUYER",
 				</textElement>
 				<textFieldExpression><![CDATA[$F{COLOR}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+			<textField isBlankWhenNull="true">
 				<reportElement style="Detail" positionType="Float" x="316" y="0" width="79" height="20" uuid="e82fe5a4-7c3d-4a22-94fd-13a7942b92c0">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3b074567-15d0-4bb3-9814-3a29c886c641"/>
 				</reportElement>
@@ -262,7 +262,7 @@ FROM "BUYER",
 				</textElement>
 				<textFieldExpression><![CDATA[$F{SIZE_ITEM}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+			<textField isBlankWhenNull="true">
 				<reportElement style="Detail" positionType="Float" x="395" y="0" width="79" height="20" uuid="aa5efa05-dd2f-43e2-bcb4-a85147ffff27">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fe673bfc-9367-46f3-91a0-726ae73a9a86"/>
 				</reportElement>
@@ -271,7 +271,7 @@ FROM "BUYER",
 				</textElement>
 				<textFieldExpression><![CDATA[$F{SALARY}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+			<textField isBlankWhenNull="true">
 				<reportElement style="Detail" positionType="Float" x="474" y="0" width="79" height="20" uuid="ef79ede8-0659-42db-9a60-2dfebd297028">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b77e2fd2-750e-48da-b169-89de2c261695"/>
 				</reportElement>
