@@ -35,6 +35,11 @@ public class AddBuyerController implements Initializable {
     @FXML
     private TextField textName;
 
+    void SetText(String S1, String S2) {
+        textName.setText(S1);
+        textID.setText(S2);
+    }
+
     @FXML
     void AddEmployeeListener(MouseEvent event) {
         try {

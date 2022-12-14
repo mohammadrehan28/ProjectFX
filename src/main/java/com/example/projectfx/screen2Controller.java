@@ -17,6 +17,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
@@ -30,7 +32,17 @@ import javafx.scene.control.TableColumn.CellDataFeatures;
 import javax.swing.*;
 import java.net.URL;
 import java.sql.*;
+import java.util.HashMap;
 import java.util.ResourceBundle;
+
+import javafx.util.Callback;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.swing.JRViewer;
+
+import java.io.*;
+import java.util.Map;
 
 public class screen2Controller implements Initializable {
 
@@ -40,6 +52,7 @@ public class screen2Controller implements Initializable {
     public ComboBox<String> ComboSearchItem;
     @FXML
     public ComboBox<String> ComboDep;
+    public TextField TextReportPro;
     @FXML
     private Button DeleteB;
 
@@ -89,6 +102,7 @@ public class screen2Controller implements Initializable {
     @FXML
     public TextField searchB;
 
+
     @FXML
     public TextField searchBID;
 
@@ -129,6 +143,8 @@ public class screen2Controller implements Initializable {
     public ObservableList<ObservableList> buyer;
     @FXML
     public ObservableList<ObservableList> datadepartment;
+
+    ObservableList<String> EmpUbdate = FXCollections.observableArrayList();
 
     @FXML
     private Button buyer_btn;
@@ -213,6 +229,14 @@ public class screen2Controller implements Initializable {
     public int selectedComboProject = -1;
     public int selectedComboEmployee = -1;
     FilteredList<ObservableList> filterEmp;
+    @FXML
+    private ComboBox<String> ComboBuyer;
+
+    @FXML
+    private ComboBox<String> ComboProject;
+
+    @FXML
+    private ComboBox<String> ComboProvider;
     //End For Items
 
     @Override
@@ -229,6 +253,12 @@ public class screen2Controller implements Initializable {
         Ecombo.setValue("All");
         ComboDep.getItems().addAll("All", "Type");
         ComboDep.setValue("All");
+        ComboBuyer.getItems().addAll("All", "Name");
+        ComboBuyer.setValue("All");
+        ComboProject.getItems().addAll("All", "Name");
+        ComboProject.setValue("All");
+        ComboProvider.getItems().addAll("All", "Name");
+        ComboProvider.setValue("All");
         ComboSearchItem.getItems().addAll("Name","Salary less than", "Salary more than");
         ComboSearchItem.setValue("Name");
         //selectedCombo.getItems().addAll("All","Name","Color","Available","Size","Salary");
@@ -252,12 +282,90 @@ public class screen2Controller implements Initializable {
     }
 
     @FXML
+    public void reportAction(ActionEvent event){
+        try {
+            OracleDataSource ods = new OracleDataSource();
+            ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+            ods.setUser("mohammad");
+            ods.setPassword("123456");
+            Connection con = ods.getConnection();
+            String qry = "select name_project from project where project_id = "+searchPID.getText() ;
+            Statement stmt = con.createStatement();
+            rs = stmt.executeQuery(qry);
+            rs.next();
+            Map<String,Object> parameter = new HashMap<String,Object>();
+            parameter.put("ProjectP1",searchPID.getText());
+            parameter.put("ProjectP2",TextReportPro.getText());
+            parameter.put("ProjectP3",rs.getString(1));//rs.getString(1)
+
+
+            InputStream  input =new FileInputStream(new File("projectReport.jrxml"));
+            JasperDesign jd= JRXmlLoader.load(input);
+            JasperReport jr= JasperCompileManager.compileReport(jd);
+            JasperPrint jp= JasperFillManager.fillReport(jr,parameter,con);
+            //as pdf dirictly
+           /* OutputStream os=new FileOutputStream(new File("EmplyeeSUM.pdf"));
+            JasperExportManager.exportReportToPdfStream(jp,os);
+            os.close();
+            input.close();*/
+            //as JFrame
+            JFrame frame= new JFrame("Report");
+            frame.getContentPane().add(new JRViewer(jp));
+            frame.pack();
+            frame.setVisible(true);
+            con.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    @FXML
+    void TableEmpListener(MouseEvent event) {
+        if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+            EmpUbdate = (ObservableList<String>)tableEmployee.getSelectionModel().getSelectedItem();
+            //System.out.println(EmpUbdate);
+        }
+    }
+
+
+    @FXML
     public void itemStateChangedDep(ActionEvent actionEvent) {
         if (ComboDep.getSelectionModel().getSelectedItem().equals("All")) {
             selectedComboDepartment = -1;
         }
         else if (ComboDep.getSelectionModel().getSelectedItem().equals("Type")){
             selectedComboDepartment = 1;
+        }
+    }
+
+    @FXML
+    void itemStateChangedBuyer(ActionEvent event) {
+        if (ComboBuyer.getSelectionModel().getSelectedItem().equals("All")) {
+            selectedComboBuyer = -1;
+        }
+        else if (ComboBuyer.getSelectionModel().getSelectedItem().equals("Name")){
+            selectedComboBuyer = 1;
+        }
+    }
+
+    @FXML
+    void itemStateChangedPro(ActionEvent event) {
+        if (ComboProject.getSelectionModel().getSelectedItem().equals("All")) {
+            selectedComboProject = -1;
+        }
+        else if (ComboProject.getSelectionModel().getSelectedItem().equals("Name")){
+            selectedComboProject = 1;
+        }
+    }
+
+    @FXML
+    void itemStateChangedProvider(ActionEvent event) {
+        if (ComboProvider.getSelectionModel().getSelectedItem().equals("All")) {
+            selectedComboProvider = -1;
+        }
+        else if (ComboProvider.getSelectionModel().getSelectedItem().equals("Name")){
+            selectedComboProvider = 1;
         }
     }
 
