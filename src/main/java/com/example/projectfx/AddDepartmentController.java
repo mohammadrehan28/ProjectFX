@@ -47,7 +47,7 @@ public class AddDepartmentController implements Initializable {
 
     @FXML
     private TextField textStreet;
-
+    private String IDD;
     @FXML
     void AddDepListener(MouseEvent event) {
         try {
@@ -66,7 +66,7 @@ public class AddDepartmentController implements Initializable {
             }
             while (rs.next()) {
                 String ID = rs.getString(1);
-                if(ID.equals(textID.getText())) {
+                if(!textID.getText().equals(IDD) && ID.equals(textID.getText())) {
                     JOptionPane.showMessageDialog(null, "The ID is already contains", "ERROR", JOptionPane.ERROR_MESSAGE);
                     con.close();
                     throw new Exception();
@@ -83,7 +83,10 @@ public class AddDepartmentController implements Initializable {
             String City = textCity.getText();
             String Street = textStreet.getText();
             String combo = comboType.getSelectionModel().getSelectedItem();
-            all = "INSERT INTO Employee values("+ID+",'"+combo+"','"+Hours+"','"+Country+"','"+City+"','"+Street+"')";
+            if(screen2Controller.Flag) all = "INSERT INTO Employee values("+ID+",'"+combo+"','"+Hours+"','"+Country+"','"+City+"','"+Street+"')";
+            else all = "UPDATE Department\n" +
+                    "SET Department_ID = "+ID+", Type = '"+combo+"', Hours_Working = '"+Hours+"', country = '"+Country+"', city = '"+City+"', street = '"+Street+"'\n" +
+                    "WHERE Department_ID = "+IDD;
             stmt.executeUpdate(all);
             con.commit();
             con.close();
@@ -100,5 +103,15 @@ public class AddDepartmentController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         comboType.getItems().addAll("storehouse", "Roses gallery", "Planter");
         comboType.setValue("storehouse");
+        if(!screen2Controller.Flag) {
+            AddDep.setText("Update Department");
+            IDD = screen2Controller.EmpUbdate.get(0);
+            textID.setText(screen2Controller.EmpUbdate.get(0));
+            comboType.setValue(screen2Controller.EmpUbdate.get(1));
+            textHours.setText(screen2Controller.EmpUbdate.get(2));
+            textCountry.setText(screen2Controller.EmpUbdate.get(3));
+            textCity.setText(screen2Controller.EmpUbdate.get(4));
+            textStreet.setText(screen2Controller.EmpUbdate.get(5));
+        }
     }
 }

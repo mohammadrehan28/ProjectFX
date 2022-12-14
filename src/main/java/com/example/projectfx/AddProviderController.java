@@ -80,6 +80,7 @@ public class AddProviderController implements Initializable {
 
     @FXML
     private TextField textTypeCars;
+    private String IDD;
 
     @FXML
     void AddEmployeeListener(MouseEvent event) {
@@ -99,7 +100,7 @@ public class AddProviderController implements Initializable {
             }
             while (rs.next()) {
                 String ID = rs.getString(1);
-                if(ID.equals(textID.getText())) {
+                if(!textID.getText().equals(IDD) && ID.equals(textID.getText())) {
                     JOptionPane.showMessageDialog(null, "The ID is already contains", "ERROR", JOptionPane.ERROR_MESSAGE);
                     con.close();
                     throw new Exception();
@@ -125,7 +126,10 @@ public class AddProviderController implements Initializable {
                     throw new Exception();
                 }
                 String Del = textTime.getText();
-                all = "INSERT INTO Employee values("+ID+",'"+Name+"',"+Phone+",'"+Country+"','"+City+"','"+Street+"','"+combo+"',"+Del+",null,null,null,'"+Desc+"')";
+                if(screen2Controller.Flag) all = "INSERT INTO Employee values("+ID+",'"+Name+"',"+Phone+",'"+Country+"','"+City+"','"+Street+"','"+combo+"',"+Del+",null,null,null,'"+Desc+"')";
+                else all = "UPDATE Provider\n" +
+                        "SET Provider_ID = "+ID+", Name_Provider = '"+Name+"', Phone_Number = "+Phone+", country = '"+Country+"', city = '"+City+"', street = '"+Street+"',Type_Provider = '"+combo+"',Dilivery_time = "+Del+",Type_of_cars = null,size_cars=null,Driving_lisence=null,description='"+Desc+"'\n" +
+                        "WHERE Provider_ID = "+IDD;
             }
             else {
                 if(textSize.getText().isEmpty()||textDriv.getText().isEmpty()||textTypeCars.getText().isEmpty()) {
@@ -136,7 +140,10 @@ public class AddProviderController implements Initializable {
                 String Driv = textDriv.getText();
                 String TypeCars = textTypeCars.getText();
                 String Size = textSize.getText();
-                all = "INSERT INTO Employee values("+ID+",'"+Name+"',"+Phone+",'"+Country+"','"+City+"','"+Street+"','"+combo+"',null,'"+TypeCars+"','"+Size+"','"+Driv+"','"+Desc+"')";
+                if(screen2Controller.Flag) all = "INSERT INTO Employee values("+ID+",'"+Name+"',"+Phone+",'"+Country+"','"+City+"','"+Street+"','"+combo+"',null,'"+TypeCars+"','"+Size+"','"+Driv+"','"+Desc+"')";
+                else all = "UPDATE Provider\n" +
+                        "SET Provider_ID = "+ID+", Name_Provider = '"+Name+"', Phone_Number = "+Phone+", country = '"+Country+"', city = '"+City+"', street = '"+Street+"',Type_Provider = '"+combo+"',Dilivery_time = null,Type_of_cars = '"+TypeCars+"',size_cars='"+Size+"',Driving_lisence='"+Driv+"',description='"+Desc+"'\n" +
+                        "WHERE Provider_ID = "+IDD;
             }
             stmt.executeUpdate(all);
             con.commit();
@@ -154,6 +161,29 @@ public class AddProviderController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         comboType.getItems().addAll("Agriculture equipment", "Delivery");
         comboType.setValue("Agriculture equipment");
+        if(!screen2Controller.Flag) {
+            AddEmployee.setText("Update Provider");
+            IDD = screen2Controller.EmpUbdate.get(0);
+            textID.setText(screen2Controller.EmpUbdate.get(0));
+            textName.setText(screen2Controller.EmpUbdate.get(1));
+            textPhone.setText(screen2Controller.EmpUbdate.get(2));
+            textCountry.setText(screen2Controller.EmpUbdate.get(3));
+            textCity.setText(screen2Controller.EmpUbdate.get(4));
+            textStreet.setText(screen2Controller.EmpUbdate.get(5));
+            textDesc.setText(screen2Controller.EmpUbdate.get(11));
+            if(screen2Controller.EmpUbdate.get(6).equals("Agriculture equipment")) {
+                PaneArgi.toFront();
+                comboType.setValue("Agriculture equipment");
+                textTime.setText(screen2Controller.EmpUbdate.get(7));
+            }
+            else {
+                PaneDel.toFront();
+                comboType.setValue("Delivery");
+                textTypeCars.setText(screen2Controller.EmpUbdate.get(8));
+                textSize.setText(screen2Controller.EmpUbdate.get(9));
+                textDriv.setText(screen2Controller.EmpUbdate.get(10));
+            }
+        }
     }
 
     public void ComboAction(ActionEvent actionEvent) {

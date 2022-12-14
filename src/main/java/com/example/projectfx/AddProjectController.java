@@ -67,6 +67,7 @@ public class AddProjectController implements Initializable {
 
     @FXML
     private TextField textStreet;
+    private String IDD;
 
     @FXML
     void AddEmployeeListener(MouseEvent event) {
@@ -86,7 +87,7 @@ public class AddProjectController implements Initializable {
             }
             while (rs.next()) {
                 String SSN = rs.getString(1);
-                if(SSN.equals(textSSN.getText())) {
+                if(!textSSN.getText().equals(IDD) && SSN.equals(textSSN.getText())) {
                     JOptionPane.showMessageDialog(null, "The ID is already contains", "ERROR", JOptionPane.ERROR_MESSAGE);
                     con.close();
                     throw new Exception();
@@ -110,7 +111,10 @@ public class AddProjectController implements Initializable {
             String FormatStart = "DATE '" + Start.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) +"'";
             LocalDate End = textEnd.getValue();
             String FormatEnd = "DATE '" + End.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) +"'";
-            all = "INSERT INTO Employee values("+SSN+",'"+Name+"',"+Number+",'"+combo+"','"+comboS+"','"+Country+"','"+City+"','"+Street+"',"+SSNM+","+FormatStart+","+FormatEnd+")";
+            if(screen2Controller.Flag) all = "INSERT INTO Employee values("+SSN+",'"+Name+"',"+Number+",'"+combo+"','"+comboS+"','"+Country+"','"+City+"','"+Street+"',"+SSNM+","+FormatStart+","+FormatEnd+")";
+            else all = "UPDATE Project\n" +
+                    "SET Project_ID = "+SSN+", Name_project = '"+Name+"', Number_project = "+Number+",Type_project = '"+combo+"',status = '"+comboS+"', country = '"+Country+"', city = '"+City+"', street = '"+Street+"',SSN_manager = "+SSNM+",start_date = "+FormatStart+",Finish_date = "+FormatEnd+"\n" +
+                    "WHERE Project_ID = "+IDD;
             stmt.executeUpdate(all);
             con.commit();
             con.close();
@@ -129,5 +133,22 @@ public class AddProjectController implements Initializable {
         comboType.setValue("Villa");
         comboStatus.getItems().addAll("On Working", "To Work", "Done");
         comboStatus.setValue("To Work");
+        if(!screen2Controller.Flag) {
+            AddEmployee.setText("Update Project");
+            IDD = screen2Controller.EmpUbdate.get(0);
+            textSSN.setText(screen2Controller.EmpUbdate.get(0));
+            textName.setText(screen2Controller.EmpUbdate.get(1));
+            textNumber.setText(screen2Controller.EmpUbdate.get(2));
+            comboType.setValue(screen2Controller.EmpUbdate.get(3));
+            comboStatus.setValue(screen2Controller.EmpUbdate.get(4));
+            textContry.setText(screen2Controller.EmpUbdate.get(5));
+            textCity.setText(screen2Controller.EmpUbdate.get(6));
+            textStreet.setText(screen2Controller.EmpUbdate.get(7));
+            textSSNM.setText(screen2Controller.EmpUbdate.get(8));
+            String date1[] = screen2Controller.EmpUbdate.get(9).split(" ");
+            textStart.setValue(LocalDate.parse(date1[0]));
+            String date2[] = screen2Controller.EmpUbdate.get(10).split(" ");
+            textEnd.setValue(LocalDate.parse(date2[0]));
+        }
     }
 }

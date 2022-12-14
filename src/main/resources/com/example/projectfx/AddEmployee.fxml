@@ -18,7 +18,7 @@
       <Circle fill="DODGERBLUE" radius="153.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: #A2D9CE; -fx-stroke-width: 0px;" />
       <VBox fx:id="All" alignment="CENTER" prefHeight="408.0" prefWidth="546.0">
          <children>
-            <Label fx:id="AddEmployee" onMousePressed="#AddEmployeeListener" style="-fx-background-color: #A2D9CE; -fx-background-radius: 10;" text="Add Employee" textFill="WHITE">
+            <Label fx:id="AddEmployee" alignment="CENTER" onMousePressed="#AddEmployeeListener" style="-fx-background-color: #A2D9CE; -fx-background-radius: 10;" text="Add Employee" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Verdana Bold Italic" size="16.0" />
                </font>

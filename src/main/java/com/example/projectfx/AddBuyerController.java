@@ -34,6 +34,7 @@ public class AddBuyerController implements Initializable {
 
     @FXML
     private TextField textName;
+    private String IDD;
 
     void SetText(String S1, String S2) {
         textName.setText(S1);
@@ -58,7 +59,7 @@ public class AddBuyerController implements Initializable {
             }
             while (rs.next()) {
                 String ID = rs.getString(1);
-                if(ID.equals(textID.getText())) {
+                if(!textID.getText().equals(IDD) && ID.equals(textID.getText())) {
                     JOptionPane.showMessageDialog(null, "The ID is already contains", "ERROR", JOptionPane.ERROR_MESSAGE);
                     con.close();
                     throw new Exception();
@@ -71,7 +72,10 @@ public class AddBuyerController implements Initializable {
             }
             String ID = textID.getText();
             String Name = textName.getText();
-            all = "INSERT INTO Employee values('"+ID+"','"+Name+"')";
+            if(screen2Controller.Flag) all = "INSERT INTO Employee values('"+ID+"','"+Name+"')";
+            else all = "UPDATE Buyer\n" +
+                    "SET Buyer_ID = '"+ID+"', name_buyer = '"+Name+"'\n" +
+                    "WHERE Buyer_ID = "+IDD;
             stmt.executeUpdate(all);
             con.commit();
             con.close();
@@ -86,6 +90,11 @@ public class AddBuyerController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        if(!screen2Controller.Flag) {
+            AddEmployee.setText("Update Buyer");
+            IDD = screen2Controller.EmpUbdate.get(0);
+            textID.setText(screen2Controller.EmpUbdate.get(0));
+            textName.setText(screen2Controller.EmpUbdate.get(1));
+        }
     }
 }

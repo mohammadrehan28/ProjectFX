@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="REPORT2" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4eedbb89-b4f6-4469-9ab6-f642a1688cf7">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="shahdConnection"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
 	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true"/>
@@ -60,6 +60,7 @@
 	</subDataset>
 	<parameter name="Parameter1" class="java.lang.String"/>
 	<parameter name="Parameter2" class="java.lang.String"/>
+	<parameter name="Parameter3" class="java.lang.String"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT "BUYER"."BUYER_ID",
 	"BUYER"."NAME_BUYER",
@@ -73,7 +74,7 @@ FROM "BUYER",
 	"BUYER_BUY_ITEMS"
 	WHERE  "BUYER"."BUYER_ID" = "BUYER_BUY_ITEMS"."BUYER_ID" AND
 	 "BUYER_BUY_ITEMS"."ITEM_ID" = "ITEM"."ITEM_ID" AND
-	  "BUYER"."BUYER_ID"=  $P{Parameter1} ]]>
+	  "BUYER"."BUYER_ID"=  $P{Parameter1}]]>
 	</queryString>
 	<field name="BUYER_ID" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="BUYER_ID"/>
@@ -140,6 +141,11 @@ FROM "BUYER",
 				<reportElement x="95" y="40" width="205" height="15" uuid="b96f7183-44f8-43ad-ba60-43d8fbf50b6e"/>
 				<text><![CDATA[NABLUS]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="415" y="40" width="134" height="20" uuid="2dd15587-1a51-4983-b162-c8fe37bfc910"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[Name: $P{Parameter3}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<columnHeader>
@@ -211,7 +217,7 @@ FROM "BUYER",
 	</columnHeader>
 	<detail>
 		<band height="20">
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement style="Detail" positionType="Float" x="0" y="0" width="79" height="20" uuid="cb4e92a2-b9f0-4362-a405-e0b3c0d46599">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ffc3f036-8943-4ef8-9634-38e50aad7b5c"/>
 				</reportElement>
@@ -220,7 +226,7 @@ FROM "BUYER",
 				</textElement>
 				<textFieldExpression><![CDATA[$F{BUYER_ID}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement style="Detail" positionType="Float" x="79" y="0" width="79" height="20" uuid="cfccd6b1-0c0a-403c-8974-5d56178ffcd3">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="97b29831-b437-4488-8749-62346dc94646"/>
 				</reportElement>
@@ -229,7 +235,7 @@ FROM "BUYER",
 				</textElement>
 				<textFieldExpression><![CDATA[$F{NAME_BUYER}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement style="Detail" positionType="Float" x="158" y="0" width="79" height="20" uuid="2ca1f850-0826-47a0-b3d3-7e5e4aa7d12c">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1aa6c8b5-d039-438f-aa54-c53041e3de5a"/>
 				</reportElement>
@@ -238,7 +244,7 @@ FROM "BUYER",
 				</textElement>
 				<textFieldExpression><![CDATA[$F{NAME_ITEM}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement style="Detail" positionType="Float" x="237" y="0" width="79" height="20" uuid="7f740bfa-577f-4703-b5c4-b6e4366b1b1c">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4c839d77-399e-490a-9469-2108f07965dc"/>
 				</reportElement>
@@ -247,7 +253,7 @@ FROM "BUYER",
 				</textElement>
 				<textFieldExpression><![CDATA[$F{COLOR}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement style="Detail" positionType="Float" x="316" y="0" width="79" height="20" uuid="e82fe5a4-7c3d-4a22-94fd-13a7942b92c0">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3b074567-15d0-4bb3-9814-3a29c886c641"/>
 				</reportElement>
@@ -256,7 +262,7 @@ FROM "BUYER",
 				</textElement>
 				<textFieldExpression><![CDATA[$F{SIZE_ITEM}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement style="Detail" positionType="Float" x="395" y="0" width="79" height="20" uuid="aa5efa05-dd2f-43e2-bcb4-a85147ffff27">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fe673bfc-9367-46f3-91a0-726ae73a9a86"/>
 				</reportElement>
@@ -265,7 +271,7 @@ FROM "BUYER",
 				</textElement>
 				<textFieldExpression><![CDATA[$F{SALARY}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement style="Detail" positionType="Float" x="474" y="0" width="79" height="20" uuid="ef79ede8-0659-42db-9a60-2dfebd297028">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b77e2fd2-750e-48da-b169-89de2c261695"/>
 				</reportElement>

@@ -47,6 +47,12 @@ import java.util.Map;
 public class screen2Controller implements Initializable {
 
     @FXML
+    private Button ReportBuyer;
+    @FXML
+    private Button ReportPr;
+    @FXML
+    private TextField TextReportBuyer;
+    @FXML
     public Button SearchItem;
     @FXML
     public ComboBox<String> ComboSearchItem;
@@ -144,7 +150,8 @@ public class screen2Controller implements Initializable {
     @FXML
     public ObservableList<ObservableList> datadepartment;
 
-    ObservableList<String> EmpUbdate = FXCollections.observableArrayList();
+    static ObservableList<String> EmpUbdate = FXCollections.observableArrayList();
+    static boolean Flag = true;
 
     @FXML
     private Button buyer_btn;
@@ -283,51 +290,80 @@ public class screen2Controller implements Initializable {
 
     @FXML
     public void reportAction(ActionEvent event){
-        try {
-            OracleDataSource ods = new OracleDataSource();
-            ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
-            ods.setUser("mohammad");
-            ods.setPassword("123456");
-            Connection con = ods.getConnection();
-            String qry = "select name_project from project where project_id = "+searchPID.getText() ;
-            Statement stmt = con.createStatement();
-            rs = stmt.executeQuery(qry);
-            rs.next();
-            Map<String,Object> parameter = new HashMap<String,Object>();
-            parameter.put("ProjectP1",searchPID.getText());
-            parameter.put("ProjectP2",TextReportPro.getText());
-            parameter.put("ProjectP3",rs.getString(1));//rs.getString(1)
+
+            if(event.getSource() == ReportPr) {
+                try {
+                    OracleDataSource ods = new OracleDataSource();
+                    ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+                    ods.setUser("mohammad");
+                    ods.setPassword("123456");
+                    Connection con = ods.getConnection();
+                    String qry = "select name_project from project where project_id = " + searchPID.getText();
+                    Statement stmt = con.createStatement();
+                    rs = stmt.executeQuery(qry);
+                    rs.next();
+                    Map<String, Object> parameter = new HashMap<String, Object>();
+                    parameter.put("ProjectP1", searchPID.getText());
+                    parameter.put("ProjectP2", TextReportPro.getText());
+                    parameter.put("ProjectP3", rs.getString(1));//rs.getString(1)
 
 
-            InputStream  input =new FileInputStream(new File("projectReport.jrxml"));
-            JasperDesign jd= JRXmlLoader.load(input);
-            JasperReport jr= JasperCompileManager.compileReport(jd);
-            JasperPrint jp= JasperFillManager.fillReport(jr,parameter,con);
-            //as pdf dirictly
+                    InputStream input = new FileInputStream(new File("projectReport.jrxml"));
+                    JasperDesign jd = JRXmlLoader.load(input);
+                    JasperReport jr = JasperCompileManager.compileReport(jd);
+                    JasperPrint jp = JasperFillManager.fillReport(jr, parameter, con);
+                    //as pdf dirictly
            /* OutputStream os=new FileOutputStream(new File("EmplyeeSUM.pdf"));
             JasperExportManager.exportReportToPdfStream(jp,os);
             os.close();
             input.close();*/
-            //as JFrame
-            JFrame frame= new JFrame("Report");
-            frame.getContentPane().add(new JRViewer(jp));
-            frame.pack();
-            frame.setVisible(true);
-            con.close();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+                    //as JFrame
+                    JFrame frame = new JFrame("Report");
+                    frame.getContentPane().add(new JRViewer(jp));
+                    frame.pack();
+                    frame.setVisible(true);
+                    con.close();
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            else {
+                try {
+                    OracleDataSource ods = new OracleDataSource();
+                    ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+                    ods.setUser("mohammad");
+                    ods.setPassword("123456");
+                    Connection con = ods.getConnection();
+                    String qry = "select name_Buyer from Buyer where buyer_id = " + searchBID.getText();
+                    Statement stmt = con.createStatement();
+                    rs = stmt.executeQuery(qry);
+                    rs.next();
+                    Map<String, Object> parameter = new HashMap<String, Object>();
+                    parameter.put("ProjectP1", searchBID.getText());
+                    parameter.put("ProjectP2", TextReportBuyer.getText());
+                    parameter.put("ProjectP3", rs.getString(1));//rs.getString(1)
 
+
+                    InputStream input = new FileInputStream(new File("REPORT2.jrxml"));
+                    JasperDesign jd = JRXmlLoader.load(input);
+                    JasperReport jr = JasperCompileManager.compileReport(jd);
+                    JasperPrint jp = JasperFillManager.fillReport(jr, parameter, con);
+                    //as pdf dirictly
+           /* OutputStream os=new FileOutputStream(new File("EmplyeeSUM.pdf"));
+            JasperExportManager.exportReportToPdfStream(jp,os);
+            os.close();
+            input.close();*/
+                    //as JFrame
+                    JFrame frame = new JFrame("Report");
+                    frame.getContentPane().add(new JRViewer(jp));
+                    frame.pack();
+                    frame.setVisible(true);
+                    con.close();
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
     }
-
-    @FXML
-    void TableEmpListener(MouseEvent event) {
-        if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
-            EmpUbdate = (ObservableList<String>)tableEmployee.getSelectionModel().getSelectedItem();
-            //System.out.println(EmpUbdate);
-        }
-    }
-
 
     @FXML
     public void itemStateChangedDep(ActionEvent actionEvent) {
@@ -423,7 +459,86 @@ public class screen2Controller implements Initializable {
     }
 
     @FXML
+    void TableEmpListener(MouseEvent event) {
+        if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+            Flag = false;
+            if(event.getSource() == tableEmployee) {
+                EmpUbdate = (ObservableList<String>) tableEmployee.getSelectionModel().getSelectedItem();
+                try {
+                    Stage stage = new Stage();
+                    Parent root = FXMLLoader.load(getClass().getResource("AddEmployee.fxml"));
+                    stage.setTitle("Our Big Project!!");
+                    stage.setScene(new Scene(root));
+                    stage.showAndWait();
+                    getFromAllDataEmp(employee, tableEmployee, 18, searchE, "Select * from employee", false);
+                    new FadeIn(root).play();
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+                //System.out.println(EmpUbdate);
+            }
+            else if(event.getSource() == tableDepartment) {
+                EmpUbdate = (ObservableList<String>) tableDepartment.getSelectionModel().getSelectedItem();
+                try {
+                    Stage stage = new Stage();
+                    Parent root = FXMLLoader.load(getClass().getResource("AddDepartment.fxml"));
+                    stage.setTitle("Our Big Project!!");
+                    stage.setScene(new Scene(root));
+                    stage.showAndWait();
+                    getFromAllDataDep(department, tableDepartment,  5, searchD,"Select * from department",false);
+                    new FadeIn(root).play();
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+            }
+            else if(event.getSource() == tableProject) {
+                EmpUbdate = (ObservableList<String>) tableProject.getSelectionModel().getSelectedItem();
+                try {
+                    Stage stage = new Stage();
+                    Parent root = FXMLLoader.load(getClass().getResource("AddProject.fxml"));
+                    stage.setTitle("Our Big Project!!");
+                    stage.setScene(new Scene(root));
+                    stage.showAndWait();
+                    getFromAllDataPro(project, tableProject,  10, searchP,"Select * from project",false);
+                    new FadeIn(root).play();
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+            }
+            else if(event.getSource() == tableProvider) {
+                EmpUbdate = (ObservableList<String>) tableProvider.getSelectionModel().getSelectedItem();
+                try {
+                    Stage stage = new Stage();
+                    Parent root = FXMLLoader.load(getClass().getResource("AddProvider.fxml"));
+                    stage.setTitle("Our Big Project!!");
+                    stage.setScene(new Scene(root));
+                    stage.showAndWait();
+                    getFromAllDataProvider(provider, tableProvider,  11, searchProvider,"Select * from provider",false);
+                    new FadeIn(root).play();
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+            }
+            else if(event.getSource() == tableBuyer) {
+                EmpUbdate = (ObservableList<String>) tableBuyer.getSelectionModel().getSelectedItem();
+                try {
+                    Stage stage = new Stage();
+                    Parent root = FXMLLoader.load(getClass().getResource("AddBuyer.fxml"));
+                    stage.setTitle("Our Big Project!!");
+                    stage.setScene(new Scene(root));
+                    stage.showAndWait();
+                    getFromAllDataBuyer(buyer, tableBuyer,  1, searchB,"Select * from buyer",false);
+                    new FadeIn(root).play();
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+            }
+        }
+    }
+
+    @FXML
     void AddListener(ActionEvent event) {
+        Flag = true;
         if (event.getSource() == addE) {
             try {
                 Stage stage = new Stage();
