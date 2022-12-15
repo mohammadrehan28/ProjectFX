@@ -250,11 +250,11 @@ public class screen2Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         //data.clear();
         //datadepartment.clear();
-        getFromAllDataEmp(employee, tableEmployee,  18, searchE,"Select * from employee",true);
-        getFromAllDataDep(department, tableDepartment,  5, searchD,"Select * from department",true);
+        getFromAllDataEmp(employee, tableEmployee, 18, searchE,"Select * from employee",true);
+        getFromAllDataDep(department, tableDepartment,  5, searchD,"select D.Department_ID,D.Type,D.Hours_Working,D.country,D.city,D.Street,DH.Quantity,I.Item_ID,I.Name_Item,I.Color,I.Size_Item from Department D, department_have_items DH,Item i where D.Department_ID = DH.Department_ID And I.Item_ID = DH.Item_ID",true);
         getFromAllDataPro(project, tableProject,  10, searchP,"Select * from project",true);
-        getFromAllDataProvider(provider, tableProvider,  11, searchProvider,"Select * from provider",true);
-        getFromAllDataBuyer(buyer, tableBuyer,  1, searchB,"Select * from buyer",true);
+        getFromAllDataProvider(provider, tableProvider,  11, searchProvider,"select D.Provider_ID,D.Name_Provider,D.Phone_number,D.country,D.city,D.street,D.Type_Provider,D.Dilivery_Time,D.Type_of_cars,D.Size_Cars,D.Driving_Lisence,D.Description,DH.Quantity,I.Item_ID,I.Name_Item,I.Color,I.Size_Item from Provider D, provider_provide_items DH ,Item i where D.Provider_ID = DH.Provider_ID And I.Item_ID = DH.Item_ID",true);
+        getFromAllDataBuyer(buyer, tableBuyer,  1, searchB,"select D.Buyer_ID,D.Name_Buyer,DH.Quantity,I.Item_ID,I.Name_Item,I.Color,I.Size_Item,DD.Department_ID from Buyer D, Buyer_Buy_Items DH,Item i, Department DD where D.Buyer_ID = DH.Buyer_ID And I.Item_ID = DH.Item_ID And DD.Department_ID = DH.Department_ID Order by D.Name_Buyer",true);
         // Ecombo =new ComboBox<>();
         Ecombo.getItems().addAll("Maneger", "Driver", "Nursery", "Project", "All");
         Ecombo.setValue("All");
@@ -487,7 +487,7 @@ public class screen2Controller implements Initializable {
                     stage.setTitle("Our Big Project!!");
                     stage.setScene(new Scene(root));
                     stage.showAndWait();
-                    getFromAllDataDep(department, tableDepartment,  5, searchD,"Select * from department",false);
+                    getFromAllDataDep(department, tableDepartment,  5, searchD,"select D.Department_ID,D.Type,D.Hours_Working,D.country,D.city,D.Street,DH.Quantity,I.Item_ID,I.Name_Item,I.Color,I.Size_Item from Department D, department_have_items DH,Item i where D.Department_ID = DH.Department_ID And I.Item_ID = DH.Item_ID",false);
                     new FadeIn(root).play();
                 } catch (Exception e) {
                     System.out.println(e);
@@ -515,7 +515,7 @@ public class screen2Controller implements Initializable {
                     stage.setTitle("Our Big Project!!");
                     stage.setScene(new Scene(root));
                     stage.showAndWait();
-                    getFromAllDataProvider(provider, tableProvider,  11, searchProvider,"Select * from provider",false);
+                    getFromAllDataProvider(provider, tableProvider,  11, searchProvider,"select D.Provider_ID,D.Name_Provider,D.Phone_number,D.country,D.city,D.street,D.Type_Provider,D.Dilivery_Time,D.Type_of_cars,D.Size_Cars,D.Driving_Lisence,D.Description,DH.Quantity,I.Item_ID,I.Name_Item,I.Color,I.Size_Item from Provider D, provider_provide_items DH ,Item i where D.Provider_ID = DH.Provider_ID And I.Item_ID = DH.Item_ID",false);
                     new FadeIn(root).play();
                 } catch (Exception e) {
                     System.out.println(e);
@@ -529,7 +529,7 @@ public class screen2Controller implements Initializable {
                     stage.setTitle("Our Big Project!!");
                     stage.setScene(new Scene(root));
                     stage.showAndWait();
-                    getFromAllDataBuyer(buyer, tableBuyer,  1, searchB,"Select * from buyer",false);
+                    getFromAllDataBuyer(buyer, tableBuyer,  1, searchB,"select D.Buyer_ID,D.Name_Buyer,DH.Quantity,I.Item_ID,I.Name_Item,I.Color,I.Size_Item,DD.Department_ID from Buyer D, Buyer_Buy_Items DH,Item i, Department DD where D.Buyer_ID = DH.Buyer_ID And I.Item_ID = DH.Item_ID And DD.Department_ID = DH.Department_ID Order by D.Name_Buyer",false);
                     new FadeIn(root).play();
                 } catch (Exception e) {
                     System.out.println(e);
@@ -590,7 +590,7 @@ public class screen2Controller implements Initializable {
                 stage.setTitle("Our Big Project!!");
                 stage.setScene(new Scene(root));
                 stage.showAndWait();
-                getFromAllDataProvider(provider, tableProvider,  11, searchProvider,"Select * from provider",false);
+                getFromAllDataProvider(provider, tableProvider,  11, searchProvider,"select D.Provider_ID,D.Name_Provider,D.Phone_number,D.country,D.city,D.street,D.Type_Provider,D.Dilivery_Time,D.Type_of_cars,D.Size_Cars,D.Driving_Lisence,D.Description,DH.Quantity,I.Item_ID,I.Name_Item,I.Color,I.Size_Item from Provider D, provider_provide_items DH ,Item i where D.Provider_ID = DH.Provider_ID And I.Item_ID = DH.Item_ID",false);
                 new FadeIn(root).play();
             }
             catch(Exception e){
@@ -604,7 +604,7 @@ public class screen2Controller implements Initializable {
                 stage.setTitle("Our Big Project!!");
                 stage.setScene(new Scene(root));
                 stage.showAndWait();
-                getFromAllDataBuyer(buyer, tableBuyer,  1, searchB,"Select * from buyer",false);
+                getFromAllDataBuyer(buyer, tableBuyer,  1, searchB,"select D.Buyer_ID,D.Name_Buyer,DH.Quantity,I.Item_ID,I.Name_Item,I.Color,I.Size_Item,DD.Department_ID from Buyer D, Buyer_Buy_Items DH,Item i, Department DD where D.Buyer_ID = DH.Buyer_ID And I.Item_ID = DH.Item_ID And DD.Department_ID = DH.Department_ID Order by D.Name_Buyer",false);
                 new FadeIn(root).play();
             }
             catch(Exception e){
@@ -650,7 +650,7 @@ public class screen2Controller implements Initializable {
             stmt.executeUpdate(all);
             con.commit();
             con.close();
-            getFromAllDataDep(department, tableDepartment,  5, searchD,"Select * from department",false);
+            getFromAllDataDep(department, tableDepartment,  5, searchD,"select D.Department_ID,D.Type,D.Hours_Working,D.country,D.city,D.Street,DH.Quantity,I.Item_ID,I.Name_Item,I.Color,I.Size_Item from Department D, department_have_items DH,Item i where D.Department_ID = DH.Department_ID And I.Item_ID = DH.Item_ID",false);
         }
         else if (event.getSource() == DeleteP) {
             String exe = searchPID.getText();
@@ -678,7 +678,7 @@ public class screen2Controller implements Initializable {
             stmt.executeUpdate(all);
             con.commit();
             con.close();
-            getFromAllDataProvider(provider, tableProvider,  11, searchProvider,"Select * from provider",false);
+            getFromAllDataProvider(provider, tableProvider,  11, searchProvider,"select D.Provider_ID,D.Name_Provider,D.Phone_number,D.country,D.city,D.street,D.Type_Provider,D.Dilivery_Time,D.Type_of_cars,D.Size_Cars,D.Driving_Lisence,D.Description,DH.Quantity,I.Item_ID,I.Name_Item,I.Color,I.Size_Item from Provider D, provider_provide_items DH ,Item i where D.Provider_ID = DH.Provider_ID And I.Item_ID = DH.Item_ID",false);
         }
         else if (event.getSource() == DeleteB) {
             String exe = searchBID.getText();
@@ -692,7 +692,7 @@ public class screen2Controller implements Initializable {
             stmt.executeUpdate(all);
             con.commit();
             con.close();
-            getFromAllDataBuyer(buyer, tableBuyer,  1, searchB,"Select * from buyer",false);
+            getFromAllDataBuyer(buyer, tableBuyer,  1, searchB,"select D.Buyer_ID,D.Name_Buyer,DH.Quantity,I.Item_ID,I.Name_Item,I.Color,I.Size_Item,DD.Department_ID from Buyer D, Buyer_Buy_Items DH,Item i, Department DD where D.Buyer_ID = DH.Buyer_ID And I.Item_ID = DH.Item_ID And DD.Department_ID = DH.Department_ID Order by D.Name_Buyer",false);
         }
         }
         catch(Exception e) {
