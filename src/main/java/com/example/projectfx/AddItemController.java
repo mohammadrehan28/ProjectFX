@@ -92,7 +92,7 @@ public class AddItemController implements Initializable {
             else {
                 Ava = "NotAvailable";
             }
-            if(screen2Controller.Flag) all = "INSERT INTO Employee values("+ID+",'"+Name+"','"+combo+"','"+Color+"','"+Quantity+"','"+Ava+"','"+Size+"','"+Salary+"')";
+            if(screen2Controller.Flag) all = "INSERT INTO Item values("+ID+",'"+Name+"','"+combo+"','"+Color+"','"+Quantity+"','"+Ava+"','"+Size+"','"+Salary+"')";
             /*else all = "UPDATE Department\n" +
                     "SET Department_ID = "+ID+", Type = '"+combo+"', Hours_Working = '"+Hours+"', country = '"+Country+"', city = '"+City+"', street = '"+Street+"'\n" +
                     "WHERE Department_ID = "+IDD;*/
@@ -110,7 +110,7 @@ public class AddItemController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        comboType.getItems().addAll("OutDoor", "InDoor", "Art","Plants","Equipment","Others","Grass");
+        comboType.getItems().addAll("OutDoor", "InDoor", "Art","Plant","Equipment","Others","Grass");
         comboType.setValue("OutDoor");
         /*if(!screen2Controller.Flag) {
             AddEmployee.setText("Update Item");

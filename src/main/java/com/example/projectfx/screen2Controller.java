@@ -764,7 +764,33 @@ public class screen2Controller implements Initializable {
                     else row.add(rs.getString(i));
                 }
                 datadepartment.add(row);
-
+            }
+            String all = "select * from Buyer";
+            Statement stmt2 = con.createStatement();;
+            ResultSet rs2 = stmt2.executeQuery(all);
+            boolean Flag = false;
+            while(rs2.next()) {
+                //rs.beforeFirst();
+                ResultSet rs3 = stmt.executeQuery("select Buyer_ID from Buyer_Buy_Items");
+                ObservableList<String> row = FXCollections.observableArrayList();
+                Flag = false;
+                //System.out.println(rs2.getString(1));
+                //System.out.println();
+                while(rs3.next()) {
+                    //System.out.println(rs3.getString(1));
+                    if(rs3.getString(1).equals(rs2.getString(1))) {
+                        Flag = true;
+                        break;
+                    }
+                }
+                if(!Flag) {
+                    row.add(rs2.getString(1));
+                    row.add(rs2.getString(2));
+                    for(int i=3;i<=8;i++) {
+                        row.add("null");
+                    }
+                    datadepartment.add(row);
+                }
             }
             //FINALLY ADDED TO TableView
             tabledepartment.setItems(datadepartment);
@@ -841,6 +867,34 @@ public class screen2Controller implements Initializable {
                 }
                 datadepartment.add(row);
 
+            }
+            String all = "select * from Provider";
+            Statement stmt2 = con.createStatement();;
+            ResultSet rs2 = stmt2.executeQuery(all);
+            boolean Flag = false;
+            while(rs2.next()) {
+                //rs.beforeFirst();
+                ResultSet rs3 = stmt.executeQuery("select Provider_ID from Provider_Provide_Items");
+                ObservableList<String> row = FXCollections.observableArrayList();
+                Flag = false;
+                //System.out.println(rs2.getString(1));
+                //System.out.println();
+                while(rs3.next()) {
+                    //System.out.println(rs3.getString(1));
+                    if(rs3.getString(1).equals(rs2.getString(1))) {
+                        Flag = true;
+                        break;
+                    }
+                }
+                if(!Flag) {
+                    for(int i=1;i<=12;i++) {
+                        row.add(rs2.getString(i));
+                    }
+                    for(int i=13;i<=17;i++) {
+                        row.add("null");
+                    }
+                    datadepartment.add(row);
+                }
             }
             //FINALLY ADDED TO TableView
             tabledepartment.setItems(datadepartment);
@@ -1069,6 +1123,37 @@ public class screen2Controller implements Initializable {
                 }
                 datadepartment.add(row);
 
+            }
+            String all = "select * from Department";
+            Statement stmt2 = con.createStatement();;
+            ResultSet rs2 = stmt2.executeQuery(all);
+            boolean Flag = false;
+            while(rs2.next()) {
+                //rs.beforeFirst();
+                ResultSet rs3 = stmt.executeQuery("select Department_ID from Department_have_Items");
+                ObservableList<String> row = FXCollections.observableArrayList();
+                Flag = false;
+                //System.out.println(rs2.getString(1));
+                //System.out.println();
+                while(rs3.next()) {
+                    //System.out.println(rs3.getString(1));
+                    if(rs3.getString(1).equals(rs2.getString(1))) {
+                        Flag = true;
+                        break;
+                    }
+                }
+                if(!Flag) {
+                    row.add(rs2.getString(1));
+                    row.add(rs2.getString(2));
+                    row.add(rs2.getString(3));
+                    row.add(rs2.getString(4));
+                    row.add(rs2.getString(5));
+                    row.add(rs2.getString(6));
+                    for(int i=7;i<=11;i++) {
+                        row.add("null");
+                    }
+                    datadepartment.add(row);
+                }
             }
             //FINALLY ADDED TO TableView
             tabledepartment.setItems(datadepartment);

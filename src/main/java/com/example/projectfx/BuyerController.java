@@ -20,6 +20,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import oracle.jdbc.pool.OracleDataSource;
 
+import javax.swing.*;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -221,8 +222,132 @@ public class BuyerController implements Initializable {
     }
 
     public void DeleteActionItem(ActionEvent actionEvent) { //Buy Item
+        try {
+            OracleDataSource ods = new OracleDataSource();
+            ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+            ods.setUser("mohammad");
+            ods.setPassword("123456");
+            Connection con = ods.getConnection();
+            String all = "select Item_ID,Quantity from Item";
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(all);
+            if(ItemID.getText().isEmpty() || BuyerID.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "The ID is Empty", "ERROR", JOptionPane.ERROR_MESSAGE);
+                con.close();
+                throw new Exception();
+            }
+            String ID = ItemID.getText();
+            String Buy = BuyerID.getText();
+            boolean Flag = true;
+            while(rs.next()) {
+                if(ID == rs.getString(1)) {
+                    Flag = false;
+                    if(Integer.parseInt(rs.getString(2)) == 0) {
+                        JOptionPane.showMessageDialog(null, "Item ID does not Available", "ERROR", JOptionPane.ERROR_MESSAGE);
+                        con.close();
+                        throw new Exception();
+                    }
+                    break;
+                }
+            }
+            if(Flag) {
+                JOptionPane.showMessageDialog(null, "Item ID does not Contain", "ERROR", JOptionPane.ERROR_MESSAGE);
+                con.close();
+                throw new Exception();
+            }
+            all = "select Buyer_ID from Buyer";
+            rs = stmt.executeQuery(all);
+            Flag = true;
+            while(rs.next()) {
+                if(Buy == rs.getString(1)) {
+                    Flag = false;
+                    break;
+                }
+            }
+            if(Flag) {
+                JOptionPane.showMessageDialog(null, "Buy ID does not Contain", "ERROR", JOptionPane.ERROR_MESSAGE);
+                con.close();
+                throw new Exception();
+            }
+            //TOGO
+            all = "UPDATE Item\n" +
+                    "SET Quantity = Quantity - 1\n" +
+                    "WHERE Itme_ID = "+ID;
+            stmt.executeUpdate(all);
+            all = "select * from Buyer_Buy_Items";
+            rs = stmt.executeQuery(all);
+            Flag = true;
+            while(rs.next()) {
+                if(ID == rs.getString(1) && Buy == rs.getString(2)) {
+                    Flag = false;
+                    all = "UPDATE Buyer_Buy_Items\n" +
+                            "SET Quantity = Quantity + 1\n" +
+                            "WHERE Itme_ID = "+ID+" and Buyer_ID = '" + Buy+"'";
+                    stmt.executeUpdate(all);
+                    break;
+                }
+            }
+            if(Flag) {
+                all = "INSERT INTO Employee values('"+ID+"','"+Buy+"',1,)";
+                stmt.executeUpdate(all);
+            }
+            con.commit();
+            con.close();
+        }
+        catch(Exception e) {
+            //System.out.println(e);
+        }
     }
 
     public void AddActionItem(ActionEvent actionEvent) { //Return Item
+        try {
+            OracleDataSource ods = new OracleDataSource();
+            ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+            ods.setUser("mohammad");
+            ods.setPassword("123456");
+            Connection con = ods.getConnection();
+            String all = "select Item_ID from Item";
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(all);
+            if(ItemID.getText().isEmpty() || BuyerID.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "The ID is Empty", "ERROR", JOptionPane.ERROR_MESSAGE);
+                con.close();
+                throw new Exception();
+            }
+            String ID = ItemID.getText();
+            String Buy = BuyerID.getText();
+            boolean Flag = true;
+            while(rs.next()) {
+                if(ID == rs.getString(1)) {
+                    Flag = false;
+                    break;
+                }
+            }
+            if(Flag) {
+                JOptionPane.showMessageDialog(null, "Item ID does not Contain", "ERROR", JOptionPane.ERROR_MESSAGE);
+                con.close();
+                throw new Exception();
+            }
+            all = "select Buyer_ID from Buyer";
+            rs = stmt.executeQuery(all);
+            Flag = true;
+            while(rs.next()) {
+                if(Buy == rs.getString(1)) {
+                    Flag = false;
+                    break;
+                }
+            }
+            if(Flag) {
+                JOptionPane.showMessageDialog(null, "Buy ID does not Contain", "ERROR", JOptionPane.ERROR_MESSAGE);
+                con.close();
+                throw new Exception();
+            }
+            //TOGO
+            JOptionPane.showMessageDialog(null, "We are Up your Request Success", "ERROR", JOptionPane.INFORMATION_MESSAGE);
+            con.close();
+        }
+        catch(Exception e) {
+            //System.out.println(e);
+        }
     }
 }
