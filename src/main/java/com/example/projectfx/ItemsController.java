@@ -25,8 +25,10 @@ public class ItemsController implements Initializable {
     public ImageView Available;
     public ImageView Delivery;
     public HBox VBoxAll;
+    public Label IdLabel2;
+    public Label IdLabel;
 
-    public void SetData(String Name, String Size, String Color1, String Prize, boolean Available, boolean Delivery) {
+    public void SetData(String Name, String Size, String Color1, String Prize, boolean Available, boolean Delivery, String Id) {
         NameLabel.setText(Name);
         NameLabel.setFont(Font.font(14));
         NameLabel.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -53,6 +55,7 @@ public class ItemsController implements Initializable {
         SizeLabel.setText(Size);
         ColorLabel.setText(Color1);
         PrizeLabel.setText(Prize);
+        IdLabel.setText(Id);
         Image image;
         Image image2;
         if(Available){

@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="692.0" prefWidth="923.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectfx.UserController">
+    <children>
+        <VBox prefHeight="692.0" prefWidth="194.0" style="-fx-background-color: #A2D9CE;">
+            <children>
+                <ImageView fitHeight="143.0" fitWidth="194.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@Image/Island.png" />
+                    </image>
+                    <VBox.margin>
+                        <Insets bottom="20.0" />
+                    </VBox.margin>
+                </ImageView>
+                <Button fx:id="employee_btn" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#handleClicks" prefHeight="34.0" prefWidth="196.0" text="Employee" textFill="WHITE">
+                    <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@Image/groups_FILL0_wght400_GRAD200_opsz48.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <opaqueInsets>
+                        <Insets left="15.0" />
+                    </opaqueInsets>
+                    <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                    </font>
+                </Button>
+                <Button fx:id="department_btn" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#handleClicks" prefHeight="34.0" prefWidth="196.0" text="Department" textFill="WHITE">
+                    <graphic>
+                        <ImageView fx:id="icon2" fitHeight="20.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@Image/store_FILL0_wght400_GRAD200_opsz48.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <opaqueInsets>
+                        <Insets left="15.0" />
+                    </opaqueInsets>
+                    <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                    </font>
+                </Button>
+                <Button fx:id="item_btn" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#handleClicks" prefHeight="34.0" prefWidth="196.0" text="Item" textFill="WHITE">
+                    <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@Image/eco_FILL0_wght400_GRAD200_opsz48.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <opaqueInsets>
+                        <Insets left="15.0" />
+                    </opaqueInsets>
+                    <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                    </font>
+                </Button>
+                <Button fx:id="buyer_btn" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#handleClicks" prefHeight="34.0" prefWidth="196.0" text="Buyer" textFill="WHITE">
+                    <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@Image/shopping_bag_FILL0_wght400_GRAD200_opsz48.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <opaqueInsets>
+                        <Insets left="15.0" />
+                    </opaqueInsets>
+                    <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                    </font>
+                </Button>
+            </children>
+        </VBox>
+        <StackPane layoutX="194.0" layoutY="145.0">
+            <children>
+                <GridPane fx:id="grid3" prefHeight="523.0" prefWidth="728.0" style="-fx-background-color: #F4F4F4;">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <VBox fx:id="VBoxOutDoor" alignment="CENTER" onMousePressed="#handleClicksItems" prefHeight="200.0" prefWidth="100.0" stylesheets="@StyleMouseHoverClick.css">
+                            <children>
+                                <ImageView fitHeight="135.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@Image/OutDoor.png" />
+                                    </image>
+                                </ImageView>
+                                <Label alignment="CENTER" prefHeight="30.0" prefWidth="139.0" style="-fx-background-color: #A2D9CE; -fx-background-radius: 10;" text="OutDoor Plants" textFill="WHITE">
+                                    <font>
+                                        <Font name="Verdana Italic" size="16.0" />
+                                    </font>
+                                    <opaqueInsets>
+                                        <Insets />
+                                    </opaqueInsets>
+                                    <VBox.margin>
+                                        <Insets />
+                                    </VBox.margin>
+                                    <padding>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </padding>
+                                </Label>
+                            </children>
+                        </VBox>
+                        <VBox fx:id="VBoxInDoor" alignment="CENTER" onMousePressed="#handleClicksItems" prefHeight="200.0" prefWidth="100.0" stylesheets="@StyleMouseHoverClick.css" GridPane.columnIndex="1">
+                            <children>
+                                <ImageView fitHeight="135.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@Image/Sabar.png" />
+                                    </image>
+                                </ImageView>
+                                <Label alignment="CENTER" prefHeight="30.0" prefWidth="139.0" style="-fx-background-color: #A2D9CE; -fx-background-radius: 10;" text="InDoor Plants" textFill="WHITE">
+                                    <font>
+                                        <Font name="Verdana Italic" size="16.0" />
+                                    </font>
+                                    <opaqueInsets>
+                                        <Insets />
+                                    </opaqueInsets>
+                                    <padding>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </padding>
+                                </Label>
+                            </children>
+                        </VBox>
+                        <VBox fx:id="VBoxArt" alignment="CENTER" onMousePressed="#handleClicksItems" prefHeight="200.0" prefWidth="100.0" stylesheets="@StyleMouseHoverClick.css" GridPane.columnIndex="2">
+                            <children>
+                                <ImageView fitHeight="135.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@Image/Art.png" />
+                                    </image>
+                                </ImageView>
+                                <Label alignment="CENTER" prefHeight="30.0" prefWidth="139.0" style="-fx-background-color: #A2D9CE; -fx-background-radius: 10;" text="Art Plants" textFill="WHITE">
+                                    <font>
+                                        <Font name="Verdana" size="16.0" />
+                                    </font>
+                                    <opaqueInsets>
+                                        <Insets />
+                                    </opaqueInsets>
+                                    <padding>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </padding>
+                                </Label>
+                            </children>
+                        </VBox>
+                        <VBox fx:id="VBoxPlants" alignment="CENTER" onMousePressed="#handleClicksItems" prefHeight="200.0" prefWidth="100.0" stylesheets="@StyleMouseHoverClick.css" GridPane.rowIndex="1">
+                            <children>
+                                <ImageView fitHeight="135.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@Image/Palm.png" />
+                                    </image>
+                                </ImageView>
+                                <Label alignment="CENTER" prefHeight="30.0" prefWidth="139.0" style="-fx-background-color: #A2D9CE; -fx-background-radius: 10;" text="Plants" textFill="WHITE">
+                                    <font>
+                                        <Font name="Verdana" size="16.0" />
+                                    </font>
+                                    <opaqueInsets>
+                                        <Insets />
+                                    </opaqueInsets>
+                                    <padding>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </padding>
+                                </Label>
+                            </children>
+                        </VBox>
+                        <VBox fx:id="VBoxEqu" alignment="CENTER" onMousePressed="#handleClicksItems" prefHeight="200.0" prefWidth="100.0" stylesheets="@StyleMouseHoverClick.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                            <children>
+                                <ImageView fitHeight="135.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@Image/Things.png" />
+                                    </image>
+                                </ImageView>
+                                <Label alignment="CENTER" prefHeight="30.0" prefWidth="139.0" style="-fx-background-color: #A2D9CE; -fx-background-radius: 10;" text="Equipments" textFill="WHITE">
+                                    <font>
+                                        <Font name="Verdana" size="16.0" />
+                                    </font>
+                                    <opaqueInsets>
+                                        <Insets />
+                                    </opaqueInsets>
+                                    <padding>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </padding>
+                                </Label>
+                            </children>
+                        </VBox>
+                        <VBox fx:id="VBoxOthers" alignment="CENTER" onMousePressed="#handleClicksItems" prefHeight="200.0" prefWidth="100.0" stylesheets="@StyleMouseHoverClick.css" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                            <children>
+                                <ImageView fitHeight="135.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@Image/Stone.png" />
+                                    </image>
+                                </ImageView>
+                                <Label alignment="CENTER" prefHeight="30.0" prefWidth="139.0" style="-fx-background-color: #A2D9CE; -fx-background-radius: 10;" text="Others" textFill="WHITE">
+                                    <font>
+                                        <Font name="Verdana" size="16.0" />
+                                    </font>
+                                    <opaqueInsets>
+                                        <Insets />
+                                    </opaqueInsets>
+                                    <padding>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </padding>
+                                </Label>
+                            </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2" />
+                        <VBox fx:id="VBoxGrass" alignment="CENTER" onMousePressed="#handleClicksItems" prefHeight="200.0" prefWidth="100.0" stylesheets="@StyleMouseHoverClick.css" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                            <children>
+                                <ImageView fitHeight="110.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@Image/green-grass-texture-close-up.jpg" />
+                                    </image>
+                                    <VBox.margin>
+                                        <Insets bottom="10.0" />
+                                    </VBox.margin>
+                                </ImageView>
+                                <Label alignment="CENTER" prefHeight="30.0" prefWidth="139.0" style="-fx-background-color: #A2D9CE; -fx-background-radius: 10;" text="Grass" textFill="WHITE">
+                                    <font>
+                                        <Font name="Verdana" size="16.0" />
+                                    </font>
+                                    <opaqueInsets>
+                                        <Insets />
+                                    </opaqueInsets>
+                                    <padding>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </padding>
+                                </Label>
+                            </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                    </children>
+                </GridPane>
+                <AnchorPane fx:id="AnchorItems" style="-fx-background-color: #F4F4F4;">
+                    <children>
+                        <ScrollPane fx:id="scrollItems" layoutY="84.0" prefHeight="463.0" prefWidth="728.0" style="-fx-background-color: #F4F4F4;">
+                            <content>
+                                <GridPane fx:id="gridItems">
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                </GridPane>
+                            </content>
+                        </ScrollPane>
+                        <VBox>
+                            <children>
+                                <HBox prefHeight="38.0" prefWidth="718.0">
+                                    <children>
+                                        <ImageView fitHeight="17.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                            <HBox.margin>
+                                                <Insets bottom="10.0" left="15.0" top="15.0" />
+                                            </HBox.margin>
+                                            <image>
+                                                <Image url="@Image/search_FILL0_wght400_GRAD0_opsz48.png" />
+                                            </image>
+                                        </ImageView>
+                                        <TextField fx:id="TextS" prefHeight="27.0" prefWidth="280.0" promptText="Search For Items" style="-fx-border-color: #212F3C;">
+                                            <HBox.margin>
+                                                <Insets bottom="3.0" left="15.0" right="10.0" top="8.0" />
+                                            </HBox.margin>
+                                        </TextField>
+                                        <ComboBox fx:id="ComboSearchItem" prefWidth="150.0" style="-fx-border-color: #212F3C;">
+                                            <HBox.margin>
+                                                <Insets bottom="3.0" left="10.0" right="10.0" top="8.0" />
+                                            </HBox.margin>
+                                        </ComboBox>
+                                        <Button fx:id="SearchItem" mnemonicParsing="false" onAction="#SearchActionItem" prefHeight="27.0" prefWidth="160.0" style="-fx-border-color: #212F3C;" text="Search" textFill="WHITE">
+                                            <font>
+                                                <Font name="System Bold Italic" size="12.0" />
+                                            </font>
+                                            <HBox.margin>
+                                                <Insets left="10.0" top="8.0" />
+                                            </HBox.margin>
+                                        </Button>
+                                    </children>
+                                </HBox>
+                                <HBox prefHeight="38.0" prefWidth="718.0">
+                                    <children>
+                                        <TextField fx:id="ItemID" prefHeight="27.0" prefWidth="200.0" promptText="ItemID" style="-fx-border-color: #212F3C;">
+                                            <HBox.margin>
+                                                <Insets bottom="3.0" left="47.0" right="10.0" top="8.0" />
+                                            </HBox.margin>
+                                        </TextField>
+                              <TextField fx:id="BuyerID" prefHeight="27.0" prefWidth="200.0" promptText="BuyerID" style="-fx-border-color: #212F3C;">
+                                 <HBox.margin>
+                                    <Insets top="8.0" />
+                                 </HBox.margin>
+                              </TextField>
+                                        <Button fx:id="BuyItem" mnemonicParsing="false" onAction="#DeleteActionItem" prefHeight="27.0" prefWidth="100.0" style="-fx-border-color: #212F3C;" text="Buy Item" textFill="WHITE">
+                                            <font>
+                                                <Font name="System Bold Italic" size="12.0" />
+                                            </font>
+                                            <HBox.margin>
+                                                <Insets left="10.0" top="8.0" />
+                                            </HBox.margin>
+                                        </Button>
+                                        <Button fx:id="ReturnItem" mnemonicParsing="false" onAction="#AddActionItem" prefHeight="27.0" prefWidth="100.0" style="-fx-border-color: #212F3C;" text="Return Item" textFill="WHITE">
+                                            <font>
+                                                <Font name="System Bold Italic" size="12.0" />
+                                            </font>
+                                            <HBox.margin>
+                                                <Insets left="10.0" top="8.0" />
+                                            </HBox.margin>
+                                        </Button>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </VBox>
+                    </children>
+                </AnchorPane>
+                <GridPane fx:id="grid2" prefHeight="523.0" prefWidth="728.0" style="-fx-background-color: #F4F4F4;">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints maxHeight="165.60001220703126" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="495.0" minHeight="10.0" prefHeight="495.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <VBox>
+                            <children>
+                                <HBox prefHeight="37.0" prefWidth="461.0">
+                                    <children>
+                                        <ImageView fitHeight="17.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                            <HBox.margin>
+                                                <Insets bottom="10.0" left="15.0" top="10.0" />
+                                            </HBox.margin>
+                                            <image>
+                                                <Image url="@Image/search_FILL0_wght400_GRAD0_opsz48.png" />
+                                            </image>
+                                        </ImageView>
+                                        <TextField fx:id="searchD" prefWidth="375.0" promptText="any Keyword..." style="-fx-border-color: #212F3C;">
+                                            <HBox.margin>
+                                                <Insets bottom="3.0" left="20.0" right="10.0" top="3.0" />
+                                            </HBox.margin>
+                                        </TextField>
+                                        <ComboBox fx:id="ComboDep" onAction="#itemStateChangedDep" prefWidth="150.0" style="-fx-border-color: #212F3C;">
+                                            <HBox.margin>
+                                                <Insets bottom="3.0" left="10.0" right="10.0" top="3.0" />
+                                            </HBox.margin>
+                                        </ComboBox>
+                                    </children>
+                                    <padding>
+                                        <Insets top="5.0" />
+                                    </padding>
+                                    <VBox.margin>
+                                        <Insets top="4.0" />
+                                    </VBox.margin>
+                                </HBox>
+                            </children>
+                        </VBox>
+                        <TableView fx:id="tableDepartment" onMousePressed="#TableEmpListener" prefHeight="270.0" prefWidth="523.0" stylesheets="@style.css" GridPane.rowIndex="1" />
+                    </children>
+                </GridPane>
+                <GridPane fx:id="grid1" prefHeight="523.0" prefWidth="728.0" style="-fx-background-color: #F4F4F4;">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints maxHeight="135.60001220703126" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="499.0" minHeight="10.0" prefHeight="495.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <VBox>
+                            <GridPane.margin>
+                                <Insets />
+                            </GridPane.margin>
+                            <children>
+                                <HBox prefHeight="38.0" prefWidth="499.0">
+                                    <children>
+                                        <ImageView fitHeight="17.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                            <HBox.margin>
+                                                <Insets bottom="10.0" left="15.0" top="10.0" />
+                                            </HBox.margin>
+                                            <image>
+                                                <Image url="@Image/search_FILL0_wght400_GRAD0_opsz48.png" />
+                                            </image>
+                                        </ImageView>
+                                        <TextField fx:id="searchE" prefHeight="27.0" prefWidth="375.0" promptText="any Keyword..." style="-fx-border-color: #212F3C;">
+                                            <HBox.margin>
+                                                <Insets bottom="3.0" left="20.0" right="10.0" top="3.0" />
+                                            </HBox.margin>
+                                        </TextField>
+                                        <ComboBox fx:id="Ecombo" onAction="#itemStateChanged" prefWidth="150.0" promptText="Type" style="-fx-border-color: #212F3C;" stylesheets="@style.css">
+                                            <HBox.margin>
+                                                <Insets bottom="3.0" left="10.0" right="10.0" top="3.0" />
+                                            </HBox.margin>
+                                        </ComboBox>
+                                        <CheckBox fx:id="checkEM" mnemonicParsing="false" onAction="#itemcheck" prefHeight="20.0" prefWidth="39.0" style="-fx-background-color: #34495E;" text="M" textFill="WHITE">
+                                            <font>
+                                                <Font name="System Bold Italic" size="12.0" />
+                                            </font>
+                                            <HBox.margin>
+                                                <Insets left="10.0" top="5.0" />
+                                            </HBox.margin>
+                                        </CheckBox>
+                                        <CheckBox fx:id="checkEF" mnemonicParsing="false" onAction="#itemcheck" prefHeight="20.0" prefWidth="33.0" style="-fx-background-color: #34495E;" text="F" textFill="WHITE">
+                                            <font>
+                                                <Font name="System Bold Italic" size="12.0" />
+                                            </font>
+                                            <HBox.margin>
+                                                <Insets left="10.0" top="5.0" />
+                                            </HBox.margin>
+                                        </CheckBox>
+                                    </children>
+                                    <padding>
+                                        <Insets top="5.0" />
+                                    </padding>
+                                    <VBox.margin>
+                                        <Insets top="4.0" />
+                                    </VBox.margin>
+                                </HBox>
+                            </children>
+                        </VBox>
+                        <TableView fx:id="tableEmployee" onMousePressed="#TableEmpListener" prefHeight="498.0" prefWidth="728.0" stylesheets="@style.css" GridPane.rowIndex="1" />
+                    </children>
+                </GridPane>
+                <GridPane fx:id="grid6" prefHeight="523.0" prefWidth="728.0" style="-fx-background-color: #F4F4F4;">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints maxHeight="256.5999816894531" minHeight="10.0" prefHeight="135.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="414.0" minHeight="10.0" prefHeight="412.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <VBox>
+                            <children>
+                                <HBox prefHeight="37.0" prefWidth="461.0">
+                                    <children>
+                                        <ImageView fitHeight="17.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                            <HBox.margin>
+                                                <Insets bottom="10.0" left="15.0" top="10.0" />
+                                            </HBox.margin>
+                                            <image>
+                                                <Image url="@Image/search_FILL0_wght400_GRAD0_opsz48.png" />
+                                            </image>
+                                        </ImageView>
+                                        <TextField fx:id="searchB" prefWidth="375.0" promptText="any Keyword..." style="-fx-border-color: #212F3C;">
+                                            <HBox.margin>
+                                                <Insets bottom="3.0" left="20.0" right="10.0" top="3.0" />
+                                            </HBox.margin>
+                                        </TextField>
+                                        <ComboBox fx:id="ComboBuyer" onAction="#itemStateChangedBuyer" prefWidth="150.0" style="-fx-border-color: #212F3C;">
+                                            <HBox.margin>
+                                                <Insets bottom="3.0" left="10.0" right="10.0" top="3.0" />
+                                            </HBox.margin>
+                                        </ComboBox>
+                                    </children>
+                                    <padding>
+                                        <Insets top="5.0" />
+                                    </padding>
+                                    <VBox.margin>
+                                        <Insets top="4.0" />
+                                    </VBox.margin>
+                                </HBox>
+                                <HBox>
+                                    <children>
+                                        <TextField fx:id="searchBID" prefHeight="27.0" prefWidth="204.0" promptText="ID" style="-fx-border-color: #212F3C;">
+                                            <HBox.margin>
+                                                <Insets left="52.0" />
+                                            </HBox.margin>
+                                        </TextField>
+                                        <TextField fx:id="TextReportBuyer" prefHeight="27.0" prefWidth="320.0" promptText="Description For Report" style="-fx-border-color: #212F3C;">
+                                            <HBox.margin>
+                                                <Insets left="20.0" />
+                                            </HBox.margin>
+                                        </TextField>
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets top="10.0" />
+                                    </VBox.margin>
+                                </HBox>
+                                <HBox>
+                                    <children>
+                                        <Button fx:id="ReportBuyer" mnemonicParsing="false" onAction="#reportAction" prefHeight="27.0" prefWidth="204.0" style="-fx-border-color: #212F3C;" text="Report Buyer" textFill="WHITE">
+                                            <font>
+                                                <Font name="System Bold Italic" size="12.0" />
+                                            </font>
+                                            <HBox.margin>
+                                                <Insets left="52.0" />
+                                            </HBox.margin>
+                                        </Button>
+                              <ImageView fitHeight="46.0" fitWidth="149.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Image/Branch.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets top="15.0" />
+                                    </VBox.margin>
+                                </HBox>
+                            </children>
+                        </VBox>
+                        <TableView fx:id="tableBuyer" onMousePressed="#TableEmpListener" prefHeight="270.0" prefWidth="523.0" stylesheets="@style.css" GridPane.rowIndex="1" />
+                    </children>
+                </GridPane>
+            </children>
+        </StackPane>
+        <Pane fx:id="pane_state" layoutX="192.0" layoutY="70.0" prefHeight="75.0" prefWidth="731.0" style="-fx-background-color: #A2D9CE;">
+            <children>
+                <Label fx:id="text_state" layoutX="26.0" prefHeight="79.0" prefWidth="285.0" text="Employee" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold Italic" size="40.0" />
+                    </font>
+                    <opaqueInsets>
+                        <Insets left="5.0" />
+                    </opaqueInsets>
+                </Label>
+            </children>
+        </Pane>
+        <Button fx:id="exit_btn" layoutX="850.0" layoutY="9.0" mnemonicParsing="false" onAction="#handleExit" prefHeight="25.0" prefWidth="64.0" text="⬅ return" textFill="WHITE" />
+    </children>
+</AnchorPane>

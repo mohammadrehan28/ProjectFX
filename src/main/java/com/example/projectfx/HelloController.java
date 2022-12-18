@@ -70,7 +70,7 @@ public class HelloController implements Initializable {
                             root = FXMLLoader.load(getClass().getResource("screen2.fxml"));
                         }
                         else if(rs.getString(3).equals("User")) {
-                            root = FXMLLoader.load(getClass().getResource("screen2.fxml"));
+                            root = FXMLLoader.load(getClass().getResource("User.fxml"));
                         }
                         else {
                             root = FXMLLoader.load(getClass().getResource("Buyer.fxml"));

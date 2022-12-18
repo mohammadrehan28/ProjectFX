@@ -29,6 +29,12 @@ import java.util.ResourceBundle;
 public class BuyerController implements Initializable {
 
     public AnchorPane AnchorItems;
+    public ComboBox ComboSearchItem;
+    public Button SearchItem;
+    public TextField ItemID;
+    public TextField BuyerID;
+    public Button BuyItem;
+    public Button ReturnItem;
     private ItemsController ItemController;
     private ResultSet rs;
     private ObservableList<ObservableList> datadepartment;
@@ -177,7 +183,7 @@ public class BuyerController implements Initializable {
                 boolean ava;
                 if(Integer.parseInt(sortedData.get(i).get(4).toString()) > 0) ava = true;
                 else ava = false;
-                ItemController.SetData(sortedData.get(i).get(1).toString(),sortedData.get(i).get(6).toString(),sortedData.get(i).get(3).toString(),sortedData.get(i).get(7).toString(),ava,true);
+                ItemController.SetData(sortedData.get(i).get(1).toString(),sortedData.get(i).get(6).toString(),sortedData.get(i).get(3).toString(),sortedData.get(i).get(7).toString(),ava,true,sortedData.get(i).get(0).toString());
                 if(column == 2){
                     column = 0;
                     row++;
@@ -208,6 +214,15 @@ public class BuyerController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        selectedCombo.getItems().addAll("All","Name","Color","Available","Size","Salary");
+        //selectedCombo.getItems().addAll("All","Name","Color","Available","Size","Salary");
+    }
+
+    public void SearchActionItem(ActionEvent actionEvent) {
+    }
+
+    public void DeleteActionItem(ActionEvent actionEvent) { //Buy Item
+    }
+
+    public void AddActionItem(ActionEvent actionEvent) { //Return Item
     }
 }

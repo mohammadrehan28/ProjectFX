@@ -22,6 +22,20 @@
                      </font></Label>
                </children>
             </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="33.0" prefWidth="131.0">
+               <children>
+                  <Label fx:id="IdLabel2" text="Id:">
+                     <font>
+                        <Font name="Verdana Italic" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="IdLabel" text="NoInfo">
+                     <font>
+                        <Font name="Verdana Italic" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
             <HBox alignment="CENTER" prefHeight="33.0" prefWidth="131.0">
                <children>
                   <Label text="Size: ">

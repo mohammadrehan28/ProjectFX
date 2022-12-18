@@ -44,7 +44,7 @@ import net.sf.jasperreports.swing.JRViewer;
 import java.io.*;
 import java.util.Map;
 
-public class screen2Controller implements Initializable {
+public class UserController implements Initializable {
 
     public TextField ItemID;
     public Button DeleteItem;
@@ -255,8 +255,6 @@ public class screen2Controller implements Initializable {
         //datadepartment.clear();
         getFromAllDataEmp(employee, tableEmployee, 18, searchE,"Select * from employee",true);
         getFromAllDataDep(department, tableDepartment,  5, searchD,"select D.Department_ID,D.Type,D.Hours_Working,D.country,D.city,D.Street,DH.Quantity,I.Item_ID,I.Name_Item,I.Color,I.Size_Item from Department D, department_have_items DH,Item i where D.Department_ID = DH.Department_ID And I.Item_ID = DH.Item_ID",true);
-        getFromAllDataPro(project, tableProject,  10, searchP,"Select * from project",true);
-        getFromAllDataProvider(provider, tableProvider,  11, searchProvider,"select D.Provider_ID,D.Name_Provider,D.Phone_number,D.country,D.city,D.street,D.Type_Provider,D.Dilivery_Time,D.Type_of_cars,D.Size_Cars,D.Driving_Lisence,D.Description,DH.Quantity,I.Item_ID,I.Name_Item,I.Color,I.Size_Item from Provider D, provider_provide_items DH ,Item i where D.Provider_ID = DH.Provider_ID And I.Item_ID = DH.Item_ID",true);
         getFromAllDataBuyer(buyer, tableBuyer,  1, searchB,"select D.Buyer_ID,D.Name_Buyer,DH.Quantity,I.Item_ID,I.Name_Item,I.Color,I.Size_Item,DD.Department_ID from Buyer D, Buyer_Buy_Items DH,Item i, Department DD where D.Buyer_ID = DH.Buyer_ID And I.Item_ID = DH.Item_ID And DD.Department_ID = DH.Department_ID Order by D.Name_Buyer",true);
         // Ecombo =new ComboBox<>();
         Ecombo.getItems().addAll("Maneger", "Driver", "Nursery", "Project", "All");
@@ -265,10 +263,6 @@ public class screen2Controller implements Initializable {
         ComboDep.setValue("All");
         ComboBuyer.getItems().addAll("All", "Name");
         ComboBuyer.setValue("All");
-        ComboProject.getItems().addAll("All", "Name");
-        ComboProject.setValue("All");
-        ComboProvider.getItems().addAll("All", "Name");
-        ComboProvider.setValue("All");
         ComboSearchItem.getItems().addAll("Name","Salary less than", "Salary more than");
         ComboSearchItem.setValue("Name");
         //selectedCombo.getItems().addAll("All","Name","Color","Available","Size","Salary");
@@ -294,80 +288,80 @@ public class screen2Controller implements Initializable {
     @FXML
     public void reportAction(ActionEvent event){
 
-            if(event.getSource() == ReportPr) {
-                try {
-                    OracleDataSource ods = new OracleDataSource();
-                    ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
-                    ods.setUser("mohammad");
-                    ods.setPassword("123456");
-                    Connection con = ods.getConnection();
-                    String qry = "select name_project from project where project_id = " + searchPID.getText();
-                    Statement stmt = con.createStatement();
-                    rs = stmt.executeQuery(qry);
-                    rs.next();
-                    Map<String, Object> parameter = new HashMap<String, Object>();
-                    parameter.put("ProjectP1", searchPID.getText());
-                    parameter.put("ProjectP2", TextReportPro.getText());
-                    parameter.put("ProjectP3", rs.getString(1));//rs.getString(1)
+        if(event.getSource() == ReportPr) {
+            try {
+                OracleDataSource ods = new OracleDataSource();
+                ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+                ods.setUser("mohammad");
+                ods.setPassword("123456");
+                Connection con = ods.getConnection();
+                String qry = "select name_project from project where project_id = " + searchPID.getText();
+                Statement stmt = con.createStatement();
+                rs = stmt.executeQuery(qry);
+                rs.next();
+                Map<String, Object> parameter = new HashMap<String, Object>();
+                parameter.put("ProjectP1", searchPID.getText());
+                parameter.put("ProjectP2", TextReportPro.getText());
+                parameter.put("ProjectP3", rs.getString(1));//rs.getString(1)
 
 
-                    InputStream input = new FileInputStream(new File("projectReport.jrxml"));
-                    JasperDesign jd = JRXmlLoader.load(input);
-                    JasperReport jr = JasperCompileManager.compileReport(jd);
-                    JasperPrint jp = JasperFillManager.fillReport(jr, parameter, con);
-                    //as pdf dirictly
+                InputStream input = new FileInputStream(new File("projectReport.jrxml"));
+                JasperDesign jd = JRXmlLoader.load(input);
+                JasperReport jr = JasperCompileManager.compileReport(jd);
+                JasperPrint jp = JasperFillManager.fillReport(jr, parameter, con);
+                //as pdf dirictly
            /* OutputStream os=new FileOutputStream(new File("EmplyeeSUM.pdf"));
             JasperExportManager.exportReportToPdfStream(jp,os);
             os.close();
             input.close();*/
-                    //as JFrame
-                    JFrame frame = new JFrame("Report");
-                    frame.getContentPane().add(new JRViewer(jp));
-                    frame.pack();
-                    frame.setVisible(true);
-                    con.close();
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
+                //as JFrame
+                JFrame frame = new JFrame("Report");
+                frame.getContentPane().add(new JRViewer(jp));
+                frame.pack();
+                frame.setVisible(true);
+                con.close();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
             }
-            else {
-                try {
-                    OracleDataSource ods = new OracleDataSource();
-                    ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
-                    ods.setUser("mohammad");
-                    ods.setPassword("123456");
-                    Connection con = ods.getConnection();
-                    String qry = "select name_Buyer from Buyer where buyer_id = '" + searchBID.getText()+"'";
+        }
+        else {
+            try {
+                OracleDataSource ods = new OracleDataSource();
+                ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+                ods.setUser("mohammad");
+                ods.setPassword("123456");
+                Connection con = ods.getConnection();
+                String qry = "select name_Buyer from Buyer where buyer_id = '" + searchBID.getText()+"'";
 
-                    Statement stmt = con.createStatement();
-                    rs = stmt.executeQuery(qry);
-                    rs.next();
-                    System.out.println(rs.getString(1));
-                    Map<String, Object> parameter2 = new HashMap<String, Object>();
-                    parameter2.put("Parameter1", searchBID.getText());
-                    parameter2.put("Parameter2", TextReportBuyer.getText());
-                    parameter2.put("Parameter3", rs.getString(1));//rs.getString(1)
+                Statement stmt = con.createStatement();
+                rs = stmt.executeQuery(qry);
+                rs.next();
+                System.out.println(rs.getString(1));
+                Map<String, Object> parameter2 = new HashMap<String, Object>();
+                parameter2.put("Parameter1", searchBID.getText());
+                parameter2.put("Parameter2", TextReportBuyer.getText());
+                parameter2.put("Parameter3", rs.getString(1));//rs.getString(1)
 
 
-                    InputStream input = new FileInputStream(new File("REPORT2.jrxml"));
-                    JasperDesign jd = JRXmlLoader.load(input);
-                    JasperReport jr = JasperCompileManager.compileReport(jd);
-                    JasperPrint jp = JasperFillManager.fillReport(jr, parameter2, con);
-                    //as pdf dirictly
+                InputStream input = new FileInputStream(new File("REPORT2.jrxml"));
+                JasperDesign jd = JRXmlLoader.load(input);
+                JasperReport jr = JasperCompileManager.compileReport(jd);
+                JasperPrint jp = JasperFillManager.fillReport(jr, parameter2, con);
+                //as pdf dirictly
            /* OutputStream os=new FileOutputStream(new File("EmplyeeSUM.pdf"));
             JasperExportManager.exportReportToPdfStream(jp,os);
             os.close();
             input.close();*/
-                    //as JFrame
-                    JFrame frame = new JFrame("Report");
-                    frame.getContentPane().add(new JRViewer(jp));
-                    frame.pack();
-                    frame.setVisible(true);
-                    con.close();
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
+                //as JFrame
+                JFrame frame = new JFrame("Report");
+                frame.getContentPane().add(new JRViewer(jp));
+                frame.pack();
+                frame.setVisible(true);
+                con.close();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
             }
+        }
     }
 
     @FXML
@@ -614,19 +608,6 @@ public class screen2Controller implements Initializable {
                 System.out.println(e);
             }
         }
-        else if (event.getSource() == AddItem) {
-            try {
-                Stage stage = new Stage();
-                Parent root = FXMLLoader.load(getClass().getResource("AddItem.fxml"));
-                stage.setTitle("Our Big Project!!");
-                stage.setScene(new Scene(root));
-                stage.showAndWait();
-                new FadeIn(root).play();
-            }
-            catch(Exception e){
-                System.out.println(e);
-            }
-        }
     }
 
     @FXML
@@ -640,89 +621,76 @@ public class screen2Controller implements Initializable {
             ods.setPassword("123456");
             con = ods.getConnection();
             con.setAutoCommit(false);
-        if (event.getSource() == DeleteE) {
-            String exe = searchEID.getText();
-            searchEID.setText("");
-            if(exe.isBlank() || exe.isEmpty() || exe == null) {
+            if (event.getSource() == DeleteE) {
+                String exe = searchEID.getText();
+                searchEID.setText("");
+                if(exe.isBlank() || exe.isEmpty() || exe == null) {
+                    con.close();
+                    return;
+                }
+                String all = "delete from Employee where SSN = "+exe;
+                Statement stmt = con.createStatement();
+                stmt.executeUpdate(all);
+                con.commit();
                 con.close();
-                return;
+                getFromAllDataEmp(employee, tableEmployee,  18, searchE,"Select * from employee",false);
             }
-            String all = "delete from Employee where SSN = "+exe;
-            Statement stmt = con.createStatement();
-            stmt.executeUpdate(all);
-            con.commit();
-            con.close();
-            getFromAllDataEmp(employee, tableEmployee,  18, searchE,"Select * from employee",false);
-        }
-        else if (event.getSource() == DeleteD) {
-            String exe = searchDID.getText();
-            searchDID.setText("");
-            if(exe.isBlank() || exe.isEmpty() || exe == null) {
+            else if (event.getSource() == DeleteD) {
+                String exe = searchDID.getText();
+                searchDID.setText("");
+                if(exe.isBlank() || exe.isEmpty() || exe == null) {
+                    con.close();
+                    return;
+                }
+                String all = "delete from Department where Department_ID = "+exe;
+                Statement stmt = con.createStatement();
+                stmt.executeUpdate(all);
+                con.commit();
                 con.close();
-                return;
+                getFromAllDataDep(department, tableDepartment,  5, searchD,"select D.Department_ID,D.Type,D.Hours_Working,D.country,D.city,D.Street,DH.Quantity,I.Item_ID,I.Name_Item,I.Color,I.Size_Item from Department D, department_have_items DH,Item i where D.Department_ID = DH.Department_ID And I.Item_ID = DH.Item_ID",false);
             }
-            String all = "delete from Department where Department_ID = "+exe;
-            Statement stmt = con.createStatement();
-            stmt.executeUpdate(all);
-            con.commit();
-            con.close();
-            getFromAllDataDep(department, tableDepartment,  5, searchD,"select D.Department_ID,D.Type,D.Hours_Working,D.country,D.city,D.Street,DH.Quantity,I.Item_ID,I.Name_Item,I.Color,I.Size_Item from Department D, department_have_items DH,Item i where D.Department_ID = DH.Department_ID And I.Item_ID = DH.Item_ID",false);
-        }
-        else if (event.getSource() == DeleteP) {
-            String exe = searchPID.getText();
-            searchPID.setText("");
-            if(exe.isBlank() || exe.isEmpty() || exe == null) {
+            else if (event.getSource() == DeleteP) {
+                String exe = searchPID.getText();
+                searchPID.setText("");
+                if(exe.isBlank() || exe.isEmpty() || exe == null) {
+                    con.close();
+                    return;
+                }
+                String all = "delete from Project where Project_ID = "+exe;
+                Statement stmt = con.createStatement();
+                stmt.executeUpdate(all);
+                con.commit();
                 con.close();
-                return;
+                getFromAllDataPro(project, tableProject,  10, searchP,"Select * from project",false);
             }
-            String all = "delete from Project where Project_ID = "+exe;
-            Statement stmt = con.createStatement();
-            stmt.executeUpdate(all);
-            con.commit();
-            con.close();
-            getFromAllDataPro(project, tableProject,  10, searchP,"Select * from project",false);
-        }
-        else if (event.getSource() == DeleteProvider) {
-            String exe = searchProviderID.getText();
-            searchProviderID.setText("");
-            if(exe.isBlank() || exe.isEmpty() || exe == null) {
+            else if (event.getSource() == DeleteProvider) {
+                String exe = searchProviderID.getText();
+                searchProviderID.setText("");
+                if(exe.isBlank() || exe.isEmpty() || exe == null) {
+                    con.close();
+                    return;
+                }
+                String all = "delete from Provider where Provider_ID = "+exe;
+                Statement stmt = con.createStatement();
+                stmt.executeUpdate(all);
+                con.commit();
                 con.close();
-                return;
+                getFromAllDataProvider(provider, tableProvider,  11, searchProvider,"select D.Provider_ID,D.Name_Provider,D.Phone_number,D.country,D.city,D.street,D.Type_Provider,D.Dilivery_Time,D.Type_of_cars,D.Size_Cars,D.Driving_Lisence,D.Description,DH.Quantity,I.Item_ID,I.Name_Item,I.Color,I.Size_Item from Provider D, provider_provide_items DH ,Item i where D.Provider_ID = DH.Provider_ID And I.Item_ID = DH.Item_ID",false);
             }
-            String all = "delete from Provider where Provider_ID = "+exe;
-            Statement stmt = con.createStatement();
-            stmt.executeUpdate(all);
-            con.commit();
-            con.close();
-            getFromAllDataProvider(provider, tableProvider,  11, searchProvider,"select D.Provider_ID,D.Name_Provider,D.Phone_number,D.country,D.city,D.street,D.Type_Provider,D.Dilivery_Time,D.Type_of_cars,D.Size_Cars,D.Driving_Lisence,D.Description,DH.Quantity,I.Item_ID,I.Name_Item,I.Color,I.Size_Item from Provider D, provider_provide_items DH ,Item i where D.Provider_ID = DH.Provider_ID And I.Item_ID = DH.Item_ID",false);
-        }
-        else if (event.getSource() == DeleteB) {
-            String exe = searchBID.getText();
-            searchBID.setText("");
-            if(exe.isBlank() || exe.isEmpty() || exe == null) {
+            else if (event.getSource() == DeleteB) {
+                String exe = searchBID.getText();
+                searchBID.setText("");
+                if(exe.isBlank() || exe.isEmpty() || exe == null) {
+                    con.close();
+                    return;
+                }
+                String all = "delete from Buyer where Buyer_ID = '"+exe+"'";
+                Statement stmt = con.createStatement();
+                stmt.executeUpdate(all);
+                con.commit();
                 con.close();
-                return;
+                getFromAllDataBuyer(buyer, tableBuyer,  1, searchB,"select D.Buyer_ID,D.Name_Buyer,DH.Quantity,I.Item_ID,I.Name_Item,I.Color,I.Size_Item,DD.Department_ID from Buyer D, Buyer_Buy_Items DH,Item i, Department DD where D.Buyer_ID = DH.Buyer_ID And I.Item_ID = DH.Item_ID And DD.Department_ID = DH.Department_ID Order by D.Name_Buyer",false);
             }
-            String all = "delete from Buyer where Buyer_ID = '"+exe+"'";
-            Statement stmt = con.createStatement();
-            stmt.executeUpdate(all);
-            con.commit();
-            con.close();
-            getFromAllDataBuyer(buyer, tableBuyer,  1, searchB,"select D.Buyer_ID,D.Name_Buyer,DH.Quantity,I.Item_ID,I.Name_Item,I.Color,I.Size_Item,DD.Department_ID from Buyer D, Buyer_Buy_Items DH,Item i, Department DD where D.Buyer_ID = DH.Buyer_ID And I.Item_ID = DH.Item_ID And DD.Department_ID = DH.Department_ID Order by D.Name_Buyer",false);
-        }
-        else if (event.getSource() == DeleteItem) {
-            String exe = ItemID.getText();
-            ItemID.setText("");
-            if(exe.isBlank() || exe.isEmpty() || exe == null) {
-                con.close();
-                return;
-            }
-            String all = "delete from Item where Item_ID = '"+exe+"'";
-            Statement stmt = con.createStatement();
-            stmt.executeUpdate(all);
-            con.commit();
-            con.close();
-        }
         }
         catch(Exception e) {
             System.out.println(e);
@@ -1257,4 +1225,9 @@ public class screen2Controller implements Initializable {
         }
     }
 
+    public void DeleteActionItem(ActionEvent actionEvent) {
+    }
+
+    public void AddActionItem(ActionEvent actionEvent) {
+    }
 }
