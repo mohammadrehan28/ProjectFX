@@ -215,10 +215,83 @@ public class BuyerController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //selectedCombo.getItems().addAll("All","Name","Color","Available","Size","Salary");
+        ComboSearchItem.getItems().addAll("Name","Salary less than", "Salary more than");
+        ComboSearchItem.setValue("Name");
     }
 
     public void SearchActionItem(ActionEvent actionEvent) {
+        try {
+            OracleDataSource ods = new OracleDataSource();
+            ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+            ods.setUser("mohammad");
+            ods.setPassword("123456");
+            Connection con = ods.getConnection();
+            String all = "select * from Item";
+            Statement stmt = con.createStatement();
+            rs = stmt.executeQuery(all);
+            gridItems.getChildren().clear();
+            int column = 0;
+            int row = 1;
+            datadepartment = FXCollections.observableArrayList();
+            while (rs.next()) {
+                if (rs.getString(3).equals(Items[Indicator])) {
+                    ObservableList<String> row1 = FXCollections.observableArrayList();
+                    for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
+                        //Iterate Column
+                        if (rs.getString(i) == null) row1.add("null");
+                        else row1.add(rs.getString(i));
+                    }
+                    datadepartment.add(row1);
+                }
+            }
+            FilteredList<ObservableList> filter = new FilteredList<>(datadepartment, b -> true);
+            String newValue = TextS.getText();
+            filter.setPredicate(ObservableList -> {
+                try {
+                    if(TextS.getText().isEmpty()) {
+                        return true;
+                    }
+                    String SearchKey = newValue.toLowerCase();
+                    if (ComboSearchItem.getSelectionModel().getSelectedItem().equals("Name")) {
+                        if (ObservableList.get(1).toString().toLowerCase().indexOf(SearchKey) > -1) {
+                            return true;
+                        }
+                    } else if (ComboSearchItem.getSelectionModel().getSelectedItem().equals("Salary less than")) {
+                        if (Integer.parseInt(ObservableList.get(7).toString()) <= (Integer.parseInt(SearchKey))) {
+                            return true;
+                        }
+                    } else {
+                        if (Integer.parseInt(ObservableList.get(7).toString()) >= (Integer.parseInt(SearchKey))) {
+                            return true;
+                        }
+                    }
+                    return false;
+                } catch (Exception e) {
+                    return false;
+                }
+            });
+            SortedList<ObservableList> sortedData = new SortedList<>(filter);
+            gridItems.getChildren().clear();
+            for (int i = 0; i < sortedData.size(); i++) {
+                FXMLLoader fxmlLoad = new FXMLLoader();
+                fxmlLoad.setLocation(getClass().getResource("Items.fxml"));
+                HBox Item = fxmlLoad.load();
+                ItemController = fxmlLoad.getController();
+                boolean ava;
+                if (Integer.parseInt(sortedData.get(i).get(4).toString()) > 0) ava = true;
+                else ava = false;
+                ItemController.SetData(sortedData.get(i).get(1).toString(), sortedData.get(i).get(6).toString(), sortedData.get(i).get(3).toString(), sortedData.get(i).get(7).toString(), ava, true,sortedData.get(i).get(0).toString());
+                if (column == 2) {
+                    column = 0;
+                    row++;
+                }
+                gridItems.add(Item, column++, row);
+                GridPane.setMargin(Item, new Insets(20));
+            }
+            con.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void DeleteActionItem(ActionEvent actionEvent) { //Buy Item
@@ -240,7 +313,7 @@ public class BuyerController implements Initializable {
             String Buy = BuyerID.getText();
             boolean Flag = true;
             while(rs.next()) {
-                if(ID == rs.getString(1)) {
+                if(ID.equals(rs.getString(1))) {
                     Flag = false;
                     if(Integer.parseInt(rs.getString(2)) == 0) {
                         JOptionPane.showMessageDialog(null, "Item ID does not Available", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -256,10 +329,11 @@ public class BuyerController implements Initializable {
                 throw new Exception();
             }
             all = "select Buyer_ID from Buyer";
+            //System.out.println(1);
             rs = stmt.executeQuery(all);
             Flag = true;
             while(rs.next()) {
-                if(Buy == rs.getString(1)) {
+                if(Buy.equals(rs.getString(1))) {
                     Flag = false;
                     break;
                 }
@@ -270,32 +344,36 @@ public class BuyerController implements Initializable {
                 throw new Exception();
             }
             //TOGO
+            //System.out.println(1);
             all = "UPDATE Item\n" +
                     "SET Quantity = Quantity - 1\n" +
-                    "WHERE Itme_ID = "+ID;
+                    "WHERE Item_ID = "+ID;
             stmt.executeUpdate(all);
             all = "select * from Buyer_Buy_Items";
             rs = stmt.executeQuery(all);
             Flag = true;
+            //System.out.println(1);
             while(rs.next()) {
-                if(ID == rs.getString(1) && Buy == rs.getString(2)) {
+                if(ID.equals(rs.getString(1)) && Buy.equals(rs.getString(2))) {
                     Flag = false;
                     all = "UPDATE Buyer_Buy_Items\n" +
                             "SET Quantity = Quantity + 1\n" +
-                            "WHERE Itme_ID = "+ID+" and Buyer_ID = '" + Buy+"'";
+                            "WHERE Item_ID = "+ID+" and Buyer_ID = '" + Buy+"'";
                     stmt.executeUpdate(all);
                     break;
                 }
             }
             if(Flag) {
-                all = "INSERT INTO Employee values('"+ID+"','"+Buy+"',1,)";
+                //System.out.println(1);
+                all = "INSERT INTO Buyer_Buy_Items values('"+ID+"','"+Buy+"',1,3)";
                 stmt.executeUpdate(all);
             }
+            JOptionPane.showMessageDialog(null, "your Request Success", "INFORMATION_MESSAGE", JOptionPane.INFORMATION_MESSAGE);
             con.commit();
             con.close();
         }
         catch(Exception e) {
-            //System.out.println(e);
+            System.out.println(e);
         }
     }
 
@@ -318,7 +396,7 @@ public class BuyerController implements Initializable {
             String Buy = BuyerID.getText();
             boolean Flag = true;
             while(rs.next()) {
-                if(ID == rs.getString(1)) {
+                if(ID.equals(rs.getString(1))) {
                     Flag = false;
                     break;
                 }
@@ -332,7 +410,7 @@ public class BuyerController implements Initializable {
             rs = stmt.executeQuery(all);
             Flag = true;
             while(rs.next()) {
-                if(Buy == rs.getString(1)) {
+                if(Buy.equals(rs.getString(1))) {
                     Flag = false;
                     break;
                 }
@@ -343,7 +421,7 @@ public class BuyerController implements Initializable {
                 throw new Exception();
             }
             //TOGO
-            JOptionPane.showMessageDialog(null, "We are Up your Request Success", "ERROR", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "We are Up your Request Success", "INFORMATION_MESSAGE", JOptionPane.INFORMATION_MESSAGE);
             con.close();
         }
         catch(Exception e) {

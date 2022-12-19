@@ -49,6 +49,8 @@ public class screen2Controller implements Initializable {
     public TextField ItemID;
     public Button DeleteItem;
     public Button AddItem;
+    public Button ButtonAdd;
+    public StackPane StackPaneAll;
     @FXML
     private Button ReportBuyer;
     @FXML
@@ -1342,4 +1344,20 @@ public class screen2Controller implements Initializable {
         }
     }
 
+
+    public void ButtonAddLis(ActionEvent actionEvent) {
+        String StackID = StackPaneAll.getChildren().get( StackPaneAll.getChildren().size()-1).getId();
+        if(StackID.equals("grid2")) { //Department
+
+        }
+        else if(StackID.equals("grid4")) { //Project
+
+        }
+        else if(StackID.equals("grid5")) { //Provider
+
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Not Available", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 }

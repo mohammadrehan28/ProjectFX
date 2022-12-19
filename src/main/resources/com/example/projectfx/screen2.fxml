@@ -124,80 +124,8 @@
             </Button>
          </children>
       </VBox>
-      <StackPane layoutX="194.0" layoutY="145.0">
+      <StackPane fx:id="StackPaneAll" layoutX="194.0" layoutY="145.0">
          <children>
-            <GridPane fx:id="grid2" prefHeight="523.0" prefWidth="728.0" style="-fx-background-color: #F4F4F4;">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints maxHeight="165.60001220703126" minHeight="10.0" prefHeight="135.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="412.0" minHeight="10.0" prefHeight="412.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-               <children>
-                  <VBox>
-                     <children>
-                        <HBox prefHeight="37.0" prefWidth="461.0">
-                           <children>
-                              <ImageView fitHeight="17.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                 <HBox.margin>
-                                    <Insets bottom="10.0" left="15.0" top="10.0" />
-                                 </HBox.margin>
-                                 <image>
-                                    <Image url="@Image/search_FILL0_wght400_GRAD0_opsz48.png" />
-                                 </image>
-                              </ImageView>
-                              <TextField fx:id="searchD" prefWidth="375.0" promptText="any Keyword..." style="-fx-border-color: #212F3C;">
-                                 <HBox.margin>
-                                    <Insets bottom="3.0" left="20.0" right="10.0" top="3.0" />
-                                 </HBox.margin>
-                              </TextField>
-                              <ComboBox fx:id="ComboDep" onAction="#itemStateChangedDep" prefWidth="150.0" style="-fx-border-color: #212F3C;">
-                                 <HBox.margin>
-                                    <Insets bottom="3.0" left="10.0" right="10.0" top="3.0" />
-                                 </HBox.margin>
-                              </ComboBox>
-                           </children>
-                           <padding>
-                              <Insets top="5.0" />
-                           </padding>
-                           <VBox.margin>
-                              <Insets top="4.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox>
-                           <children>
-                              <TextField fx:id="searchDID" prefHeight="27.0" prefWidth="204.0" promptText="ID" style="-fx-border-color: #212F3C;">
-                                 <HBox.margin>
-                                    <Insets left="52.0" />
-                                 </HBox.margin>
-                              </TextField>
-                              <Button fx:id="DeleteD" mnemonicParsing="false" onAction="#DeleteListener" prefHeight="27.0" prefWidth="150.0" style="-fx-border-color: #212F3C;" text="Delete Department" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold Italic" size="12.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="18.0" />
-                                 </HBox.margin>
-                              </Button>
-                           </children>
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <Button fx:id="addD" mnemonicParsing="false" onAction="#AddListener" prefHeight="27.0" prefWidth="204.0" style="-fx-border-color: #212F3C;" text="Add Department" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold Italic" size="12.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="52.0" top="15.0" />
-                           </VBox.margin>
-                        </Button>
-                     </children>
-                  </VBox>
-                  <TableView fx:id="tableDepartment" onMousePressed="#TableEmpListener" prefHeight="270.0" prefWidth="523.0" stylesheets="@style.css" GridPane.rowIndex="1" />
-               </children>
-            </GridPane>
             <GridPane fx:id="grid5" onMousePressed="#TableEmpListener" prefHeight="523.0" prefWidth="728.0" style="-fx-background-color: #F4F4F4;">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -791,6 +719,78 @@
                   </VBox>
                </children>
             </AnchorPane>
+            <GridPane fx:id="grid2" prefHeight="523.0" prefWidth="728.0" style="-fx-background-color: #F4F4F4;">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="165.60001220703126" minHeight="10.0" prefHeight="135.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="412.0" minHeight="10.0" prefHeight="412.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <VBox>
+                     <children>
+                        <HBox prefHeight="37.0" prefWidth="461.0">
+                           <children>
+                              <ImageView fitHeight="17.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" left="15.0" top="10.0" />
+                                 </HBox.margin>
+                                 <image>
+                                    <Image url="@Image/search_FILL0_wght400_GRAD0_opsz48.png" />
+                                 </image>
+                              </ImageView>
+                              <TextField fx:id="searchD" prefWidth="375.0" promptText="any Keyword..." style="-fx-border-color: #212F3C;">
+                                 <HBox.margin>
+                                    <Insets bottom="3.0" left="20.0" right="10.0" top="3.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <ComboBox fx:id="ComboDep" onAction="#itemStateChangedDep" prefWidth="150.0" style="-fx-border-color: #212F3C;">
+                                 <HBox.margin>
+                                    <Insets bottom="3.0" left="10.0" right="10.0" top="3.0" />
+                                 </HBox.margin>
+                              </ComboBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets top="4.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <TextField fx:id="searchDID" prefHeight="27.0" prefWidth="204.0" promptText="ID" style="-fx-border-color: #212F3C;">
+                                 <HBox.margin>
+                                    <Insets left="52.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <Button fx:id="DeleteD" mnemonicParsing="false" onAction="#DeleteListener" prefHeight="27.0" prefWidth="150.0" style="-fx-border-color: #212F3C;" text="Delete Department" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold Italic" size="12.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="18.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <Button fx:id="addD" mnemonicParsing="false" onAction="#AddListener" prefHeight="27.0" prefWidth="204.0" style="-fx-border-color: #212F3C;" text="Add Department" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold Italic" size="12.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="52.0" top="15.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+                  <TableView fx:id="tableDepartment" onMousePressed="#TableEmpListener" prefHeight="270.0" prefWidth="523.0" stylesheets="@style.css" GridPane.rowIndex="1" />
+               </children>
+            </GridPane>
          </children>
       </StackPane>
       <Pane fx:id="pane_state" layoutX="192.0" layoutY="70.0" prefHeight="75.0" prefWidth="731.0" style="-fx-background-color: #A2D9CE;">
@@ -805,6 +805,19 @@
             </Label>
          </children>
       </Pane>
-      <Button fx:id="exit_btn" layoutX="850.0" layoutY="9.0" mnemonicParsing="false" onAction="#handleExit" prefHeight="25.0" prefWidth="64.0" text="⬅ return" textFill="WHITE" />
+      <Button fx:id="exit_btn" layoutX="804.0" layoutY="9.0" mnemonicParsing="false" onAction="#handleExit" prefHeight="52.0" prefWidth="110.0" text="⬅ return" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="20.0" />
+         </font></Button>
+      <ImageView fitHeight="67.0" fitWidth="280.0" layoutX="514.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Image/Branch.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="ButtonAdd" layoutX="203.0" layoutY="9.0" mnemonicParsing="false" onAction="#ButtonAddLis" prefHeight="52.0" prefWidth="52.0" text="+" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
