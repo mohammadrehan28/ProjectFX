@@ -1,5 +1,6 @@
 package com.example.projectfx;
 
+import animatefx.animation.FadeIn;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -58,6 +59,7 @@ public class BuyerController implements Initializable {
     public String Items[] = {"OutDoor","InDoor","Art","Plant","Equipment","Other","Grass"};
     public int Indicator = 0;
     public int selectCombo = -1;
+    static String IDItem;
 
     @FXML
     public void handleExit(ActionEvent actionEvent) {
@@ -296,6 +298,18 @@ public class BuyerController implements Initializable {
 
     public void DeleteActionItem(ActionEvent actionEvent) { //Buy Item
         try {
+            if(ItemID.getText().isEmpty() || BuyerID.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "The ID is Empty", "ERROR", JOptionPane.ERROR_MESSAGE);
+                throw new Exception();
+            }
+            IDItem = ItemID.getText();
+            Stage stage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("DepartmentView.fxml"));
+            stage.setTitle("Our Big Project!!");
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+            new FadeIn(root).play();
+
             OracleDataSource ods = new OracleDataSource();
             ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
             ods.setUser("mohammad");
@@ -304,11 +318,6 @@ public class BuyerController implements Initializable {
             String all = "select Item_ID,Quantity from Item";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(all);
-            if(ItemID.getText().isEmpty() || BuyerID.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "The ID is Empty", "ERROR", JOptionPane.ERROR_MESSAGE);
-                con.close();
-                throw new Exception();
-            }
             String ID = ItemID.getText();
             String Buy = BuyerID.getText();
             boolean Flag = true;
@@ -348,6 +357,9 @@ public class BuyerController implements Initializable {
             all = "UPDATE Item\n" +
                     "SET Quantity = Quantity - 1\n" +
                     "WHERE Item_ID = "+ID;
+            all = "UPDATE Department_Have_Items\n" +
+                    "SET Quantity = Quantity - 1\n" +
+                    "WHERE Item_ID = "+ID+" and Department_ID = '" + DepartmentViewController.EmpUbdate.get(0) +"'";
             stmt.executeUpdate(all);
             all = "select * from Buyer_Buy_Items";
             rs = stmt.executeQuery(all);
@@ -365,7 +377,7 @@ public class BuyerController implements Initializable {
             }
             if(Flag) {
                 //System.out.println(1);
-                all = "INSERT INTO Buyer_Buy_Items values('"+ID+"','"+Buy+"',1,3)";
+                all = "INSERT INTO Buyer_Buy_Items values('"+ID+"','"+Buy+"',1,'"+DepartmentViewController.EmpUbdate.get(0)+"')";
                 stmt.executeUpdate(all);
             }
             JOptionPane.showMessageDialog(null, "your Request Success", "INFORMATION_MESSAGE", JOptionPane.INFORMATION_MESSAGE);

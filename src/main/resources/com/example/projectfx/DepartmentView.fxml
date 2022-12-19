@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="395.0" prefWidth="592.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectfx.DepartmentViewController">
+   <children>
+      <TableView fx:id="tableDepartment" layoutY="43.0" onMousePressed="#TableEmpListener" prefHeight="352.0" prefWidth="592.0" stylesheets="@style.css" />
+      <Label alignment="CENTER" layoutX="234.0" layoutY="7.0" prefHeight="29.0" prefWidth="125.0" style="-fx-background-color: #A2D9CE; -fx-background-radius: 5px; -fx-padding: 5px 5px 5px 5px;" text="Department Table" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

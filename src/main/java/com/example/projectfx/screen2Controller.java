@@ -432,23 +432,27 @@ public class screen2Controller implements Initializable {
         if (event.getSource() == employee_btn) {
             text_state.setText("Employee");
             grid1.toFront();
-
+            ButtonAdd.setDisable(false);
         } else if (event.getSource() == department_btn) {
             text_state.setText("Department");
             grid2.toFront();
+            ButtonAdd.setDisable(false);
         } else if (event.getSource() == item_btn) {
             text_state.setText("Item");
             grid3.toFront();
-
+            ButtonAdd.setDisable(true);
         } else if (event.getSource() == project_btn) {
             text_state.setText("Project");
             grid4.toFront();
+            ButtonAdd.setDisable(false);
         } else if (event.getSource() == provider_btn) {
             text_state.setText("Provider");
             grid5.toFront();
+            ButtonAdd.setDisable(false);
         } else if (event.getSource() == buyer_btn) {
             text_state.setText("Buyer");
             grid6.toFront();
+            ButtonAdd.setDisable(true);
         }
 
     }
@@ -1347,7 +1351,20 @@ public class screen2Controller implements Initializable {
 
     public void ButtonAddLis(ActionEvent actionEvent) {
         String StackID = StackPaneAll.getChildren().get( StackPaneAll.getChildren().size()-1).getId();
-        if(StackID.equals("grid2")) { //Department
+        if(StackID.equals("grid1")) {
+            try {
+                Stage stage = new Stage();
+                Parent root = FXMLLoader.load(getClass().getResource("AddEmployeeRel.fxml"));
+                stage.setTitle("Our Big Project!!");
+                stage.setScene(new Scene(root));
+                stage.showAndWait();
+                new FadeIn(root).play();
+            }
+            catch(Exception e){
+                System.out.println(e);
+            }
+        }
+        else if(StackID.equals("grid2")) { //Department
             try {
                 Stage stage = new Stage();
                 Parent root = FXMLLoader.load(getClass().getResource("AddDepartmentRel.fxml"));

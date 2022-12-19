@@ -49,6 +49,7 @@ public class UserController implements Initializable {
     public TextField ItemID;
     public Button DeleteItem;
     public Button AddItem;
+    public Button ButtonAdd;
     @FXML
     private Button ReportBuyer;
     @FXML
@@ -425,23 +426,28 @@ public class UserController implements Initializable {
         if (event.getSource() == employee_btn) {
             text_state.setText("Employee");
             grid1.toFront();
-
+            ButtonAdd.setDisable(false);
         } else if (event.getSource() == department_btn) {
             text_state.setText("Department");
             grid2.toFront();
+            ButtonAdd.setDisable(false);
         } else if (event.getSource() == item_btn) {
             text_state.setText("Item");
             grid3.toFront();
+            ButtonAdd.setDisable(true);
 
         } else if (event.getSource() == project_btn) {
             text_state.setText("Project");
             grid4.toFront();
+            ButtonAdd.setDisable(false);
         } else if (event.getSource() == provider_btn) {
             text_state.setText("Provider");
             grid5.toFront();
+            ButtonAdd.setDisable(false);
         } else if (event.getSource() == buyer_btn) {
             text_state.setText("Buyer");
             grid6.toFront();
+            ButtonAdd.setDisable(true);
         }
 
     }
