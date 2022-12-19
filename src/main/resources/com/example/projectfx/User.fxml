@@ -94,7 +94,7 @@
                 </Button>
             </children>
         </VBox>
-        <StackPane layoutX="194.0" layoutY="145.0">
+        <StackPane fx:id="StackPaneAll" layoutX="194.0" layoutY="145.0">
             <children>
                 <GridPane fx:id="grid3" prefHeight="523.0" prefWidth="728.0" style="-fx-background-color: #F4F4F4;">
                     <columnConstraints>
@@ -540,6 +540,20 @@
                 </Label>
             </children>
         </Pane>
-        <Button fx:id="exit_btn" layoutX="850.0" layoutY="9.0" mnemonicParsing="false" onAction="#handleExit" prefHeight="25.0" prefWidth="64.0" text="⬅ return" textFill="WHITE" />
+      <Button fx:id="exit_btn" layoutX="806.0" layoutY="9.0" mnemonicParsing="false" onAction="#handleExit" prefHeight="52.0" prefWidth="110.0" text="⬅ return" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="20.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="67.0" fitWidth="280.0" layoutX="516.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Image/Branch.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="ButtonAdd" layoutX="205.0" layoutY="9.0" mnemonicParsing="false" onAction="#ButtonAddLis" prefHeight="52.0" prefWidth="52.0" text="+" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>

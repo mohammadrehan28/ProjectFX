@@ -50,7 +50,7 @@ public class AddProjectRelController implements Initializable {
             ods.setUser("mohammad");
             ods.setPassword("123456");
             Connection con = ods.getConnection();
-            String all = "select * from Department_Have_Items";
+            String all = "select * from Project_Need_Items";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(all);
             if(textID.getText().isEmpty() && textName.getText().isEmpty()) {
@@ -75,7 +75,7 @@ public class AddProjectRelController implements Initializable {
             String ID = textID.getText();
             String Name = textName.getText();
             String Quan = textQuan.getText();
-            all = "INSERT INTO Department_Have_Items values('"+ID+"','"+Name+"',"+Quan+")";
+            all = "INSERT INTO Project_Need_Items values('"+ID+"','"+Name+"',"+Quan+")";
             stmt.executeUpdate(all);
             con.commit();
             con.close();
@@ -90,8 +90,6 @@ public class AddProjectRelController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        if(!screen2Controller.Flag) {
-            AddEmployee.setText("Update Buyer");
-        }
+
     }
 }

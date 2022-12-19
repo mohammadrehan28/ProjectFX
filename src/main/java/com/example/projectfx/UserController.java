@@ -100,6 +100,7 @@ public class UserController implements Initializable {
     public TableView tableDepartment;
     @FXML
     public TableView tableProject;
+    public StackPane StackPaneAll;
     @FXML
     public TableView tableProvider;
     @FXML
@@ -1311,8 +1312,64 @@ public class UserController implements Initializable {
     }
 
     public void DeleteActionItem(ActionEvent actionEvent) {
+        Connection con;
+        OracleDataSource ods;
+        try {
+            ods = new OracleDataSource();
+            ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+            ods.setUser("mohammad");
+            ods.setPassword("123456");
+            con = ods.getConnection();
+            con.setAutoCommit(false);
+        String exe = ItemID.getText();
+        ItemID.setText("");
+        if(exe.isBlank() || exe.isEmpty() || exe == null) {
+            con.close();
+            return;
+        }
+        String all = "delete from Item where Item_ID = '"+exe+"'";
+        Statement stmt = con.createStatement();
+        stmt.executeUpdate(all);
+        con.commit();
+        con.close();
     }
+    catch(Exception e) {
+        System.out.println(e);
+    }
+}
 
     public void AddActionItem(ActionEvent actionEvent) {
+        try {
+            Stage stage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("AddItem.fxml"));
+            stage.setTitle("Our Big Project!!");
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+            new FadeIn(root).play();
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void ButtonAddLis(ActionEvent actionEvent) {
+        String StackID = StackPaneAll.getChildren().get( StackPaneAll.getChildren().size()-1).getId();
+        if(StackID.equals("grid2")) { //Department
+            try {
+                Stage stage = new Stage();
+                Parent root = FXMLLoader.load(getClass().getResource("AddDepartmentRel.fxml"));
+                stage.setTitle("Our Big Project!!");
+                stage.setScene(new Scene(root));
+                stage.showAndWait();
+                new FadeIn(root).play();
+                getFromAllDataDep(department, tableDepartment,  5, searchD,"select D.Department_ID,D.Type,D.Hours_Working,D.country,D.city,D.Street,DH.Quantity,I.Item_ID,I.Name_Item,I.Color,I.Size_Item from Department D, department_have_items DH,Item i where D.Department_ID = DH.Department_ID And I.Item_ID = DH.Item_ID",false);
+            }
+            catch(Exception e){
+                System.out.println(e);
+            }
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Not Available", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }

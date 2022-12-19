@@ -1348,13 +1348,46 @@ public class screen2Controller implements Initializable {
     public void ButtonAddLis(ActionEvent actionEvent) {
         String StackID = StackPaneAll.getChildren().get( StackPaneAll.getChildren().size()-1).getId();
         if(StackID.equals("grid2")) { //Department
-
+            try {
+                Stage stage = new Stage();
+                Parent root = FXMLLoader.load(getClass().getResource("AddDepartmentRel.fxml"));
+                stage.setTitle("Our Big Project!!");
+                stage.setScene(new Scene(root));
+                stage.showAndWait();
+                new FadeIn(root).play();
+                getFromAllDataDep(department, tableDepartment,  5, searchD,"select D.Department_ID,D.Type,D.Hours_Working,D.country,D.city,D.Street,DH.Quantity,I.Item_ID,I.Name_Item,I.Color,I.Size_Item from Department D, department_have_items DH,Item i where D.Department_ID = DH.Department_ID And I.Item_ID = DH.Item_ID",false);
+            }
+            catch(Exception e){
+                System.out.println(e);
+            }
         }
         else if(StackID.equals("grid4")) { //Project
-
+            try {
+                Stage stage = new Stage();
+                Parent root = FXMLLoader.load(getClass().getResource("AddProjectRel.fxml"));
+                stage.setTitle("Our Big Project!!");
+                stage.setScene(new Scene(root));
+                stage.showAndWait();
+                new FadeIn(root).play();
+                getFromAllDataPro(project, tableProject,  10, searchP,"Select * from project",false);
+            }
+            catch(Exception e){
+                System.out.println(e);
+            }
         }
         else if(StackID.equals("grid5")) { //Provider
-
+            try {
+                Stage stage = new Stage();
+                Parent root = FXMLLoader.load(getClass().getResource("AddProviderRel.fxml"));
+                stage.setTitle("Our Big Project!!");
+                stage.setScene(new Scene(root));
+                stage.showAndWait();
+                new FadeIn(root).play();
+                getFromAllDataProvider(provider, tableProvider,  11, searchProvider,"select D.Provider_ID,D.Name_Provider,D.Phone_number,D.country,D.city,D.street,D.Type_Provider,D.Dilivery_Time,D.Type_of_cars,D.Size_Cars,D.Driving_Lisence,D.Description,DH.Quantity,I.Item_ID,I.Name_Item,I.Color,I.Size_Item from Provider D, provider_provide_items DH ,Item i where D.Provider_ID = DH.Provider_ID And I.Item_ID = DH.Item_ID",false);
+            }
+            catch(Exception e){
+                System.out.println(e);
+            }
         }
         else {
             JOptionPane.showMessageDialog(null, "Not Available", "ERROR", JOptionPane.ERROR_MESSAGE);

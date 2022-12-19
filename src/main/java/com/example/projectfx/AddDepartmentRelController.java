@@ -90,8 +90,6 @@ public class AddDepartmentRelController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        if(!screen2Controller.Flag) {
-            AddEmployee.setText("Update Buyer");
-        }
+
     }
 }

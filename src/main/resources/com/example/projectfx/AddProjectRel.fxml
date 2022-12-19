@@ -15,7 +15,7 @@
         <Circle fill="DODGERBLUE" radius="153.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: #A2D9CE; -fx-stroke-width: 0px;" />
         <VBox fx:id="All" alignment="CENTER" prefHeight="135.0" prefWidth="546.0">
             <children>
-                <Label fx:id="AddEmployee" onMousePressed="#AddEmployeeListener" style="-fx-background-color: #A2D9CE; -fx-background-radius: 10;" text="Add Department-Item" textFill="WHITE">
+                <Label fx:id="AddEmployee" onMousePressed="#AddEmployeeListener" style="-fx-background-color: #A2D9CE; -fx-background-radius: 10;" text="Add Project-Item" textFill="WHITE">
                     <font>
                         <Font name="Verdana Bold Italic" size="16.0" />
                     </font>
@@ -52,7 +52,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="100.0" prefWidth="157.0">
                             <children>
-                                <Label style="-fx-background-color: #A2D9CE; -fx-background-radius: 10px;" text="Department ID" textFill="WHITE">
+                                <Label style="-fx-background-color: #A2D9CE; -fx-background-radius: 10px;" text="Project ID" textFill="WHITE">
                                     <VBox.margin>
                                         <Insets bottom="3.0" />
                                     </VBox.margin>
