@@ -571,7 +571,7 @@ public class screen2Controller implements Initializable {
                 stage.setTitle("Our Big Project!!");
                 stage.setScene(new Scene(root));
                 stage.showAndWait();
-                getFromAllDataDep(department, tableDepartment,  5, searchD,"Select * from department",false);
+                getFromAllDataDep(department, tableDepartment,  5, searchD,"select D.Department_ID,D.Type,D.Hours_Working,D.country,D.city,D.Street,DH.Quantity,I.Item_ID,I.Name_Item,I.Color,I.Size_Item from Department D, department_have_items DH,Item i where D.Department_ID = DH.Department_ID And I.Item_ID = DH.Item_ID",false);
                 new FadeIn(root).play();
             }
             catch(Exception e){

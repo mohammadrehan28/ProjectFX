@@ -96,20 +96,20 @@ public class AddProviderController implements Initializable {
             if(textID.getText().isEmpty()||textID.getText().isBlank()||textID.getText() == null) {
                 JOptionPane.showMessageDialog(null, "The ID is Empty", "ERROR", JOptionPane.ERROR_MESSAGE);
                 con.close();
-                throw new Exception();
+                return;
             }
             while (rs.next()) {
                 String ID = rs.getString(1);
                 if(!textID.getText().equals(IDD) && ID.equals(textID.getText())) {
                     JOptionPane.showMessageDialog(null, "The ID is already contains", "ERROR", JOptionPane.ERROR_MESSAGE);
                     con.close();
-                    throw new Exception();
+                    return;
                 }
             }
             if(textID.getText().isEmpty()||textCity.getText().isEmpty()||textCountry.getText().isEmpty()||textName.getText().isEmpty()||textStreet.getText().isEmpty()||textPhone.getText().isEmpty()||textDesc.getText().isEmpty()){
                 JOptionPane.showMessageDialog(null, "Field is Empty", "ERROR", JOptionPane.ERROR_MESSAGE);
                 con.close();
-                throw new Exception();
+                return;
             }
             String ID = textID.getText();
             String Name = textName.getText();
@@ -123,10 +123,10 @@ public class AddProviderController implements Initializable {
                 if(textTime.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Field is Empty", "ERROR", JOptionPane.ERROR_MESSAGE);
                     con.close();
-                    throw new Exception();
+                    return;
                 }
                 String Del = textTime.getText();
-                if(screen2Controller.Flag) all = "INSERT INTO Employee values("+ID+",'"+Name+"',"+Phone+",'"+Country+"','"+City+"','"+Street+"','"+combo+"',"+Del+",null,null,null,'"+Desc+"')";
+                if(screen2Controller.Flag) all = "INSERT INTO Provider values("+ID+",'"+Name+"',"+Phone+",'"+Country+"','"+City+"','"+Street+"','"+combo+"',"+Del+",null,null,null,'"+Desc+"')";
                 else all = "UPDATE Provider\n" +
                         "SET Provider_ID = "+ID+", Name_Provider = '"+Name+"', Phone_Number = "+Phone+", country = '"+Country+"', city = '"+City+"', street = '"+Street+"',Type_Provider = '"+combo+"',Dilivery_time = "+Del+",Type_of_cars = null,size_cars=null,Driving_lisence=null,description='"+Desc+"'\n" +
                         "WHERE Provider_ID = "+IDD;
@@ -135,7 +135,7 @@ public class AddProviderController implements Initializable {
                 if(textSize.getText().isEmpty()||textDriv.getText().isEmpty()||textTypeCars.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Field is Empty", "ERROR", JOptionPane.ERROR_MESSAGE);
                     con.close();
-                    throw new Exception();
+                    return;
                 }
                 String Driv = textDriv.getText();
                 String TypeCars = textTypeCars.getText();

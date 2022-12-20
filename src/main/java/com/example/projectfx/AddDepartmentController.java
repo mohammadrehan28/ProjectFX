@@ -62,20 +62,20 @@ public class AddDepartmentController implements Initializable {
             if(textID.getText().isEmpty()||textID.getText().isBlank()||textID.getText() == null) {
                 JOptionPane.showMessageDialog(null, "The ID is Empty", "ERROR", JOptionPane.ERROR_MESSAGE);
                 con.close();
-                throw new Exception();
+                return;
             }
             while (rs.next()) {
                 String ID = rs.getString(1);
                 if(!textID.getText().equals(IDD) && ID.equals(textID.getText())) {
                     JOptionPane.showMessageDialog(null, "The ID is already contains", "ERROR", JOptionPane.ERROR_MESSAGE);
                     con.close();
-                    throw new Exception();
+                    return;
                 }
             }
             if(textID.getText().isEmpty()||textCountry.getText().isEmpty()||textCity.getText().isEmpty()||textHours.getText().isEmpty()||textStreet.getText().isEmpty()){
                 JOptionPane.showMessageDialog(null, "Field is Empty", "ERROR", JOptionPane.ERROR_MESSAGE);
                 con.close();
-                throw new Exception();
+                return;
             }
             String ID = textID.getText();
             String Hours = textHours.getText();
@@ -83,7 +83,7 @@ public class AddDepartmentController implements Initializable {
             String City = textCity.getText();
             String Street = textStreet.getText();
             String combo = comboType.getSelectionModel().getSelectedItem();
-            if(screen2Controller.Flag) all = "INSERT INTO Employee values("+ID+",'"+combo+"','"+Hours+"','"+Country+"','"+City+"','"+Street+"')";
+            if(screen2Controller.Flag) all = "INSERT INTO Department values("+ID+",'"+combo+"','"+Hours+"','"+Country+"','"+City+"','"+Street+"')";
             else all = "UPDATE Department\n" +
                     "SET Department_ID = "+ID+", Type = '"+combo+"', Hours_Working = '"+Hours+"', country = '"+Country+"', city = '"+City+"', street = '"+Street+"'\n" +
                     "WHERE Department_ID = "+IDD;
@@ -92,7 +92,7 @@ public class AddDepartmentController implements Initializable {
             con.close();
             throw new Exception();
         } catch(Exception e) {
-            //System.out.println(e);
+            System.out.println(e);
             Stage stage = (Stage) scenePane.getScene().getWindow();
             stage.close();
         }

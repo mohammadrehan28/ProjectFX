@@ -56,7 +56,7 @@ public class AddDepartmentRelController implements Initializable {
             if(textID.getText().isEmpty() && textName.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "The ID is Empty", "ERROR", JOptionPane.ERROR_MESSAGE);
                 con.close();
-                throw new Exception();
+                return;
             }
             while (rs.next()) {
                 String ID = rs.getString(1);
@@ -64,13 +64,13 @@ public class AddDepartmentRelController implements Initializable {
                 if(ID2.equals(textName.getText()) && ID.equals(textID.getText())) {//!textID.getText().equals(IDD)
                     JOptionPane.showMessageDialog(null, "The ID is already contains", "ERROR", JOptionPane.ERROR_MESSAGE);
                     con.close();
-                    throw new Exception();
+                    return;
                 }
             }
             if(textID.getText().isEmpty()||textName.getText().isEmpty()||textQuan.getText().isEmpty()){
                 JOptionPane.showMessageDialog(null, "Field is Empty", "ERROR", JOptionPane.ERROR_MESSAGE);
                 con.close();
-                throw new Exception();
+                return;
             }
             String ID = textID.getText();
             String Name = textName.getText();

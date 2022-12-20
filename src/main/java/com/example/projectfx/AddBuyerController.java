@@ -55,24 +55,24 @@ public class AddBuyerController implements Initializable {
             if(textID.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "The ID is Empty", "ERROR", JOptionPane.ERROR_MESSAGE);
                 con.close();
-                throw new Exception();
+                return;
             }
             while (rs.next()) {
                 String ID = rs.getString(1);
                 if(!textID.getText().equals(IDD) && ID.equals(textID.getText())) {
                     JOptionPane.showMessageDialog(null, "The ID is already contains", "ERROR", JOptionPane.ERROR_MESSAGE);
                     con.close();
-                    throw new Exception();
+                    return;
                 }
             }
             if(textID.getText().isEmpty()||textName.getText().isEmpty()){
                 JOptionPane.showMessageDialog(null, "Field is Empty", "ERROR", JOptionPane.ERROR_MESSAGE);
                 con.close();
-                throw new Exception();
+                return;
             }
             String ID = textID.getText();
             String Name = textName.getText();
-            if(screen2Controller.Flag) all = "INSERT INTO Employee values('"+ID+"','"+Name+"')";
+            if(screen2Controller.Flag) all = "INSERT INTO Buyer values('"+ID+"','"+Name+"')";
             else all = "UPDATE Buyer\n" +
                     "SET Buyer_ID = '"+ID+"', name_buyer = '"+Name+"'\n" +
                     "WHERE Buyer_ID = "+IDD;

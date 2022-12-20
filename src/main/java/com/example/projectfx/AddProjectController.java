@@ -83,20 +83,20 @@ public class AddProjectController implements Initializable {
             if(textSSN.getText().isEmpty()||textSSN.getText().isBlank()||textSSN.getText() == null) {
                 JOptionPane.showMessageDialog(null, "The ID is Empty", "ERROR", JOptionPane.ERROR_MESSAGE);
                 con.close();
-                throw new Exception();
+                return;
             }
             while (rs.next()) {
                 String SSN = rs.getString(1);
                 if(!textSSN.getText().equals(IDD) && SSN.equals(textSSN.getText())) {
                     JOptionPane.showMessageDialog(null, "The ID is already contains", "ERROR", JOptionPane.ERROR_MESSAGE);
                     con.close();
-                    throw new Exception();
+                    return;
                 }
             }
             if(textSSN.getText().isEmpty()||textCity.getText().isEmpty()||textContry.getText().isEmpty()||textName.getText().isEmpty()||textStreet.getText().isEmpty()||textNumber.getText().isEmpty()||textSSNM.getText().isEmpty()||textStart.getValue()==null||textEnd.getValue()==null){
                 JOptionPane.showMessageDialog(null, "Field is Empty", "ERROR", JOptionPane.ERROR_MESSAGE);
                 con.close();
-                throw new Exception();
+                return;
             }
             String SSN = textSSN.getText();
             String Name = textName.getText();
@@ -111,7 +111,7 @@ public class AddProjectController implements Initializable {
             String FormatStart = "DATE '" + Start.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) +"'";
             LocalDate End = textEnd.getValue();
             String FormatEnd = "DATE '" + End.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) +"'";
-            if(screen2Controller.Flag) all = "INSERT INTO Employee values("+SSN+",'"+Name+"',"+Number+",'"+combo+"','"+comboS+"','"+Country+"','"+City+"','"+Street+"',"+SSNM+","+FormatStart+","+FormatEnd+")";
+            if(screen2Controller.Flag) all = "INSERT INTO Project values("+SSN+",'"+Name+"',"+Number+",'"+combo+"','"+comboS+"','"+Country+"','"+City+"','"+Street+"',"+SSNM+","+FormatStart+","+FormatEnd+")";
             else all = "UPDATE Project\n" +
                     "SET Project_ID = "+SSN+", Name_project = '"+Name+"', Number_project = "+Number+",Type_project = '"+combo+"',status = '"+comboS+"', country = '"+Country+"', city = '"+City+"', street = '"+Street+"',SSN_manager = "+SSNM+",start_date = "+FormatStart+",Finish_date = "+FormatEnd+"\n" +
                     "WHERE Project_ID = "+IDD;
