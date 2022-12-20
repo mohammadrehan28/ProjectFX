@@ -33,9 +33,11 @@ public class DepartmentViewController implements Initializable {
     public ObservableList<ObservableList> department;
 
     static ObservableList<String> EmpUbdate = FXCollections.observableArrayList();
+    static boolean Flag = false;
 
     public void TableEmpListener(MouseEvent event) {
         if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+            Flag = true;
             EmpUbdate = (ObservableList<String>) tableDepartment.getSelectionModel().getSelectedItem();
             Stage stage = (Stage) tableDepartment.getScene().getWindow();
             stage.close();
@@ -44,8 +46,8 @@ public class DepartmentViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Flag = false;
         getFromAllDataDep(department, tableDepartment,  5,"select D.Department_ID,D.Type,D.Hours_Working,D.country,D.city,D.Street from Department D, department_have_items DH,Item i where D.Department_ID = DH.Department_ID And I.Item_ID = DH.Item_ID And I.Item_ID = "+BuyerController.IDItem+"",true);
-
     }
 
     public void getFromAllDataDep(ObservableList<ObservableList> datadepartment, TableView tabledepartment, int columnNumber, String qry2, boolean flag) {

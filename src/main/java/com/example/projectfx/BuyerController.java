@@ -309,6 +309,10 @@ public class BuyerController implements Initializable {
             stage.setScene(new Scene(root));
             stage.showAndWait();
             new FadeIn(root).play();
+            if(DepartmentViewController.Flag == false) {
+                JOptionPane.showMessageDialog(null, "You are not Selected Department", "ERROR", JOptionPane.ERROR_MESSAGE);
+                throw new Exception();
+            }
 
             OracleDataSource ods = new OracleDataSource();
             ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
@@ -357,6 +361,7 @@ public class BuyerController implements Initializable {
             all = "UPDATE Item\n" +
                     "SET Quantity = Quantity - 1\n" +
                     "WHERE Item_ID = "+ID;
+            stmt.executeUpdate(all);
             all = "UPDATE Department_Have_Items\n" +
                     "SET Quantity = Quantity - 1\n" +
                     "WHERE Item_ID = "+ID+" and Department_ID = '" + DepartmentViewController.EmpUbdate.get(0) +"'";
